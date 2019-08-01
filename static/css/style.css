@@ -1,0 +1,61 @@
+/* ................................ NAVBAR */
+
+nav {
+    color: #000;
+    background-color: #ffffff;
+}
+
+nav ul a {
+    color: black;
+}
+
+nav a {
+    color: black;
+}
+
+.logo_image {
+    max-width: 180px;
+}
+
+
+@media only screen and (min-width: 601px) {
+    .logo_image {
+        height: auto;
+        max-width: 250px;
+        max-height: 64px;
+        margin: auto;
+    }
+}
+
+nav .brand-logo {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+#search_form {
+    display: none;
+}
+
+.search_box {
+    border: 0.5px solid;
+    padding-left: 5px;
+}
+
+#search {
+    width: 75%;
+}
+
+.btn_search {
+    width: 20%;
+}
+
+.btn,
+.btn-large,
+.btn-flat {
+    padding: 0px;
+}
+
+#search_box_icon {
+    line-height: inherit;
+}
