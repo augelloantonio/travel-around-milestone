@@ -18,3 +18,6 @@ $(document).ready(function() {
     $('#search_cities').collapsible();
 });
 
+$(document).ready(function() {
+    $('.carousel').carousel();
+});
