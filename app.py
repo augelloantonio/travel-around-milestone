@@ -33,7 +33,39 @@ def insert_city():
     cities = mongo.db.cities
     cities.insert_one(request.form.to_dict())
     return redirect(url_for('index'))
+    
+    
+@app.route('/edit_city/<city_id>')
+def edit_city(city_id):
+    the_city =  mongo.db.cities.find_one({"_id": ObjectId(city_id)})
+    with open('data/countries.json') as json_file:
+         all_cities  = json.loads(json_file.read())
+    return render_template('editcity.html', city=the_city,
+                            country=all_cities)
+    
+@app.route('/update_city/<city_id>', methods=['POST'])
+def update_city(city_id):
+    cities = mongo.db.cities
+    with open('data/countries.json') as json_file:
+        json_file = json.loads(json_file.read())
+    cities.update( {'_id': ObjectId(city_id)},
+    {
+        'city_name':request.form.get('city_name'),
+        'city_country':request.form.get('city_country'),
+        'city_population': request.form.getlist('city_population'),
+        'city_description': request.form.get('city_description'),
+        'city_must_see': request.form.getlist('city_must_see'),
+        'city_category': request.form.getlist('city_category'),
+        'city_author':request.form.get('city_author'),
+        'city_image':request.form.get('city_image')
+    })
+    return redirect(url_for('index'))
 
+# Delete city - to add an if statement
+@app.route('/delete_city/<city_id>')
+def delete_city(city_id):
+    mongo.db.cities.remove({'_id': ObjectId(city_id)})
+    return redirect(url_for('index'))
 
 #Permitt the server to run the web app
 if __name__ == '__main__':
