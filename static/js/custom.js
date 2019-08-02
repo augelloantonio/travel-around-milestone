@@ -10,14 +10,17 @@ $(document).ready(function() {
 // Materialize Customiztions
 $(".button-collapse").sideNav();
 
+
 $(document).ready(function() {
     $('.tooltipped').tooltip();
 });
+
 
 $(document).ready(function() {
     $('#search_cities').collapsible();
 });
 
-$(document).ready(function() {
-    $('.carousel').carousel();
-});
+
+$(document).ready(function(){
+    $('select').toggle();
+  });
