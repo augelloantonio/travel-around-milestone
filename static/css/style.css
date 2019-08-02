@@ -1,3 +1,14 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+
 /* ................................ NAVBAR */
 
 nav {
@@ -67,14 +78,16 @@ textarea.materialize-textarea {
     padding: 0px;
 }
 
-.input-field{
+.input-field {
     margin: 0px;
 }
 
 /*..........................................Home Page */
 
-.img_card{
+.img_card {
     width: 100%;
 }
 
-
+.page-footer{
+    background-color: #6e787f;
+}
