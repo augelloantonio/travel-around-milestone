@@ -58,13 +58,14 @@ def update_city(city_id):
         'city_description': request.form.get('city_description'),
         'city_must_see': request.form.getlist('city_must_see'),
         'city_category': request.form.getlist('city_category'),
+        'city_tips': request.form.get('city_tips'),
         'city_author':request.form.get('city_author'),
         'city_image':request.form.get('city_image')
     })
     return redirect(url_for('index'))
 
 
-# Delete city - to add an if statement
+# Delete city - to add an if statement before proceed with javascript
 @app.route('/delete_city/<city_id>')
 def delete_city(city_id):
     mongo.db.cities.remove({'_id': ObjectId(city_id)})
