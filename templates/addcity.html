@@ -10,11 +10,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">subject</i>
-                <textarea name="city_country" id="city_country" class="materialize-textarea"></textarea>
-                <label for="icon_telephone">Country</label>
-            </div>
+            <select name="city_country" id="city_country" method="POST">
+                  <option value="" selected>Choose your option</option>
+                      {% for name in country %}
+                  <option value="{{name.name}}">{{name.name}}</option>
+                      {%endfor%}
+             </select>
+            <label>Materialize Select</label>
         </div>
         <div class="row">
             <div class="input-field col s12">
