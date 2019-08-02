@@ -59,3 +59,22 @@ nav .brand-logo {
 #search_box_icon {
     line-height: inherit;
 }
+
+
+/*..........................................Add city page */
+
+textarea.materialize-textarea {
+    padding: 0px;
+}
+
+.input-field{
+    margin: 0px;
+}
+
+/*..........................................Home Page */
+
+.img_card{
+    width: 100%;
+}
+
+
