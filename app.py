@@ -20,8 +20,8 @@ def add_city():
     return render_template('addcity.html',
     categories=mongo.db.categories.find())
     
-@app.route('/get_cities')
-def get_cities():
+@app.route('/get_city')
+def get_city():
     return render_template("index.html", cities=mongo.db.cities.find())
     
 @app.route('/insert_city', methods=['POST'])
