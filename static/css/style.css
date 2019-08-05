@@ -91,3 +91,14 @@ textarea.materialize-textarea {
 .page-footer{
     background-color: #6e787f;
 }
+
+
+/*..........................................Carousel*/
+.img_carousel{
+    min-height: 250px;
+    min-width: 300px;
+}
+
+.carousel .carousel-item>img{
+    padding-top: 20px;
+}
