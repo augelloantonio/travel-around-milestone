@@ -17,8 +17,7 @@ mongo = PyMongo(app)
 def index():
     with open('data/countries.json') as json_file:
         json_file = json.loads(json_file.read())
-    return render_template("index.html", cities=mongo.db.cities.find(), country=json_file,
-    city_category=mongo.db.city_category.find())
+    return render_template("index.html", cities=mongo.db.cities.find(), cities_carousel=mongo.db.cities.find(), country=json_file)
     
 # Connect to the database file and add a new city 
 @app.route('/add_city')
