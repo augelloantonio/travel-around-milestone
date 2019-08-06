@@ -32,3 +32,8 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('.carousel').carousel();
 });
+
+// Matezialize box
+$(document).ready(function(){
+    $('.materialboxed').materialbox();
+  });
