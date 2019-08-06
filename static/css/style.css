@@ -1,10 +1,10 @@
 body {
     display: flex;
-    min-height: 100vh;
+    min-height: 100vh!important;
     flex-direction: column;
 }
 
-main {
+.content {
     flex: 1 0 auto;
 }
 
@@ -88,17 +88,61 @@ textarea.materialize-textarea {
     width: 100%;
 }
 
-.page-footer{
+.page-footer {
     background-color: #6e787f;
 }
 
 
 /*..........................................Carousel*/
-.img_carousel{
+
+.img_carousel {
     min-height: 250px;
     min-width: 300px;
 }
 
-.carousel .carousel-item>img{
+.carousel .carousel-item>img {
     padding-top: 20px;
+}
+
+.img_city_page {
+    width: 100%;
+    padding: 20px;
+}
+
+.row_city_page_img {
+    display: flex;
+}
+
+/*........................................Add City/Edit City*/
+
+.select_country {
+    padding-bottom: 25px!important;
+}
+
+.input-field {
+    padding-bottom: 20px!important;
+}
+
+
+/*....................................................Signup/Login*/
+
+.content_login {
+    padding: 150px 0;
+}
+
+.login_row {
+    max-width: 400px;
+    max-height: 500px;
+    margin: auto;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    border: 2px solid #00000052;
+    text-align: center;
+}
+
+.login_form {
+    padding: 70px 0;
+    margin: auto;
+    width: 50%;
+    text-align: center;
 }
