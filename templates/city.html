@@ -1,14 +1,67 @@
-{% extends 'base.html' %} {% block content %}
-
+{% extends 'base.html' %} {% block content %} 
 <h1>{{cities.city_name}}</h1>
+<p>Added by - {{cities.city_author}}<span class="new badge" data-badge-caption="{{cities.added_time}}"></span></p>
 
+<!-- Header -->
 <div class="row">
-    <div class="row_city_page_img s12">
-        <div class="s12 m8">
+    <div>
+        <div class="col s12 m8">
             <img class="img_city_page" src="{{cities.city_image}}">
         </div>
-        <div class="s12 m4">
-            <img class="img_city_page" src="{{cities.city_image}}">
+        <!-- Adise Table -->
+        <div class="col s12 m4">
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Demografic Info</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Country</th>
+                            <td>{{cities.city_country}}</td>
+                        </tr>
+                        <tr>
+                            <th>Population</th>
+                            <td>{{cities.city_population}}</td>
+                        </tr>
+                        <tr>
+                            <th>Category</th>
+                            <td>{{cities.city_category}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Content-->
+<div class="row">
+    <div class="col s12 m4">
+        <div class="info_header">
+            <p class="info_title">City Info</p>
+        </div>
+        <div class="info_body">
+            <p class="info_body">{{cities.city_description}}</p>
+        </div>
+    </div>
+    <div class="col s12 m4">
+        <div class="info_header">
+            <p class="info_title">City Must See</p>
+        </div>
+        <div class="info_body">
+            <p class="info_body">{{cities.city_must_see}}</p>
+        </div>
+    </div>
+    <div class="col s12 m4">
+        <div class="info_header">
+            <p class="info_title">City Tips</p>
+        </div>
+        <div class="info_body">
+        
+            <p class="info_body">{{cities.city_tips}}</p>
         </div>
     </div>
 </div>

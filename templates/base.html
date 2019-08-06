@@ -28,7 +28,7 @@
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{url_for('add_city')}}" class="tooltipped" data-position="bottom" data-tooltip="Add a new city"><i class="material-icons">add_box</i></a></li>
-                    <li><a href="" class="tooltipped" data-position="bottom" data-tooltip="LogIn/Register"><i class="material-icons">account_circle</i></a></li>
+                    <li><a href="{{url_for('signup')}}" class="tooltipped" data-position="bottom" data-tooltip="LogIn/Register"><i class="material-icons">account_circle</i></a></li>
                 </ul>
                 <ul class="right hide-on-med-and-down">
 
@@ -56,13 +56,14 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <div class="container">
+    <div class="content">
+        <!-- Main Content -->
+        <div class="container">
 
-        {% block content %} {% endblock %}
+            {% block content %} {% endblock %}
 
+        </div>
     </div>
-
     <!-- Footer -->
     <footer class="page-footer">
         <div class="container">
@@ -90,6 +91,7 @@
             </div>
         </div>
     </footer>
+
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

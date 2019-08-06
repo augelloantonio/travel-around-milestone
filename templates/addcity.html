@@ -1,55 +1,48 @@
 {% extends 'base.html' %} {% block content %}
 <h3>Add City</h3>
+
 <div class="row">
     <form action="{{url_for('insert_city')}}" method="POST" class="col s12">
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s12 m6">
                 <i class="material-icons prefix">assignment</i>
-                <input id="city_name" name="city_name" type="text">
+                <input id="city_name" name="city_name" type="text" required>
                 <label for="icon_prefix">city Name</label>
             </div>
-        </div>
-        <div class="row">
-            <select name="city_country" id="city_country" method="POST">
-                  <option value="" selected>Choose your option</option>
+            <div class="select_country col s12 m6">
+                <label>Materialize Select</label>
+                <select name="city_country" id="city_country" method="POST" required>
+                  <option value="" selected>Country</option>
                       {% for name in country %}
                   <option value="{{name.name}}">{{name.name}}</option>
                       {%endfor%}
              </select>
-            <label>Materialize Select</label>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
+            </div>
+            <div class="input-field col s12 m6">
                 <i class="material-icons prefix">subject</i>
                 <textarea name="city_population" id="city_population" class="materialize-textarea"></textarea>
                 <label for="icon_telephone">Population</label>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">subject</i>
-                <textarea name="city_description" id="city_description" class="materialize-textarea"></textarea>
-                <label for="icon_telephone">City Description</label>
+            <div class="input-field col s12 m6">
+                <div class="input-field">
+                    <i class="material-icons prefix">subject</i>
+                    <textarea name="city_description" id="city_description" class="materialize-textarea" required></textarea>
+                    <label for="icon_telephone">City Description</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s12 m6">
                 <i class="material-icons prefix">subject</i>
-                <textarea name="city_must_see" id="city_must_see" class="materialize-textarea"></textarea>
+                <textarea name="city_must_see" id="city_must_see" class="materialize-textarea" required></textarea>
                 <label for="icon_telephone">Must see</label>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s12 m6">
                 <i class="material-icons prefix">subject</i>
-                <textarea name="city_tips" id="city_tips" class="materialize-textarea"></textarea>
+                <textarea name="city_tips" id="city_tips" class="materialize-textarea" required></textarea>
                 <label for="icon_telephone">City Tips</label>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s12 m6">
                 <i class="material-icons prefix">subject</i>
-                <textarea name="city_image" id="city_image" class="materialize-textarea"></textarea>
+                <textarea name="city_image" id="city_image" class="materialize-textarea" required></textarea>
                 <label for="icon_telephone">Url for the picture</label>
             </div>
         </div>
