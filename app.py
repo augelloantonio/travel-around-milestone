@@ -1,14 +1,18 @@
 import os
 import json, pymongo
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
 from time import ctime
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 #Inizialize Flask
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'travel_around'
 app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
+
+app.secret_key = os.getenv('SECRET', 'randomstring123')
 
 mongo = PyMongo(app)
 
@@ -102,29 +106,67 @@ def delete_city(city_id):
 
 # ........................... Account details 
 
-# SignUp form
-@app.route('/signup')
-def signup():
-   return render_template ('signuppage.html', cities = mongo.db.cities.find())
+# register form
+@app.route('/register')
+def register():
+   return render_template ('signuppage.html')
+
 
 # Get new user details and send them to MongoDB giving to all the users the right of user
-@app.route('/get_user_data', methods=["POST"])
+
+@app.route('/get_user_data', methods=['POST'])
 def get_user_data():
-    user = mongo.db.user
-    new_user = {
-        'username':request.form.get('username').lower(),
-        'email':request.form.get('email').lower(),
-        'password':request.form.get('password'),
-        'right': 'user'
-    }
-    user.insert_one(new_user)
-    return redirect(url_for('index'))
+    username = request.form.get('username').lower()
+    password = generate_password_hash(request.form.get('password'))    
+    session['username'] = username
+    new_user = mongo.db.user.find_one({'username' : username})
     
-# Get new user details and send them to MongoDB giving to all the users the right of user
+    if new_user is None:
+        mongo.db.user.insert_one({
+            'username': username,
+            'password': password,
+            'recipes_rated':[]
+        })
+        session['logged_in'] = True
+        flash('Welcome')
+        return redirect(url_for('index'))
+    else:
+        session['logged_in'] = False
+        flash('Username already exists, please try again.')
+    return register()
+
+
+# register form
 @app.route('/login')
 def login():
-    return render_template ('login.html')
+   return render_template ('login.html')
+
+""" This login function checks if the username & password
+match the admin.db; if the authentication is successful,
+it passes the id of the user into login_user() 
+@app.route('/signin', methods=['POST'])
+def signin():
+
+    email=request.form['email']
+    password = generate_password_hash(request.form['password'])
     
+    session.permanent = True
+
+    email = mongo.db.user.find_one({'email' : email})
+    
+    if not email:
+        session['logged_in'] = False
+        flash('User ' + session['username'] + 'is not present in out trip database, please try again.')
+        return register()
+    elif not check_password_hash(email['password'],password):
+        session['logged_in'] = False
+        flash('Incorrect Password, please try again.')
+        return register()   
+    else:
+        session['logged_in'] = True
+        flash('Welcome ' + email['username'])
+        return redirect(url_for('index'))
+"""
 
 #Permitt the server to run the web app
 if __name__ == '__main__':
