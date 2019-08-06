@@ -31,6 +31,7 @@
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">close</i></span>
                         <p>{{city.city_brief}}</p>
+                       <a href="{{url_for('city_page', city_id = city._id)}}"><p>Read More</p></a>
                     </div>
                 </div>
             </div>
