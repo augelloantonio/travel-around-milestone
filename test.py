@@ -1,5 +1,4 @@
 import os
-import app
 import json
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
@@ -35,6 +34,9 @@ with open('data/countries.json') as json_file:
 time = ctime()
 print ("actual time is: " + time)
 print('')
+
+#~~~~~~~~~~~~~~~~~~Testing if the date is correctly setted~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 
 #~~~~~~~~~~~~~~~~~~Testing the links ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
