@@ -3,9 +3,12 @@
 <!-- Carousel -->
 <div class="row">
     <div class="carousel">
-            {%for images in cities_carousel %}
-        <a class="carousel-item" href=""><img src="{{images.city_image}}"></a>
-        {%endfor%}
+        <h2>Best cities to go</h2>
+        {%for images in cities_carousel %}
+        {%if url_image == url %}
+        <a class="carousel-item img_carousel" href=""><img src="{{images.city_image}}"></a>        
+        {%endif%}
+{%endfor%}
     </div>
 </div>
 
@@ -37,7 +40,9 @@
     <div class="col s12 l4">
         <ul>
             {% for name in country %}
+            {% if name['name'].startswith("Au")%}
             <li>{{name.name}}</li>
+            {%endif%}
             {%endfor%}
         </ul>
     </div>
