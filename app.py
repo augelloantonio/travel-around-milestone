@@ -33,13 +33,13 @@ def add_city():
 def insert_city():
     cities = mongo.db.cities
     city_info = {
-        'city_name':request.form.get('city_name'),
-        'city_country':request.form.get('city_country'),
+        'city_name':request.form.get('city_name').capitalize(),
+        'city_country':request.form.get('city_country').capitalize(),
         'city_population': request.form.get('city_population'),
-        'city_description': request.form.get('city_description'),
-        'city_must_see': request.form.getlist('city_must_see'),
-        'city_category': request.form.getlist('city_category'),
-        'city_tips': request.form.get('city_tips'),
+        'city_description': request.form.get('city_description').capitalize(),
+        'city_must_see': request.form.getlist('city_must_see').capitalize(),
+        'city_category': request.form.getlist('city_category').capitalize(),
+        'city_tips': request.form.get('city_tips').capitalize(),
         'city_author':request.form.get('city_author'),
         'city_image':request.form.get('city_image'),
         'favorite' :[
@@ -81,13 +81,13 @@ def update_city(city_id):
         json_file = json.loads(json_file.read())
     cities.update( {'_id': ObjectId(city_id)},
     {
-        'city_name':request.form.get('city_name'),
-        'city_country':request.form.get('city_country'),
+        'city_name':request.form.get('city_name').capitalize(),
+        'city_country':request.form.get('city_country').capitalize(),
         'city_population': request.form.get('city_population'),
-        'city_description': request.form.get('city_description'),
-        'city_must_see': request.form.getlist('city_must_see'),
-        'city_category': request.form.getlist('city_category'),
-        'city_tips': request.form.get('city_tips'),
+        'city_description': request.form.get('city_description').capitalize(),
+        'city_must_see': request.form.getlist('city_must_see').capitalize(),
+        'city_category': request.form.getlist('city_category').capitalize(),
+        'city_tips': request.form.get('city_tips').capitalize(),
         'city_image':request.form.get('city_image')
     })
     return redirect(url_for('index'))
@@ -100,14 +100,31 @@ def delete_city(city_id):
     return redirect(url_for('index'))
 
 
-# ...........................     Account details 
+# ........................... Account details 
 
 # SignUp form
 @app.route('/signup')
 def signup():
    return render_template ('signuppage.html', cities = mongo.db.cities.find())
 
-
+# Get new user details and send them to MongoDB giving to all the users the right of user
+@app.route('/get_user_data', methods=["POST"])
+def get_user_data():
+    user = mongo.db.user
+    new_user = {
+        'username':request.form.get('username').lower(),
+        'email':request.form.get('email').lower(),
+        'password':request.form.get('password'),
+        'right': 'user'
+    }
+    user.insert_one(new_user)
+    return redirect(url_for('index'))
+    
+# Get new user details and send them to MongoDB giving to all the users the right of user
+@app.route('/login')
+def login():
+    return render_template ('login.html')
+    
 
 #Permitt the server to run the web app
 if __name__ == '__main__':
