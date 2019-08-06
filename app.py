@@ -1,8 +1,9 @@
 import os
-import json
+import json, pymongo
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
+from time import ctime
 
 #Inizialize Flask
 app = Flask(__name__)
@@ -11,13 +12,12 @@ app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
 
 mongo = PyMongo(app)
 
-
 #Set as homepage my index.html
 @app.route('/')
 def index():
     with open('data/countries.json') as json_file:
         json_file = json.loads(json_file.read())
-    return render_template("index.html", cities=mongo.db.cities.find(), cities_carousel=mongo.db.cities.find(), country=json_file)
+    return render_template("index.html", cities=mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), cities_carousel=mongo.db.cities.find(), country=json_file)
     
 # Connect to the database file and add a new city 
 @app.route('/add_city')
@@ -32,8 +32,38 @@ def add_city():
 @app.route('/insert_city', methods=['POST'])
 def insert_city():
     cities = mongo.db.cities
-    cities.insert_one(request.form.to_dict())
+    city_info = {
+        'city_name':request.form.get('city_name'),
+        'city_country':request.form.get('city_country'),
+        'city_population': request.form.get('city_population'),
+        'city_description': request.form.get('city_description'),
+        'city_must_see': request.form.getlist('city_must_see'),
+        'city_category': request.form.getlist('city_category'),
+        'city_tips': request.form.get('city_tips'),
+        'city_author':request.form.get('city_author'),
+        'city_image':request.form.get('city_image'),
+        'favorite' :[
+                    {'overall_favorite': 0.0,
+                    'total_favorite': 0,
+                    'no_of_favorite':0
+                    }
+                ],
+        'added_time' : ctime()
+    }
+    cities.insert_one(city_info)
     return redirect(url_for('index'))
+    
+# Display all the City web page
+@app.route('/city_page/<city_id>')
+def city_page(city_id):
+    return render_template("city.html", 
+         cities = mongo.db.cities.find_one({'_id': ObjectId(city_id)}))
+           
+#Display all the cities listed 
+@app.route('/get_cities')
+def get_cities():
+    return render_template("cities_listed.html", 
+                           cities = mongo.db.cities.find())
     
 # Get the city data from the city id
 @app.route('/edit_city/<city_id>')
