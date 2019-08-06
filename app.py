@@ -88,7 +88,6 @@ def update_city(city_id):
         'city_must_see': request.form.getlist('city_must_see'),
         'city_category': request.form.getlist('city_category'),
         'city_tips': request.form.get('city_tips'),
-        'city_author':request.form.get('city_author'),
         'city_image':request.form.get('city_image')
     })
     return redirect(url_for('index'))
@@ -100,9 +99,18 @@ def delete_city(city_id):
     mongo.db.cities.remove({'_id': ObjectId(city_id)})
     return redirect(url_for('index'))
 
+
+# ...........................     Account details 
+
+# SignUp form
+@app.route('/signup')
+def signup():
+   return render_template ('signuppage.html', cities = mongo.db.cities.find())
+
+
+
 #Permitt the server to run the web app
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get("PORT")),
             debug=True)
-            
