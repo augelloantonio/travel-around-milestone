@@ -2,8 +2,7 @@
 
 <div class="content_login">
     <div class="login_row col s12">
-        <form class=" login_form" action="{{url_for('get_user_data')}}" method="POST">
-            <i class="material-icons prefix">account_circle</i>
+        <form class="login_form" action="/signin" method="POST">
             <i class="material-icons prefix">email</i>
             <div class="input-field">
                 <input id="email" name="email" type="email" class="validate" required>
@@ -15,11 +14,11 @@
                 <label for="icon_telephone">Password</label>
             </div>
             <div>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up!</button>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Log In!</button>
             </div>
         </form>
         <div>
-            <p>Are you already one of us? <a href="{{url_for('login')}}">Log In</a></p>
+            <p>Are you not one of us? <a href="{{url_for('register')}}">Register Now</a></p>
         </div>
     </div>
 </div>
