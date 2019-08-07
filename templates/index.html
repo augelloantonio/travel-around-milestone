@@ -1,33 +1,29 @@
-{% extends 'base.html' %} {% block content %}
-
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    <ul class="flashes">
+{% extends 'base.html' %} {% block content %} {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+<ul class="flashes">
     {% for message in messages %}
-      <li>{{ message }}</li>
+    <li>{{ message }}</li>
     {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
+</ul>
+{% endif %} {% endwith %}
 
 <!-- Carousel -->
 <div class="row">
     <div class="carousel">
         <h2>Best cities to go</h2>
-        {%for images in cities_carousel %}
-        {%if url_image == url %}
-        <a class="carousel-item img_carousel" href=""><img src="{{images.city_image}}"></a>        
-        {%endif%}
-{%endfor%}
+        {%for images in cities_carousel %} {%if url_image == url %}
+        <a class="carousel-item img_carousel" href=""><img src="{{images.city_image}}"></a> {%endif%} {%endfor%}
     </div>
 </div>
 
 <!-- Content -->
 <div class="row">
-    <div class="col s12 l8">
+    {%for region in regions %}
+    <h3>{{region.region_name}}</h3>
+    <div class="col s12">
         <div class="row">
-            {%for city in cities %}
-            <div class="col s12 m6 l6">
+            {%for city in cities%}
+             {%if city.city_region == region.region_name%}
+            <div class="col s6 m4 l3 ">
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator" src="{{city.city_image}}">
@@ -39,22 +35,17 @@
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">close</i></span>
                         <p>{{city.city_brief}}</p>
-                       <a href="{{url_for('city_page', city_id = city._id)}}"><p>Read More</p></a>
+                        <a href="{{url_for('city_page', city_id = city._id)}}">
+                            <p>Read More</p>
+                        </a>
                     </div>
                 </div>
             </div>
-            {%endfor%}
+            {%endif%}
+             {%endfor%}
         </div>
     </div>
-    <div class="col s12 l4">
-        <ul>
-            {% for region_name in regions %}
-            {% if region_name['region_name']%}
-            <li>{{region_name.region_name}}</li>
-            {%endif%}
-            {%endfor%}
-        </ul>
-    </div>
+    {%endfor%}
 </div>
 
 {% endblock %}
