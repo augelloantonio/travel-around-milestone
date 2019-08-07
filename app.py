@@ -132,8 +132,8 @@ def city_page(city_id):
     return render_template("city.html", 
          cities = mongo.db.cities.find_one({'_id': ObjectId(city_id)}), city=the_city,
                           user=mongo.db.user.find())
-           
-           
+
+
 #~~~~~~~~~~~~~~~~~~ Display all the City webpage ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 @app.route('/get_cities')
 def get_cities():
@@ -231,7 +231,8 @@ def user_page():
         return login_page()
     else:
         flash(str(user_logged) + ' logged in')
-        return render_template('user.html', user_logged=session.get('username'))
+        return render_template('user.html', user_logged=session.get('username'), user=mongo.db.user.find(),
+        cities = mongo.db.cities.find())
 
     
 #Log Out

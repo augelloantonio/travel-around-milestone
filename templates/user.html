@@ -1,20 +1,42 @@
-{% extends 'base.html' %} {% block content %}
-
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    <ul class="flashes">
+{% extends 'base.html' %} {% block content %} {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+<ul class="flashes">
     {% for message in messages %}
-      <li>{{ message }}</li>
+    <li>{{ message }}</li>
     {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
+</ul>
+{% endif %} {% endwith %}
 
 <h1>User Page</h1>
 <p>Welcome, {{user_in_session}}</p>
 
+<div>
+    <a href="{{url_for('logout')}}" class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Log Out</a>
+</div>
 
-<a href="{{url_for('logout')}}" class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Log Out</a>
+<div class="col s12">
+    <div class="row">
+        {%for city in cities %}
+        <div class="col s6 m4 l3">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="{{city.city_image}}">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">more_vert</i></span>
+                    <i class="material-icons">expand_more</i>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">close</i></span>
+                    <p>{{city.city_brief}}</p>
+                    <a href="{{url_for('city_page', city_id = city._id)}}">
+                        <p>Read More</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+</div>
 
 
 {% endblock%}
