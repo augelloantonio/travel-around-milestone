@@ -39,7 +39,7 @@ with open('data/region.json') as json_file_region:
     for region in json_file_region:
         if region['region_name']:
             print(region['region_name'])
-
+            print('')
 
 
 #~~~~~~~~~~~~~~~~~~Testing if the date is correctly setted~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -48,9 +48,17 @@ time = ctime()
 print ("actual time is: " + time)
 print('')
 
-#~~~~~~~~~~~~~~~~~~Testing if the date is correctly setted~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
-
+#~~~~~~~~~~~~~~~~~~Testing login form~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+class testing_login(unittest.TestCase):
+    def test_login(self):
+        session = True
+        username = 'admin'
+        password = 'admin'
+        if session == True and username == 'admin' and password == 'admin':
+          print ('user logged in')
+        else:
+          print('test fail')
+    
 #~~~~~~~~~~~~~~~~~~Testing the links ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 """
 class testing_links(unittest.TestCase):
