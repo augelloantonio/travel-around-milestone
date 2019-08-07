@@ -17,35 +17,176 @@
 
 <!-- Content -->
 <div class="row">
-    {%for region in regions %}
-    <h3>{{region.region_name}}</h3>
-    <div class="col s12">
-        <div class="row">
-            {%for city in cities%}
-             {%if city.city_region == region.region_name%}
-            <div class="col s6 m4 l3 ">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="{{city.city_image}}">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">more_vert</i></span>
-                        <i class="material-icons">expand_more</i>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">close</i></span>
-                        <p>{{city.city_brief}}</p>
-                        <a href="{{url_for('city_page', city_id = city._id)}}">
-                            <p>Read More</p>
-                        </a>
+    <div>
+        <h3>Europe</h3>
+        <div class="col s12">
+            <div class="row">
+                {%for city in cities%} {%if city.city_region == 'Europe'%}
+                <div class="col s6 m4 l3 ">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="{{city.city_image}}">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">more_vert</i></span>
+                            <i class="material-icons">expand_more</i>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">close</i></span>
+                            <p>{{city.city_brief}}</p>
+                            <a href="{{url_for('city_page', city_id = city._id)}}">
+                                <p>Read More</p>
+                            </a>
+                        </div>
                     </div>
                 </div>
+                {%endif%} {%endfor%}
             </div>
-            {%endif%}
-             {%endfor%}
         </div>
     </div>
-    {%endfor%}
+
+    <div>
+        <h3>North America & Canada</h3>
+        <div class="col s12">
+            <div class="row">
+                {%for city in city_named%} {%if city.city_region == 'North America & Canada'%}
+                <div class="col s6 m4 l3 ">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="{{city.city_image}}">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">more_vert</i></span>
+                            <i class="material-icons">expand_more</i>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">close</i></span>
+                            <p>{{city.city_brief}}</p>
+                            <a href="{{url_for('city_page', city_id = city._id)}}">
+                                <p>Read More</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {%endif%} {%endfor%}
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h3>Asia</h3>
+        <div class="col s12">
+            <div class="row">
+                {%for city in city_2%} {%if city.city_region == 'Asia'%}
+                <div class="col s6 m4 l3 ">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="{{city.city_image}}">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">more_vert</i></span>
+                            <i class="material-icons">expand_more</i>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">close</i></span>
+                            <p>{{city.city_brief}}</p>
+                            <a href="{{url_for('city_page', city_id = city._id)}}">
+                                <p>Read More</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {%endif%} {%endfor%}
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h3>Central America & South America</h3>
+        <div class="col s12">
+            <div class="row">
+                {%for city in city_3%} {%if city.city_region == 'Central America & South America'%}
+                <div class="col s6 m4 l3 ">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="{{city.city_image}}">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">more_vert</i></span>
+                            <i class="material-icons">expand_more</i>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">close</i></span>
+                            <p>{{city.city_brief}}</p>
+                            <a href="{{url_for('city_page', city_id = city._id)}}">
+                                <p>Read More</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {%endif%} {%endfor%}
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h3>Australia & New Zeland</h3>
+        <div class="col s12">
+            <div class="row">
+                {%for city in city_4%} {%if city.city_region == 'Australia & New Zeland'%}
+                <div class="col s6 m4 l3 ">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="{{city.city_image}}">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">more_vert</i></span>
+                            <i class="material-icons">expand_more</i>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">close</i></span>
+                            <p>{{city.city_brief}}</p>
+                            <a href="{{url_for('city_page', city_id = city._id)}}">
+                                <p>Read More</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {%endif%} {%endfor%}
+            </div>
+        </div>
+    </div>
+    
+        <div>
+        <h3>Africa & The Middle East</h3>
+        <div class="col s12">
+            <div class="row">
+                {%for city in city_5%} {%if city.city_region == 'Africa & The Middle East' %}
+                <div class="col s6 m4 l3 ">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="{{city.city_image}}">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">more_vert</i></span>
+                            <i class="material-icons">expand_more</i>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">close</i></span>
+                            <p>{{city.city_brief}}</p>
+                            <a href="{{url_for('city_page', city_id = city._id)}}">
+                                <p>Read More</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {%endif%} {%endfor%}
+            </div>
+        </div>
+    </div>
+
+
+
 </div>
 
 {% endblock %}

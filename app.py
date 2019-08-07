@@ -32,7 +32,10 @@ def index():
     user = mongo.db.user.find_one({'username' : username})
         
     return render_template("index.html", cities=mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), 
-                            cities_carousel=mongo.db.cities.find(), 
+                            cities_carousel=mongo.db.cities.find(), city=mongo.db.cities.find(), 
+                            city_named=mongo.db.cities.find(), city_2=mongo.db.cities.find(),
+                            city_3=mongo.db.cities.find(), city_4=mongo.db.cities.find(),
+                            city_5=mongo.db.cities.find(),
                             country=json_file_country, regions=json_file_region, user=mongo.db.user.find(),
                             user_logged=session.get('username'))
 
@@ -92,7 +95,7 @@ def edit_city(city_id):
         json_file_region = json.loads(json_file_region.read())     
     
     return render_template('editcity.html', city=the_city,
-                            country=all_cities, regions=json_file_region, user=mongo.db.user.find())
+                            country=all_cities, regions=json_file_region.find(), user=mongo.db.user.find())
     
 @app.route('/update_city/<city_id>', methods=['POST'])
 def update_city(city_id):
@@ -241,6 +244,9 @@ def logout():
     session['logged_in'] = False
     flash('logged out')
     return index()
+    
+    
+#~~~~~~~~~~~~~~~~~~~~~~~~ Def Region ~~~~~~~~~~~~~~~~~~~~~~~~~#
     
 
 #Permitt the server to run the web app
