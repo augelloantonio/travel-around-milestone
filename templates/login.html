@@ -1,8 +1,18 @@
 {% extends 'base.html' %} {% block content %}
 
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flashes">
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
 <div class="content_login">
     <div class="login_row col s12">
-        <form class="login_form" action="/signin" method="POST">
+        <form class="login_form" action="/login" method="POST">
             <i class="material-icons prefix">email</i>
             <div class="input-field">
                 <input id="email" name="email" type="email" class="validate" required>

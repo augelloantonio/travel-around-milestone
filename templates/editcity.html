@@ -22,6 +22,19 @@
                       {%endfor%}
                  </select>
             </div>
+            <div class="col s12 m6 select_country">
+                <label>Country</label>
+                <select name="region_name" id="region_name" method="POST">
+                  <option value="{{city_region}}" selected>{{city_region}}</option>
+                        {% for region in regions %}
+                           {% if region.region_name == city.region_name %}
+                              <option value="{{region.region_name}}" selected>{{region.region_name}}</option>
+                              {%else%}
+                              <option value="{{region.region_name}}">{{region.region_name}}</option>
+                          {%endif%}
+                      {%endfor%}
+                 </select>
+            </div>
             <div class="input-field col s12 m6">
                 <i class="material-icons prefix">subject</i>
                 <textarea name="city_population" id="city_population" class="materialize-textarea">{{city.city_population}}</textarea>

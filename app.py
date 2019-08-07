@@ -1,3 +1,5 @@
+#~~~~~~~~~~~~~~~~~~Importing necessary modules~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 import os
 import json, pymongo
 from flask import Flask, render_template, redirect, request, url_for, session, flash
@@ -7,7 +9,7 @@ from time import ctime
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-#Inizialize Flask
+#~~~~~~~~~~~~~~~~~~Inizialize Flask and connect to MongoDB~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'travel_around'
 app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
@@ -16,7 +18,7 @@ app.secret_key = os.getenv('SECRET', 'randomstring123')
 
 mongo = PyMongo(app)
 
-#Set as homepage my index.html
+#~~~~~~~~~~~~~~~~~~#Set as homepage my index.html~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 @app.route('/')
 def index():
     #open coutries.json 
@@ -26,11 +28,15 @@ def index():
     with open('data/region.json') as json_file_region:
         json_file_region = json.loads(json_file_region.read())
         
+    username=session.get('username')
+        
     return render_template("index.html", cities=mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), 
                             cities_carousel=mongo.db.cities.find(), 
-                            country=json_file_country, regions=json_file_region)
-    
-# Connect to the database file and add a new city 
+                            country=json_file_country, regions=json_file_region, user=mongo.db.user.find())
+
+
+#~~~~~~~~~ CRUD - Create a new city, Read New city, Update existing city, Delete existing City ~~~~~~~~#
+# Create city WebPage
 @app.route('/add_city')
 def add_city():
     country=[]
@@ -42,9 +48,9 @@ def add_city():
         json_file_region = json.loads(json_file_region.read())
         
         return render_template('addcity.html', country=json_file_country, regions=json_file_region,
-        city=mongo.db.cieties.find())
-    
-# Add a new city and then redirect to index
+        city=mongo.db.cieties.find(), user=mongo.db.user.find())
+        
+# Create city function
 @app.route('/insert_city', methods=['POST'])
 def insert_city():
     cities = mongo.db.cities
@@ -70,18 +76,6 @@ def insert_city():
     cities.insert_one(city_info)
     return redirect(url_for('index'))
     
-# Display all the City web page
-@app.route('/city_page/<city_id>')
-def city_page(city_id):
-    return render_template("city.html", 
-         cities = mongo.db.cities.find_one({'_id': ObjectId(city_id)}))
-           
-#Display all the cities listed 
-@app.route('/get_cities')
-def get_cities():
-    return render_template("cities_listed.html", 
-                           cities = mongo.db.cities.find())
-    
 # Get the city data from the city id
 @app.route('/edit_city/<city_id>')
 def edit_city(city_id):
@@ -94,7 +88,7 @@ def edit_city(city_id):
         json_file_region = json.loads(json_file_region.read())     
     
     return render_template('editcity.html', city=the_city,
-                            country=all_cities, region=json_file_region)
+                            country=all_cities, regions=json_file_region, user=mongo.db.user.find())
     
 @app.route('/update_city/<city_id>', methods=['POST'])
 def update_city(city_id):
@@ -127,20 +121,41 @@ def delete_city(city_id):
     return redirect(url_for('index'))
 
 
-# ........................... Account details 
+#Display the City webpage 
+@app.route('/city_page/<city_id>')
+def city_page(city_id):
+    return render_template("city.html", 
+         cities = mongo.db.cities.find_one({'_id': ObjectId(city_id)}))
+           
+           
+#~~~~~~~~~~~~~~~~~~ Display all the City webpage ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+@app.route('/get_cities')
+def get_cities():
+    return render_template("cities_listed.html", 
+                           cities = mongo.db.cities.find())
+    
+
+
+
+#~~~~~~~~~~~~~~~~~~ Register / Log In/ Account section ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 # register form
 @app.route('/register')
 def register():
    return render_template ('signuppage.html')
+   
+# register form
+@app.route('/login_page')
+def login_page():
+   return render_template ('login.html')
 
 
 # Get new user details and send them to MongoDB giving to all the users the right of user
-
 @app.route('/get_user_data', methods=['POST'])
 def get_user_data():
     username = request.form.get('username').lower()
-    password = generate_password_hash(request.form.get('password'))    
+    password = generate_password_hash(request.form.get('password'))
+    email = request.form.get('email').lower()
     session['username'] = username
     new_user = mongo.db.user.find_one({'username' : username})
     
@@ -148,48 +163,57 @@ def get_user_data():
         mongo.db.user.insert_one({
             'username': username,
             'password': password,
+            'email': email,
             'recipes_rated':[]
         })
         session['logged_in'] = True
-        flash('Welcome')
-        return redirect(url_for('index'))
+        flash('Your User has been creates, please Log In now')
+        return redirect(url_for('login_page'))
     else:
         session['logged_in'] = False
         flash('Username already exists, please try again.')
-    return register()
+        return redirect(url_for('user_page'))
+   
 
-
-# register form
-@app.route('/login')
+#Check if user already logged in 
+@app.route('/user_logged')
+def user_logged():
+    if not session.get('logged_in'):
+        return render_template('login.html')
+        flash("Please, Log In")
+    else:
+        return redirect(url_for('user_page'))
+    
+@app.route('/login',  methods=['POST'])
 def login():
-   return render_template ('login.html')
+    email = request.form.get('email')
+    password = request.form.get('password')
+    username = request.form.get('username')
+    session['username'] = username
 
-""" This login function checks if the username & password
-match the admin.db; if the authentication is successful,
-it passes the id of the user into login_user() 
-@app.route('/signin', methods=['POST'])
-def signin():
-
-    email=request.form['email']
-    password = generate_password_hash(request.form['password'])
-    
     session.permanent = True
-
-    email = mongo.db.user.find_one({'email' : email})
+    user = mongo.db.user.find_one({'email' : email})
     
-    if not email:
+    if not user:
         session['logged_in'] = False
-        flash('User ' + session['username'] + 'is not present in out trip database, please try again.')
-        return register()
-    elif not check_password_hash(email['password'],password):
+        flash('Username not in the database, try again.')
+        return login_page()
+    elif not check_password_hash(user['password'],password):
         session['logged_in'] = False
         flash('Incorrect Password, please try again.')
-        return register()   
+        return login_page()   
     else:
         session['logged_in'] = True
-        flash('Welcome ' + email['username'])
-        return redirect(url_for('index'))
-"""
+        flash('Welcome ' + user['username'])
+        return redirect(url_for('user_page'))
+
+
+# User Page
+@app.route('/user_page')
+def user_page():
+    username=session.get('username')
+    return render_template ('user.html', user=mongo.db.user.find())
+
 
 #Permitt the server to run the web app
 if __name__ == '__main__':

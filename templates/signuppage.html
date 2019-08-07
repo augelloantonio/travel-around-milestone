@@ -1,5 +1,15 @@
 {% extends 'base.html' %} {% block content %}
 
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flashes">
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
 <div class="content_login">
     <div class="login_row col s12">
         <form class=" login_form" action="{{url_for('get_user_data')}}" method="POST">
@@ -23,7 +33,7 @@
             </div>
         </form>
         <div>
-            <p>Are you already one of us? <a href="{{url_for('login')}}">Log In</a></p>
+            <p>Are you already one of us? <a href="{{url_for('login_page')}}">Log In</a></p>
         </div>
     </div>
 </div>
