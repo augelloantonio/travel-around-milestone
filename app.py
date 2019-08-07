@@ -33,8 +33,8 @@ def index():
         
     return render_template("index.html", cities=mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), 
                             cities_carousel=mongo.db.cities.find(), 
-                            country=json_file_country, regions=json_file_region,
-                            user_logged=username)
+                            country=json_file_country, regions=json_file_region, user=mongo.db.user.find(),
+                            user_logged=session.get('username'))
 
 
 #~~~~~~~~~ CRUD - Create a new city, Read New city, Update existing city, Delete existing City ~~~~~~~~#
@@ -55,6 +55,8 @@ def add_city():
 # Create city function
 @app.route('/insert_city', methods=['POST'])
 def insert_city():
+    username=session.get('username')
+    user = mongo.db.user.find_one({'username' : username})
     cities = mongo.db.cities
     city_info = {
         'city_name':request.form.get('city_name').capitalize(),
@@ -62,10 +64,10 @@ def insert_city():
         'city_region':request.form.get('city_region').capitalize(),
         'city_population': request.form.get('city_population'),
         'city_description': request.form.get('city_description').capitalize(),
-        'city_must_see': request.form.getlist('city_must_see').capitalize(),
-        'city_category': request.form.getlist('city_category').capitalize(),
+        'city_must_see': request.form.getlist('city_must_see'),
+        'city_category': request.form.getlist('city_category'),
         'city_tips': request.form.get('city_tips').capitalize(),
-        'city_author':request.form.get('city_author'),
+        'city_author':username,
         'city_image':request.form.get('city_image'),
         'favorite' :[
                     {'overall_favorite': 0.0,
@@ -108,8 +110,8 @@ def update_city(city_id):
         'city_region':request.form.get('city_region').capitalize(),
         'city_population': request.form.get('city_population'),
         'city_description': request.form.get('city_description').capitalize(),
-        'city_must_see': request.form.getlist('city_must_see').capitalize(),
-        'city_category': request.form.getlist('city_category').capitalize(),
+        'city_must_see': request.form.getlist('city_must_see'),
+        'city_category': request.form.getlist('city_category'),
         'city_tips': request.form.get('city_tips').capitalize(),
         'city_image':request.form.get('city_image')
     })
@@ -126,8 +128,10 @@ def delete_city(city_id):
 #Display the City webpage 
 @app.route('/city_page/<city_id>')
 def city_page(city_id):
+    the_city =  mongo.db.cities.find_one({"_id": ObjectId(city_id)})
     return render_template("city.html", 
-         cities = mongo.db.cities.find_one({'_id': ObjectId(city_id)}))
+         cities = mongo.db.cities.find_one({'_id': ObjectId(city_id)}), city=the_city,
+                          user=mongo.db.user.find())
            
            
 #~~~~~~~~~~~~~~~~~~ Display all the City webpage ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -136,7 +140,6 @@ def get_cities():
     return render_template("cities_listed.html", 
                            cities = mongo.db.cities.find())
     
-
 
 
 #~~~~~~~~~~~~~~~~~~ Register / Log In/ Account section ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -155,11 +158,14 @@ def login_page():
 # Get new user details and send them to MongoDB giving to all the users the right of user
 @app.route('/get_user_data', methods=['POST'])
 def get_user_data():
-    session.permanent = True
     username = request.form.get('username').lower()
     password = generate_password_hash(request.form.get('password'))
     email = request.form.get('email').lower()
+    city_author = request.form.get('username').lower()
+    
     session['username'] = username
+    session.permanent = True
+
     new_user = mongo.db.user.find_one({'username' : username})
     
     if new_user is None:
@@ -167,6 +173,7 @@ def get_user_data():
             'username': username,
             'password': password,
             'email': email,
+            'city_author': city_author,
             'recipes_rated':[]
         })
         session['logged_in'] = True
@@ -175,7 +182,7 @@ def get_user_data():
     else:
         session['logged_in'] = False
         flash('Username already exists, please try again.')
-        return redirect(url_for('user_page'), user=mongo.db.user.find())
+        return redirect(url_for('user_page'))
    
 
 #Check if user already logged in 
@@ -194,8 +201,8 @@ def login():
     password = request.form.get('password')
     username = request.form.get('username')
     session['username'] = username
-
     session.permanent = True
+
     user = mongo.db.user.find_one({'email' : email})
 
     if not user:
@@ -210,7 +217,7 @@ def login():
         session['logged_in'] = True
         flash('Welcome ' + user['username'])
         return render_template('user.html', user=mongo.db.user.find(), 
-        user_in_session=user['username'])
+        user_in_session=user['username'], city_author=user['username'])
 
 
 
@@ -224,7 +231,7 @@ def user_page():
         return login_page()
     else:
         flash(str(user_logged) + ' logged in')
-        return render_template('user.html', user_logged=username)
+        return render_template('user.html', user_logged=session.get('username'))
 
     
 #Log Out
