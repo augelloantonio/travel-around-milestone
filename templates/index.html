@@ -40,9 +40,9 @@
     </div>
     <div class="col s12 l4">
         <ul>
-            {% for name in country %}
-            {% if name['name'].startswith("Au")%}
-            <li>{{name.name}}</li>
+            {% for region_name in regions %}
+            {% if region_name['region_name']%}
+            <li>{{region_name.region_name}}</li>
             {%endif%}
             {%endfor%}
         </ul>

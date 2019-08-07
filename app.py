@@ -19,17 +19,29 @@ mongo = PyMongo(app)
 #Set as homepage my index.html
 @app.route('/')
 def index():
-    with open('data/countries.json') as json_file:
-        json_file = json.loads(json_file.read())
-    return render_template("index.html", cities=mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), cities_carousel=mongo.db.cities.find(), country=json_file)
+    #open coutries.json 
+    with open('data/countries.json') as json_file_country:
+        json_file_country = json.loads(json_file_country.read())
+    #open region.json
+    with open('data/region.json') as json_file_region:
+        json_file_region = json.loads(json_file_region.read())
+        
+    return render_template("index.html", cities=mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), 
+                            cities_carousel=mongo.db.cities.find(), 
+                            country=json_file_country, regions=json_file_region)
     
 # Connect to the database file and add a new city 
 @app.route('/add_city')
 def add_city():
     country=[]
-    with open('data/countries.json') as json_file:
-        json_file = json.loads(json_file.read())
-        return render_template('addcity.html', country=json_file,
+    #open coutries.json 
+    with open('data/countries.json') as json_file_country:
+        json_file_country = json.loads(json_file_country.read())
+    #open region.json
+    with open('data/region.json') as json_file_region:
+        json_file_region = json.loads(json_file_region.read())
+        
+        return render_template('addcity.html', country=json_file_country, regions=json_file_region,
         city=mongo.db.cieties.find())
     
 # Add a new city and then redirect to index
@@ -39,6 +51,7 @@ def insert_city():
     city_info = {
         'city_name':request.form.get('city_name').capitalize(),
         'city_country':request.form.get('city_country').capitalize(),
+        'city_region':request.form.get('city_region').capitalize(),
         'city_population': request.form.get('city_population'),
         'city_description': request.form.get('city_description').capitalize(),
         'city_must_see': request.form.getlist('city_must_see').capitalize(),
@@ -73,20 +86,30 @@ def get_cities():
 @app.route('/edit_city/<city_id>')
 def edit_city(city_id):
     the_city =  mongo.db.cities.find_one({"_id": ObjectId(city_id)})
+#open countries.json
     with open('data/countries.json') as json_file:
          all_cities  = json.loads(json_file.read())
+#open region.json
+    with open('data/region.json') as json_file_region:
+        json_file_region = json.loads(json_file_region.read())     
+    
     return render_template('editcity.html', city=the_city,
-                            country=all_cities)
+                            country=all_cities, region=json_file_region)
     
 @app.route('/update_city/<city_id>', methods=['POST'])
 def update_city(city_id):
     cities = mongo.db.cities
+#open countries.json
     with open('data/countries.json') as json_file:
         json_file = json.loads(json_file.read())
+#open region.json
+    with open('data/region.json') as json_file_region:
+        json_file_region = json.loads(json_file_region.read())    
     cities.update( {'_id': ObjectId(city_id)},
     {
         'city_name':request.form.get('city_name').capitalize(),
         'city_country':request.form.get('city_country').capitalize(),
+        'city_region':request.form.get('city_region').capitalize(),
         'city_population': request.form.get('city_population'),
         'city_description': request.form.get('city_description').capitalize(),
         'city_must_see': request.form.getlist('city_must_see').capitalize(),
