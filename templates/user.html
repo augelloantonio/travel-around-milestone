@@ -1,6 +1,20 @@
 {% extends 'base.html' %} {% block content %}
 
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flashes">
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
 <h1>User Page</h1>
-<p>Welcome, {{user.username}}</p>
+<p>Welcome, {{user_in_session}}</p>
+
+
+<a href="{{url_for('logout')}}" class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Log Out</a>
+
 
 {% endblock%}

@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %} 
+{% extends 'base.html' %} {% block content %}
 <h1>{{cities.city_name}}</h1>
 <p>Added by - {{cities.city_author}}<span class="new badge" data-badge-caption="{{cities.added_time}}"></span></p>
 
@@ -60,10 +60,16 @@
             <p class="info_title">City Tips</p>
         </div>
         <div class="info_body">
-        
+
             <p class="info_body">{{cities.city_tips}}</p>
         </div>
     </div>
+</div>
+
+<div>
+    {% if session['logged_in']%}
+    <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
+    <a href="{{url_for('delete_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small">Delete</a> {%endif%}
 </div>
 
 

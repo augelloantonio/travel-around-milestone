@@ -21,8 +21,20 @@
         <nav>
             <div class="nav-wrapper">
                 <ul class="left hide-on-med-and-down">
-                    <li><a href="{{ url_for ('index')}}" class="tooltipped" data-position="bottom" data-tooltip="Home"><i class="material-icons">home</i></li></a>
-                        <li><p>Welcome, </p></li></a>
+                    <li><a href="{{ url_for ('index')}}" class="tooltipped" data-position="bottom" data-tooltip="Home"><i class="material-icons">home</i></li></a> {% if session['logged_in'] %}
+                        <li>
+                            <a href="{{url_for('user_page')}}">
+                             {% if session['logged_in']%}
+                                <p>Welcome, {{user_logged}}</p>
+                            </a> 
+                            {%endif%}
+                        </li>
+                        {% else%}
+                        <li>
+                            <p>Welcome, user</p>
+                        </li>
+
+                        {% endif %}
                 </ul>
 
                 <a href="{{ url_for ('index')}}" class="brand-logo"><img src="{{ url_for('static', filename='img/logo.jpg') }}" class="logo_image"></img></a>
