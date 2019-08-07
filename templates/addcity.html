@@ -10,11 +10,20 @@
                 <label for="icon_prefix">city Name</label>
             </div>
             <div class="select_country col s12 m6">
-                <label>Materialize Select</label>
+                <label>Select Country</label>
                 <select name="city_country" id="city_country" method="POST" required>
                   <option value="" selected>Country</option>
                       {% for name in country %}
                   <option value="{{name.name}}">{{name.name}}</option>
+                      {%endfor%}
+             </select>
+            </div>
+            <div class="select_country col s12 m6">
+                <label>Select Region</label>
+                <select name="city_region" id="city_region" method="POST" required>
+                  <option value="" selected>Country</option>
+                        {% for region in regions %}
+                  <option value="{{region.region_name}}">{{region.region_name}}</option>
                       {%endfor%}
              </select>
             </div>
