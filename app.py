@@ -29,10 +29,12 @@ def index():
         json_file_region = json.loads(json_file_region.read())
         
     username=session.get('username')
+    user = mongo.db.user.find_one({'username' : username})
         
     return render_template("index.html", cities=mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), 
                             cities_carousel=mongo.db.cities.find(), 
-                            country=json_file_country, regions=json_file_region, user=mongo.db.user.find())
+                            country=json_file_country, regions=json_file_region,
+                            user_logged=username)
 
 
 #~~~~~~~~~ CRUD - Create a new city, Read New city, Update existing city, Delete existing City ~~~~~~~~#
@@ -153,6 +155,7 @@ def login_page():
 # Get new user details and send them to MongoDB giving to all the users the right of user
 @app.route('/get_user_data', methods=['POST'])
 def get_user_data():
+    session.permanent = True
     username = request.form.get('username').lower()
     password = generate_password_hash(request.form.get('password'))
     email = request.form.get('email').lower()
@@ -172,17 +175,18 @@ def get_user_data():
     else:
         session['logged_in'] = False
         flash('Username already exists, please try again.')
-        return redirect(url_for('user_page'))
+        return redirect(url_for('user_page'), user=mongo.db.user.find())
    
 
 #Check if user already logged in 
 @app.route('/user_logged')
 def user_logged():
     if not session.get('logged_in'):
-        return render_template('login.html')
         flash("Please, Log In")
+        return render_template('login.html')
     else:
         return redirect(url_for('user_page'))
+    
     
 @app.route('/login',  methods=['POST'])
 def login():
@@ -193,7 +197,7 @@ def login():
 
     session.permanent = True
     user = mongo.db.user.find_one({'email' : email})
-    
+
     if not user:
         session['logged_in'] = False
         flash('Username not in the database, try again.')
@@ -205,15 +209,31 @@ def login():
     else:
         session['logged_in'] = True
         flash('Welcome ' + user['username'])
-        return redirect(url_for('user_page'))
+        return render_template('user.html', user=mongo.db.user.find(), 
+        user_in_session=user['username'])
+
 
 
 # User Page
 @app.route('/user_page')
 def user_page():
     username=session.get('username')
-    return render_template ('user.html', user=mongo.db.user.find())
+    user = mongo.db.user.find_one({'username': username})
+    
+    if session['logged_in'] == False:
+        return login_page()
+    else:
+        flash(str(user_logged) + ' logged in')
+        return render_template('user.html', user_logged=username)
 
+    
+#Log Out
+@app.route('/logout')
+def logout():
+    session['logged_in'] = False
+    flash('logged out')
+    return index()
+    
 
 #Permitt the server to run the web app
 if __name__ == '__main__':
