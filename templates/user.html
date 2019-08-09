@@ -7,7 +7,7 @@
 {% endif %} {% endwith %}
 
 <h1>User Page</h1>
-<p>Welcome, {{user_in_session}}</p>
+<p>Welcome, {{session.username}}</p>
 
 <div>
     <a href="{{url_for('logout')}}" class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Log Out</a>
@@ -28,7 +28,7 @@
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4">{{city.city_name}}<i class="material-icons right">close</i></span>
                     <p>{{city.city_brief}}</p>
-                    <a href="{{url_for('city_page', city_id = city._id)}}">
+                    <a href="{{url_for('city_page', city_id = city._id, city_author=session.get('username'), username=session.get('username'))}}">
                         <p>Read More</p>
                     </a>
                 </div>

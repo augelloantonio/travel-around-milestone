@@ -25,7 +25,7 @@
                         <li>
                             <a href="{{url_for('user_page')}}">
                              {% if session['logged_in']%}
-                                <p>Welcome, {{user_logged}}</p>
+                                <p>Welcome, {{session.username}}</p>
                             </a> 
                             {%endif%}
                         </li>
