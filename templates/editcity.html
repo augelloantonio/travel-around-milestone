@@ -22,8 +22,14 @@
                       {%endfor%}
                  </select>
             </div>
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">subject</i>
+                <textarea name="city_population" id="city_population" class="materialize-textarea">{{city.city_population}}</textarea>
+                <label for="icon_telephone">Population</label>
+            </div>
+
             <div class="col s12 m6 select_country">
-                <label>Country</label>
+                <label>Region</label>
                 <select name="region_name" id="region_name" method="POST">
                   <option value="{{city_region}}" selected>{{city_region}}</option>
                         {% for region in regions %}
@@ -34,28 +40,6 @@
                           {%endif%}
                       {%endfor%}
                  </select>
-            </div>
-            <div class="input-field col s12 m6">
-                <i class="material-icons prefix">subject</i>
-                <textarea name="city_population" id="city_population" class="materialize-textarea">{{city.city_population}}</textarea>
-                <label for="icon_telephone">Population</label>
-            </div>
-            <div class="input-field col s12 m6">
-                <div class="input-field">
-                    <i class="material-icons prefix">subject</i>
-                    <textarea name="city_description" id="city_description" class="materialize-textarea">{{city.city_description}}</textarea>
-                    <label for="icon_telephone">Description</label>
-                </div>
-            </div>
-            <div class="input-field col s12 m6">
-                <i class="material-icons prefix">subject</i>
-                <textarea name="city_must_see" id="city_must_see" class="materialize-textarea">{{city.city_must_see}}</textarea>
-                <label for="icon_telephone">Must see</label>
-            </div>
-            <div class="input-field col s12 m6">
-                <i class="material-icons prefix">subject</i>
-                <textarea name="city_tips" id="city_tips" class="materialize-textarea">{{city.city_tips}}</textarea>
-                <label for="icon_telephone">City Tips</label>
             </div>
             <div class="input-field col s12 m6">
                 <i class="material-icons prefix">subject</i>
@@ -71,6 +55,27 @@
                 <i class="material-icons prefix">subject</i>
                 <textarea name="city_author" id="city_author" class="materialize-textarea" disabled>{{city.added_time}} - Can't be changed</textarea>
                 <label for="icon_telephone">Date</label>
+            </div>
+        </div>
+        <div class="input_forms">
+            <div class="row">
+                <div class="input-field col s12">
+                    <div class="input-field">
+                        <i class="material-icons prefix">subject</i>
+                        <textarea name="city_description" id="city_description" class="materialize-textarea">{{city.city_description}}</textarea>
+                        <label for="icon_telephone">Description</label>
+                    </div>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">subject</i>
+                    <textarea name="city_must_see" id="city_must_see" class="materialize-textarea">{{city.city_must_see}}</textarea>
+                    <label for="icon_telephone">Must see</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">subject</i>
+                    <textarea name="city_tips" id="city_tips" class="materialize-textarea">{{city.city_tips}}</textarea>
+                    <label for="icon_telephone">City Tips</label>
+                </div>
             </div>
         </div>
         <div class="row">

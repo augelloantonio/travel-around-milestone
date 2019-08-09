@@ -9,6 +9,11 @@
                 <input id="city_name" name="city_name" type="text" required>
                 <label for="icon_prefix">city Name</label>
             </div>
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">subject</i>
+                <textarea name="city_population" id="city_population" class="materialize-textarea"></textarea>
+                <label for="icon_telephone">Population</label>
+            </div>
             <div class="select_country col s12 m6">
                 <label>Select Country</label>
                 <select name="city_country" id="city_country" method="POST" required>
@@ -29,36 +34,36 @@
             </div>
             <div class="input-field col s12 m6">
                 <i class="material-icons prefix">subject</i>
-                <textarea name="city_population" id="city_population" class="materialize-textarea"></textarea>
-                <label for="icon_telephone">Population</label>
-            </div>
-            <div class="input-field col s12 m6">
-                <div class="input-field">
-                    <i class="material-icons prefix">subject</i>
-                    <textarea name="city_description" id="city_description" class="materialize-textarea" required></textarea>
-                    <label for="icon_telephone">City Description</label>
-                </div>
-            </div>
-            <div class="input-field col s12 m6">
-                <i class="material-icons prefix">subject</i>
-                <textarea name="city_must_see" id="city_must_see" class="materialize-textarea" required></textarea>
-                <label for="icon_telephone">Must see</label>
-            </div>
-            <div class="input-field col s12 m6">
-                <i class="material-icons prefix">subject</i>
-                <textarea name="city_tips" id="city_tips" class="materialize-textarea" required></textarea>
-                <label for="icon_telephone">City Tips</label>
-            </div>
-            <div class="input-field col s12 m6">
-                <i class="material-icons prefix">subject</i>
                 <textarea name="city_image" id="city_image" class="materialize-textarea" required></textarea>
                 <label for="icon_telephone">Url for the picture</label>
             </div>
         </div>
-        <div class="row">
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <div class="input_forms">
+            <div class="row">
+                <div class="input-field col s12">
+                    <div class="input-field">
+                        <i class="material-icons prefix">subject</i>
+                        <textarea name="city_description" id="city_description" class="materialize-textarea" required></textarea>
+                        <label for="icon_telephone">City Description</label>
+                    </div>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">subject</i>
+                    <textarea name="city_must_see" id="city_must_see" class="materialize-textarea" required></textarea>
+                    <label for="icon_telephone">Must see</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">subject</i>
+                    <textarea name="city_tips" id="city_tips" class="materialize-textarea" required></textarea>
+                    <label for="icon_telephone">City Tips</label>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                 <i class="material-icons right">playlist_add</i>
             </button>
+            </div>
+
         </div>
     </form>
 </div>
