@@ -30,7 +30,7 @@
 
             <div class="col s12 m6 select_country">
                 <label>Region</label>
-                <select name="region_name" id="region_name" method="POST">
+                <select name="city_region" id="city_region" method="POST">
                   <option value="{{city_region}}" selected>{{city_region}}</option>
                         {% for region in regions %}
                            {% if region.region_name == city.region_name %}
