@@ -21,7 +21,13 @@ function addTips() {
     $("#add_new_tips").before(addTips)
 }
 
+// Let carousel self slide
+function autoplay() {
+    $('.carousel').carousel('next');
+    setTimeout(autoplay, 4500);
+}
 
+autoplay();
 
 
 // Materialize Customiztions
@@ -44,10 +50,10 @@ $(document).ready(function() {
     $('select').toggle();
 });
 
-// Add carousel function
-$(document).ready(function() {
-    $('.carousel').carousel();
-});
+$('.carousel.carousel-slider').carousel({
+    fullWidth: true
+  });
+
 
 // Matezialize box
 $(document).ready(function() {

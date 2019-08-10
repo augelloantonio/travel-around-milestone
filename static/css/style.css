@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap');
+
+
 body {
     display: flex;
     min-height: 100vh!important;
@@ -7,6 +10,18 @@ body {
 .content {
     flex: 1 0 auto;
 }
+
+.container {
+    width: 90%;
+}
+
+.index_header {
+    font-family: 'Alfa Slab One', cursive;
+    color: #524c4c;
+    text-align: center;
+    font-size: 40px;
+}
+
 
 
 /* ................................ NAVBAR */
@@ -114,6 +129,8 @@ materialize-textarea {
     text-align: center;
     text-transform: uppercase;
     font-weight: 600;
+    max-height: 40%;
+    line-height: 0.9;
 }
 
 .card_col :hover {
@@ -161,6 +178,7 @@ materialize-textarea {
     height: 100%;
 }
 
+
 .card_col {
     padding: 10px!important;
     display: flex;
@@ -176,27 +194,15 @@ materialize-textarea {
 
 /*..........................................Carousel*/
 
-.img_carousel {
-    min-height: 250px;
-    min-width: 300px;
+.carousel_container {
+    max-width: 60%;
+    max-height: 450px;
+    margin: auto;
+    left: 0;
+    right: 0;
+
 }
 
-.carousel .carousel-item>img {
-    padding-top: 20px;
-}
-
-.img_city_page {
-    width: 100%;
-    padding: 20px;
-}
-
-.row_city_page_img {
-    display: flex;
-}
-
-.card .card-image .card-title {
-    padding: 15px!important;
-}
 
 /*........................................Add City/Edit City*/
 
