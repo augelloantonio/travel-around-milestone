@@ -28,7 +28,7 @@
                     <li><a href="{{ url_for ('index')}}" class="tooltipped" data-position="bottom" data-tooltip="Home"><i class="material-icons">home</i></a> </li>
                 </ul>
 
-                <a href="{{ url_for ('index')}}" class="brand-logo"><img src="{{ url_for('static', filename='img/logo.jpg') }}" class="logo_image"></img></a>
+                <a href="{{ url_for ('index')}}" class="brand-logo"><img src="{{ url_for('static', filename='img/logo.png') }}" class="logo_image"></img></a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     {% if session['logged_in'] == True %}
@@ -102,24 +102,23 @@
     <!-- Footer -->
     <footer class="page-footer">
         <div class="container">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" class="logo_image">
+            </a>
             <div class="row">
                 <div class="col l6 s12">
-                    <h5 class="white-text">Travel Around is a Full Stack website build for Code Institute as 3rd Milestone Project.</h5>
-                    <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!"><i class="fab fa-github"></i></a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!"><i class="fab fa-linkedin"></i></a></li>
+                    <p>Travel Around is a community of travellers who share the same love, Travels. Please if you find a place and would like to let everyone know about, share it with us! It is all free and you can help to build this big communit.</p>
+                    <ul class="mob_nav_socials">
+                        <li><a class="grey-text text-lighten-3 icon_footer" href="https://github.com/gello94"><i class="fab fa-github"></i></a></li>
+                        <li><a class="grey-text text-lighten-3 icon_footer" href="https://www.linkedin.com/in/antonio-augello-aba83911a/"><i class="fab fa-linkedin"></i></a></li>
                     </ul>
                 </div>
                 <div class="col l4 offset-l2 s12">
-                    <h5 class="white-text">Links</h5>
+                    <h5 class="white-text">Socials</h5>
                     <div class="user_page_header">
-                        <div>
-                            <p>Socials:</p>
-                        </div>
                         <ul class="mob_nav_socials">
-                            <li><a class="grey-text text-lighten-3 icon_mob_nav" href="#!"><i class="fab fa-facebook-f "></i></a></li>
-                            <li><a class="grey-text text-lighten-3 icon_mob_nav" href="#!"><i class="fab fa-instagram "></i></a></li>
-                            <li><a class="grey-text text-lighten-3 icon_mob_nav" href="#!"><i class="fab fa-pinterest "></i></a></li>
+                            <li><a class="grey-text text-lighten-3 icon_footer" href=""><i class="fab fa-facebook-f "></i></a></li>
+                            <li><a class="grey-text text-lighten-3 icon_footer" href="#!"><i class="fab fa-instagram "></i></a></li>
+                            <li><a class="grey-text text-lighten-3 icon_footer" href="#!"><i class="fab fa-pinterest "></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -127,7 +126,7 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                © 2019 Copyright Antonio Augello
+                © 2019 Antonio Augello. Web Site build for Code Institute as Data Centric Development Milestone Project
                 <a class="grey-text text-lighten-4 right" href="#">Top</a>
             </div>
         </div>

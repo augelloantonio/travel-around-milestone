@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Alfa+Slab+One&display=swap');
 
 
 body {
     display: flex;
     min-height: 100vh!important;
     flex-direction: column;
+    font-family: 'Roboto', sans-serif;
 }
 
 .content {
@@ -15,6 +16,8 @@ body {
     width: 90%;
 }
 
+/*.................................Index*/
+
 .index_header {
     font-family: 'Alfa Slab One', cursive;
     color: #524c4c;
@@ -22,6 +25,28 @@ body {
     font-size: 40px;
 }
 
+.discover_all_btn {
+    margin: 0px auto;
+    display: table;
+    border-radius: 10px;
+    background-color: #b3b2b2;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px!important;
+}
+
+.discover_all_btn:hover {
+    background-color: #6e787f;
+}
+
+@media (max-width: 720px) {
+    .discover_all_btn {
+        font-size: 16px;
+        padding: 3px!important;
+        line-height: 1.5;
+    }
+}
 
 
 /* ................................ NAVBAR */
@@ -242,6 +267,18 @@ materialize-textarea {
 
 .page-footer {
     background-color: #6e787f;
+}
+
+.icon_footer {
+    font-size: 30px;
+    padding: 10px;
+}
+
+.icon_footer:hover {
+    color: #fafafa;
+    border: 3px solid;
+    border-radius: 25px;
+    background-color: #484545;
 }
 
 /*..............................................Icon personal style*/
