@@ -1,19 +1,15 @@
-{% extends 'base.html' %} {% block content %}
-
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    <ul class="flashes">
+{% extends 'base.html' %} {% block content %} {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+<ul class="flashes">
     {% for message in messages %}
-      <li>{{ message }}</li>
+    <li>{{ message }}</li>
     {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
+</ul>
+{% endif %} {% endwith %}
 
 <div class="content_login">
     <div class="login_row col s12">
         <form class="login_form" action="/login" method="POST">
-            <i class="material-icons prefix">username</i>
+            <i class="material-icons prefix">account_circle</i>
             <div class="input-field">
                 <input id="username" name="username" type="tel" class="validate" required>
                 <label for="icon_telephone">Email Address</label>
