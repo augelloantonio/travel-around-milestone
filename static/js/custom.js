@@ -8,6 +8,22 @@ $(document).ready(function() {
 });
 
 
+// Function to add a new line to add a new must see in my database
+function addMustSee() {
+    var addMustSee = '<textarea name="city_must_see" id="city_must_see" class="materialize-textarea" required> </textarea>'
+    $("#add_new_must_see").before(addMustSee)
+}
+
+
+// Function to add a new line to add a new tip in my database
+function addTips() {
+    var addTips = '<textarea name="city_tips" id="city_tips" class="materialize-textarea" required></textarea>'
+    $("#add_new_tips").before(addTips)
+}
+
+
+
+
 // Materialize Customiztions
 
 // Add the collapse to the navbar button
@@ -34,6 +50,6 @@ $(document).ready(function() {
 });
 
 // Matezialize box
-$(document).ready(function(){
+$(document).ready(function() {
     $('.materialboxed').materialbox();
-  });
+});
