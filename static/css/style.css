@@ -29,7 +29,7 @@ nav a {
 }
 
 
-@media only screen and (min-width: 601px) {
+@media (min-width: 601px) {
     .logo_image {
         height: auto;
         max-width: 250px;
@@ -71,6 +71,19 @@ nav .brand-logo {
     line-height: inherit;
 }
 
+.user_page_header {
+    padding-right: 32px;
+    padding-left: 32px;
+}
+
+.mob_nav_socials {
+    display: inline-flex;
+}
+
+.icon_mob_nav {
+    padding: 5px!important;
+}
+
 
 /*..........................................Add city page */
 
@@ -108,7 +121,7 @@ materialize-textarea {
 }
 
 .card_style {
-    max-height: 340px;
+    max-height: 250px;
     padding: 10px;
 }
 
@@ -121,11 +134,23 @@ materialize-textarea {
 
 .card .card-image {
     height: 100%;
+    box-shadow: 0 0 8px 0px;
 }
 
-.card .card-image img {
-    height: 100%;
+
+@media (max-width: 720px) {
+    .card .card-image img {
+        max-height: 200px;
+    }
 }
+
+@media (max-width: 440px) {
+    .card .card-image img {
+        max-height: 150px;
+    }
+
+}
+
 
 .clearfix {
     clear: both;
@@ -137,11 +162,16 @@ materialize-textarea {
 }
 
 .card_col {
-    padding: 5px!important;
+    padding: 10px!important;
     display: flex;
     margin-left: auto;
     margin-right: auto;
+}
 
+@media (max-width: 720px) {
+    .card_col {
+        padding: 5px!important;
+    }
 }
 
 /*..........................................Carousel*/
@@ -162,6 +192,10 @@ materialize-textarea {
 
 .row_city_page_img {
     display: flex;
+}
+
+.card .card-image .card-title {
+    padding: 15px!important;
 }
 
 /*........................................Add City/Edit City*/
@@ -202,4 +236,11 @@ materialize-textarea {
 
 .page-footer {
     background-color: #6e787f;
+}
+
+/*..............................................Icon personal style*/
+
+.fab {
+    padding: 5px;
+
 }
