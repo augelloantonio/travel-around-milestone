@@ -11,6 +11,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
+    <!--FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
     <!--Custom  Stylesheet -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
 </head>
@@ -20,29 +23,24 @@
     <header>
         <nav>
             <div class="nav-wrapper">
+                <!-- Desktop Nav-->
                 <ul class="left hide-on-med-and-down">
-                    <li><a href="{{ url_for ('index')}}" class="tooltipped" data-position="bottom" data-tooltip="Home"><i class="material-icons">home</i></li></a> {% if session['logged_in'] %}
-                        <li>
-                            <a href="{{url_for('user_page')}}">
-                             {% if session['logged_in']%}
-                                <p>Welcome, {{session.username}}</p>
-                            </a> {%endif%}
-                        </li>
-                        {% else%}
-                        <li>
-                            <p>Welcome, user</p>
-                        </li>
-                        {% endif %}
+                    <li><a href="{{ url_for ('index')}}" class="tooltipped" data-position="bottom" data-tooltip="Home"><i class="material-icons">home</i></a> </li>
                 </ul>
 
                 <a href="{{ url_for ('index')}}" class="brand-logo"><img src="{{ url_for('static', filename='img/logo.jpg') }}" class="logo_image"></img></a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="{{url_for('add_city')}}" class="tooltipped" data-position="bottom" data-tooltip="Add a new city"><i class="material-icons">add_box</i></a></li>
-                    <li><a href="{{url_for('login_page')}}" class="tooltipped" data-position="bottom" data-tooltip="LogIn/Register"><i class="material-icons">account_circle</i></a></li>
+                    {% if session['logged_in'] == True %}
+                    <li><a href="{{url_for('add_city')}}" class="tooltipped" data-position="bottom" data-tooltip="Add a City"><i class="material-icons">add_box</i></a></li>
+                    <li><a href="{{url_for('user_page')}}" class="tooltipped" data-position="bottom" data-tooltip="User Page"><i class="material-icons">account_circle</i></a> </li>
+                    <li><a href="{{url_for('logout')}}" class="tooltipped" data-position="bottom" data-tooltip="Log Out"><i class="material-icons">power_settings_new</i></a> </li>
+                    {%else%}
+                    <li><a href="{{url_for('login_page')}}" class="tooltipped" data-position="bottom" data-tooltip="Log In"><i class="material-icons">person</i></a></li>
+                    <li><a href="{{url_for('register')}}" class="tooltipped" data-position="bottom" data-tooltip="Register"><i class="material-icons">person_add</i></a></li>
+                    {%endif%}
                 </ul>
                 <ul class="right hide-on-med-and-down">
-
                     <li><a id="search_icon"><i class="material-icons">search</i></a></li>
                     <div id="search_form" class="row">
                         <form class="col s12">
@@ -52,18 +50,43 @@
                                     <button class="btn waves-effect waves-light btn_search" type="submit" name="action"><i id="search_box_icon" class="material-icons">search</i></button>
                                 </div>
                             </div>
+                        </form>
                     </div>
-                    </form>
-            </div>
-            </ul>
+                </ul>
 
-            <ul class="side-nav" id="mobile-demo">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">Javascript</a></li>
-                <li><a href="mobile.html">Mobile</a></li>
-            </ul>
+                <!-- Mobile Navbar-->
+                <div class="side-nav" id="mobile-demo">
+                    <div class="search_box" class="row">
+                        <div class="input-field">
+                            <input placeholder="Search a city" id="search" type="text" class="searchForm validate">
+                            <button class="btn waves-effect waves-light btn_search" type="submit" name="action"><i id="search_box_icon" class="material-icons">search</i></button>
+                        </div>
+                    </div>
+                    <ul>
+                        <li><a href="{{ url_for ('index')}}"><i class="material-icons">home</i> Home</a></li>
+                        {% if session['logged_in'] == True %}
+                        <li><a href="{{ url_for ('add_city')}}"><i class="material-icons">add_box</i> Add a City </a></a>
+                        </li>
+                        <li><a href="{{ url_for ('user_page')}}"><i class="material-icons">account_circle</i> User Page</a></li>
+                        <li><a href="{{url_for('logout')}}"><i class="material-icons">power_settings_new</i> Log Out</a></li>
+                        {%else%}
+                        <li><a href="{{url_for('login_page')}}"><i class="material-icons">person</i> Log In</a></li>
+                        <li><a href="{{url_for('register')}}"><i class="material-icons">person_add</i> Register</a></li>
+                        {%endif%}
+                    </ul>
+                    <div class="user_page_header">
+                        <div>
+                            <p>Socials:</p>
+                        </div>
+                        <ul class="mob_nav_socials">
+                            <li class="social_li"><a class="icon_mob_nav" href="#!"><i class="fab fa-facebook-f "></i></a></li>
+                            <li class="social_li"><a class="icon_mob_nav" href="#!"><i class="fab fa-instagram "></i></a></li>
+                            <li class="social_li"><a class="icon_mob_nav" href="#!"><i class="fab fa-pinterest "></i></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+
         </nav>
     </header>
 
@@ -75,6 +98,7 @@
 
         </div>
     </div>
+
     <!-- Footer -->
     <footer class="page-footer">
         <div class="container">
@@ -82,22 +106,28 @@
                 <div class="col l6 s12">
                     <h5 class="white-text">Travel Around is a Full Stack website build for Code Institute as 3rd Milestone Project.</h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!"><i class="material-icons">git</i></a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!"><i class="material-icons">linkedin</i></a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!"><i class="fab fa-github"></i></a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!"><i class="fab fa-linkedin"></i></a></li>
                     </ul>
                 </div>
                 <div class="col l4 offset-l2 s12">
                     <h5 class="white-text">Links</h5>
-                    <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!"><i class="material-icons">facebook</i></a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!"><i class="material-icons">instagram</i></a></li>
-                    </ul>
+                    <div class="user_page_header">
+                        <div>
+                            <p>Socials:</p>
+                        </div>
+                        <ul class="mob_nav_socials">
+                            <li><a class="grey-text text-lighten-3 icon_mob_nav" href="#!"><i class="fab fa-facebook-f "></i></a></li>
+                            <li><a class="grey-text text-lighten-3 icon_mob_nav" href="#!"><i class="fab fa-instagram "></i></a></li>
+                            <li><a class="grey-text text-lighten-3 icon_mob_nav" href="#!"><i class="fab fa-pinterest "></i></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="footer-copyright">
             <div class="container">
-                © 2014 Copyright Antonio Augello
+                © 2019 Copyright Antonio Augello
                 <a class="grey-text text-lighten-4 right" href="#">Top</a>
             </div>
         </div>
