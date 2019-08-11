@@ -8,7 +8,6 @@ from bson.objectid import ObjectId
 from time import ctime
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
 #~~~~~~~~~~~~~~~~~~Inizialize Flask and connect to MongoDB~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'travel_around'
@@ -30,15 +29,14 @@ def index():
         
         username=session.get('username')
         user = mongo.db.user.find_one({'username' : username})
-
+        
     return render_template("index.html", cities=mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), 
-                            cities_carousel=mongo.db.cities.find(), city=mongo.db.cities.find(), 
-                            city_named=mongo.db.cities.find(), city_2=mongo.db.cities.find(),
+                            cities_carousel= mongo.db.cities.find(), city=mongo.db.cities.find(), 
+                            city_named= mongo.db.cities.find(), city_2=mongo.db.cities.find(),
                             city_3=mongo.db.cities.find(), city_4=mongo.db.cities.find(),
                             city_5=mongo.db.cities.find(),
                             country=json_file_country, regions=json_file_region, user=mongo.db.user.find()
                             )
-
 
 #~~~~~~~~~ CRUD - Create a new city, Read New city, Update existing city, Delete existing City ~~~~~~~~#
 # Create city WebPage
@@ -54,7 +52,8 @@ def add_city():
         
         return render_template('addcity.html', country=json_file_country, regions=json_file_region,
         city=mongo.db.cieties.find(), user=mongo.db.user.find())
-        
+
+
 # Create city function
 @app.route('/insert_city', methods=['POST'])
 def insert_city():
@@ -83,6 +82,7 @@ def insert_city():
     cities.insert_one(city_info)
     return redirect(url_for('index'))
     
+
 # Get the city data from the city id
 @app.route('/edit_city/<city_id>')
 def edit_city(city_id):
@@ -96,6 +96,7 @@ def edit_city(city_id):
     
     return render_template('editcity.html', city=the_city,
                             country=all_cities, regions=json_file_region, user=mongo.db.user)
+                            
     
 @app.route('/update_city/<city_id>', methods=['POST'])
 def update_city(city_id):
@@ -138,13 +139,14 @@ def city_page(city_id):
                           user=mongo.db.user.find())
 
 
-#~~~~~~~~~~~~~~~~~~ Display all the City webpage ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-@app.route('/get_cities')
-def get_cities():
-    return render_template("cities_listed.html", 
-                           cities = mongo.db.cities.find())
-    
-
+@app.route('/cities_for_regions/<city_region>')
+def cities_for_regions(city_region):
+        with open('data/region.json') as json_file_region:
+            json_file_region = json.loads(json_file_region.read()) 
+            return render_template ("cities_for_regions.html", 
+                regions = json_file_region, cities = mongo.db.cities.find().sort('city_name'),
+                city_region=city_region)
+                
 
 #~~~~~~~~~~~~~~~~~~ Register / Log In/ Account section ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -152,6 +154,7 @@ def get_cities():
 @app.route('/register')
 def register():
    return render_template ('signuppage.html')
+   
    
 # register form
 @app.route('/login_page')
@@ -176,6 +179,7 @@ def get_user_data():
     password = generate_password_hash(request.form['password'])
     email = request.form['email'].lower()
     city_author = request.form['username'].lower()
+    right = 'user'
     
     session['username'] = username
     session.permanent = True
@@ -188,16 +192,16 @@ def get_user_data():
             'password': password,
             'email': email,
             'city_author': city_author,
-            'recipes_rated':[]
+            'recipes_rated':[],
+            'right': right
         })
         session['logged_in'] = True
         flash('Your User has been creates, please Log In now')
-        return render_template('user.html', user=mongo.db.user.find(),
-        username=new_user['username'], city_author=new_user['username'], cities = mongo.db.cities.find())
+        return render_template('login.html')
     else:
         session['logged_in'] = False
         flash('Username already exists, please try again.')
-        return redirect(url_for('user_page'))
+        return redirect(url_for('register'))
 
 # User Page
 @app.route('/user_page')
@@ -209,7 +213,7 @@ def user_page():
         return login_page()
     else:
         return render_template('user.html', user=mongo.db.user.find(),
-        cities = mongo.db.cities.find())
+        cities = mongo.db.cities.find().sort('added_time', pymongo.DESCENDING))
         
 @app.route('/login',  methods=['POST', 'GET'])
 def login():
@@ -237,7 +241,6 @@ def login():
 @app.route('/logout')
 def logout():
     session['logged_in'] = False
-    flash('logged out')
     return index()
     
     
