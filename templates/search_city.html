@@ -1,10 +1,15 @@
-{% extends 'base.html' %} {% block content %} 
+{% extends 'base.html' %} {% block content %}
 
-<h3>Search: {{search_city}}</h3>
+<h3>You are looking for: {{search_city|capitalize}}</h3>
 
 <div class="col s12">
     <div class="row">
-        {%for city in cities%} {% if city.city_name == search_city %}
+        {% if count_cities == 0 %}
+        <div class="search_page">
+            <p>We are sorry, the city you are looking for is not in the system yet.</p>
+            <p>Why don't you add it?</p>
+            <p><a href="{{url_for('register')}}">Register</a> and add a city now! We will be glad to have you on board!</p>
+        </div> {% else %} {%for city in cities%} {% if city.city_name == search_city %}
         <div class="col s6 m4 l3 card_col">
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
@@ -13,7 +18,7 @@
                 </div>
             </div>
         </div>
-        {%endif%} {%endfor%}
+        {%endif%} {%endfor%} {%endif%}
     </div>
 </div>
 
