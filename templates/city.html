@@ -6,7 +6,7 @@
 <div class="row">
     <div>
         <div class="col s12 m8">
-            <img class="img_city_page" src="{{cities.city_image}}">
+            <img class="img_city_page" src="{{cities.city_image}}" alt="{{city.city_name}}">
         </div>
         <!-- Adise Table -->
         <div class="col s12 m4">
@@ -20,7 +20,7 @@
                     <tbody>
                         <tr>
                             <th>Country</th>
-                            <td>{{cities.city_country}}</td>
+                            <td>{{cities.city_country|capitalize}}</td>
                         </tr>
                         <tr>
                             <th>Population</th>
@@ -43,8 +43,8 @@
         <div class="info_header">
             <p class="info_title">City Info</p>
         </div>
-        <div class="info_body">
-            <p class="info_body">{{cities.city_description}}</p>
+        <div class="">
+            <p class="">{{cities.city_description}}</p>
         </div>
     </div>
     <div class="col s12 m4">
@@ -52,7 +52,11 @@
             <p class="info_title">City Must See</p>
         </div>
         <div class="info_body">
-            <p class="info_body">{{cities.city_must_see}}</p>
+            <ul>
+                {%for item in city.city_must_see%}
+                <li class="items">{{item}}</li>
+                {%endfor%}
+            </ul>
         </div>
     </div>
     <div class="col s12 m4">
@@ -60,17 +64,38 @@
             <p class="info_title">City Tips</p>
         </div>
         <div class="info_body">
-
-            <p class="info_body">{{cities.city_tips}}</p>
+            <ul class="">
+                {%for item in city.city_tips%}
+                <li class="items">{{item}}</li>
+                {%endfor%}
+            </ul>
         </div>
     </div>
 </div>
 
 <div>
     {% if session['logged_in']%}
-    <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
-    <a href="{{url_for('delete_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small">Delete</a> {%endif%}
+    <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a> 
+    {%if session.username == 'admin'%}
+    <a href="{{url_for('delete_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small">Delete</a>
+    {%endif%} {%endif%}
 </div>
 
+
+<!-- Modal Cancel City-->
+<div class="modal fade " id="resetGameModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content resetModal">
+            <div class="modal-header resetModalHeader centeredContent">
+                <h5 class="modal-title resetModalTitle">Are you sure you want to reset the game?</h5>
+            </div>
+            <div class="modal-body">
+                <p>Clicking on Reset all the progress will be lost.</p>
+                <button type="button" class="btn btn-secondary backResetBtn" data-dismiss="modal">Go Back</button>
+                <button class="btn btn-secondary confirmResetBtn" type="button" id="resetBtn" data-dismiss="modal" onclick="dataReset(); successAlert();">Reset</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
