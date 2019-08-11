@@ -302,3 +302,11 @@ materialize-textarea {
 .img_city_page {
     width: 100%;
 }
+
+/*............................................Search Page*/
+
+.search_page {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+}
