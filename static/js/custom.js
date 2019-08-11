@@ -18,10 +18,6 @@ function removeMustSee() {
     $(".new_mustSee").last().remove()
 }
 
-//Trying to let the function working
-$("body").on("click","#remove_must_see", function() {
-    $(this).parents(".new_mustSee").remove();
-});
 
 // Function to add a new line to add a new tip in my database
 function addTips() {
@@ -30,8 +26,9 @@ function addTips() {
 }
 
 function removeTips() {
-    $("#city_tips textarea").last().remove()
+    $(".new_tips").last().remove()
 }
+
 
 // Let carousel self slide
 function autoplay() {
