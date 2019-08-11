@@ -61,14 +61,14 @@ def insert_city():
     user = mongo.db.user.find_one({'username' : username})
     cities = mongo.db.cities
     city_info = {
-        'city_name':request.form.get('city_name').capitalize(),
+        'city_name':request.form.get('city_name').lower(),
         'city_country':request.form.get('city_country'),
         'city_region':request.form.get('city_region'),
         'city_population': request.form.get('city_population'),
-        'city_description': request.form.get('city_description').capitalize(),
+        'city_description': request.form.get('city_description').lower(),
         'city_must_see': request.form.getlist('city_must_see'),
         'city_category': request.form.getlist('city_category'),
-        'city_tips': request.form.get('city_tips').capitalize(),
+        'city_tips': request.form.get('city_tips').lower(),
         'city_author': user['username'],
         'city_image':request.form.get('city_image'),
         'favorite' :[
@@ -109,14 +109,14 @@ def update_city(city_id):
         json_file_region = json.loads(json_file_region.read())    
     cities.update( {'_id': ObjectId(city_id)},
     {
-        'city_name':request.form.get('city_name').capitalize(),
+        'city_name':request.form.get('city_name').lower(),
         'city_country':request.form.get('city_country'),
         'city_region':request.form.get('city_region'),
         'city_population': request.form.get('city_population'),
-        'city_description': request.form.get('city_description').capitalize(),
+        'city_description': request.form.get('city_description').lower(),
         'city_must_see': request.form.getlist('city_must_see'),
         'city_category': request.form.getlist('city_category'),
-        'city_tips': request.form.get('city_tips').capitalize(),
+        'city_tips': request.form.get('city_tips').lower(),
         'city_image': request.form.get('city_image'),
         'city_author': request.form.get('city_author')
     })
@@ -244,9 +244,28 @@ def logout():
     return index()
     
     
-#~~~~~~~~~~~~~~~~~~~~~~~~ Def Region ~~~~~~~~~~~~~~~~~~~~~~~~~#
-    
+#~~~~~~~~~~~~~~~~~~~~~~~~ Search Form ~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Get the city
+@app.route('/search_city', methods=['POST'])
+def search_city():
+    return redirect(url_for('search_a_city', search_city = request.form.get('search_city')))
 
+@app.route('/search_a_city/<search_city>', methods=['GET'])
+def search_a_city(search_city):
+
+    mongo.db.cities.create_index([('city_name', 'text')])        
+    
+    #Count the number of cities in the Database
+    all_cities = mongo.db.cities.find({'$text': {'$search': search_city}}).sort([('date_time', pymongo.DESCENDING), ('_id', pymongo.ASCENDING)])
+    count_cities = all_cities.count()
+    
+    city_page = mongo.db.cities.find({'$text': {'$search': search_city}}).sort([("date_time", pymongo.DESCENDING), 
+                    ("_id", pymongo.ASCENDING)])
+                    
+    return render_template('search_city.html', search_city=search_city.lower(), cities=mongo.db.cities.find(),
+        search_results = city_page.sort('date_time',pymongo.DESCENDING), count_cities=count_cities)
+    
+    
 #Permitt the server to run the web app
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
