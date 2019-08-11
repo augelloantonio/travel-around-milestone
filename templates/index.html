@@ -33,7 +33,7 @@
         </div>
 
         <div class="discover_all">
-            <a class="waves-effect waves-light btn-large discover_all_btn">Discover All Europe Destinations</a>
+            <a href="{{url_for('cities_for_regions', city_region='Europe')}}" class="waves-effect waves-light btn-large discover_all_btn">Discover All Europe Destinations</a>
         </div>
 
         <div>
@@ -55,7 +55,7 @@
         </div>
 
         <div class="discover_all">
-            <a class="waves-effect waves-light btn-large discover_all_btn">Discover All North America & Canada Destinations</a>
+            <a href="{{url_for('cities_for_regions', city_region='North America & Canada')}}" class="waves-effect waves-light btn-large discover_all_btn">Discover All North America & Canada Destinations</a>
         </div>
 
         <div>
@@ -77,7 +77,7 @@
         </div>
 
         <div class="discover_all">
-            <a class="waves-effect waves-light btn-large discover_all_btn">Discover All Asia Destinations</a>
+            <a href="{{url_for('cities_for_regions', city_region='Asia')}}" class="waves-effect waves-light btn-large discover_all_btn">Discover All Asia Destinations</a>
         </div>
 
         <div>
@@ -99,7 +99,7 @@
         </div>
 
         <div class="discover_all">
-            <a class="waves-effect waves-light btn-large discover_all_btn">Discover All Central America & South America Destinations</a>
+            <a href="{{url_for('cities_for_regions', city_region='Central America & South America')}}" class="waves-effect waves-light btn-large discover_all_btn">Discover All Central America & South America Destinations</a>
         </div>
 
         <div>
@@ -121,13 +121,13 @@
         </div>
 
         <div class="discover_all">
-            <a class="waves-effect waves-light btn-large discover_all_btn">Discover All Australia & New Zeland Destinations</a>
+            <a href="{{url_for('cities_for_regions', city_region='Australia & New Zeland')}}" class="waves-effect waves-light btn-large discover_all_btn">Discover All Australia & New Zeland Destinations</a>
         </div>
 
         <div>
-            <p class="index_header">Africa & The Middle East</p>
+            <p id="name_of_region" class="index_header">Africa & The Middle East</p>
             <div class="col s12 ">
-                <div class="row ">
+                <div class="row">
                     {%for city in city_5%} {%if city.city_region == 'Africa & The Middle East' %}
                     <div class="col s6 m4 l3 card_col ">
                         <div class="card ">
@@ -142,7 +142,7 @@
             </div>
         </div>
         <div class="discover_all">
-            <a class="waves-effect waves-light btn-large discover_all_btn">Discover All Africa & Middle East Destinations</a>
+            <a href="{{url_for('cities_for_regions', city_region='Africa & The Middle East')}}" class="waves-effect waves-light btn-large discover_all_btn">Discover All Africa & Middle East Destinations</a>
         </div>
     </div>
 </div>
