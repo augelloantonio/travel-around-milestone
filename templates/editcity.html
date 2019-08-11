@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <h3>Edit City</h3>
 
+{{city.city_author}}
 <div class="row">
     <form action="{{ url_for('update_city', city_id=city._id) }}" method="POST">
         <div class="row">
@@ -31,7 +32,7 @@
             <div class="col s12 m6 select_country">
                 <label>Region</label>
                 <select name="city_region" id="city_region" method="POST">
-                  <option value="{{city_region}}" selected>{{city_region}}</option>
+                  <option value="{{city.city_region}}" selected>{{city.city_region}}</option>
                         {% for region in regions %}
                            {% if region.region_name == city.region_name %}
                               <option value="{{region.region_name}}" selected>{{region.region_name}}</option>
@@ -48,12 +49,12 @@
             </div>
             <div class="input-field col s12 m6">
                 <i class="material-icons prefix">subject</i>
-                <textarea name="city_author" id="city_author" class="materialize-textarea" disabled>{{city.city_author}} - Can't be changed</textarea>
+                <textarea name="city_author" id="city_author" class="materialize-textarea">{{city.city_author}}</textarea>
                 <label for="icon_telephone">Author</label>
             </div>
             <div class="input-field col s12 m6">
                 <i class="material-icons prefix">subject</i>
-                <textarea name="city_author" id="city_author" class="materialize-textarea" disabled>{{city.added_time}} - Can't be changed</textarea>
+                <textarea name="added_time" id="added_time" class="materialize-textarea">{{city.added_time}}</textarea>
                 <label for="icon_telephone">Date</label>
             </div>
         </div>
@@ -68,13 +69,17 @@
                 </div>
                 <div class="input-field col s12">
                     <i class="material-icons prefix">subject</i>
-                    <textarea name="city_must_see" id="city_must_see" class="materialize-textarea">{{city.city_must_see}}</textarea>
+                    {%for item in city.city_must_see%}
+                    <textarea name="city_must_see" id="city_must_see" class="materialize-textarea">{{item}}</textarea>
+                    {%endfor%}
                     <label for="icon_telephone">Must see</label>
                     <a id="add_new_must_see" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="bottom" data-tooltip="Add another Must See" onClick="addMustSee();"><i class="material-icons">add</i></a>
                 </div>
                 <div class="input-field col s12">
                     <i class="material-icons prefix">subject</i>
-                    <textarea name="city_tips" id="city_tips" class="materialize-textarea">{{city.city_tips}}</textarea>
+                    {%for item in city.city_tips%}
+                    <textarea name="city_tips" id="city_tips" class="materialize-textarea">{{items}}</textarea>
+                    {%endfor%}
                     <label for="icon_telephone">City Tips</label>
                     <a id="add_new_tips" class="btn-floating btn-small waves-effect waves-light red tooltipped" onClick="addTips();" data-position="bottom" data-tooltip="Add another Tip"><i class="material-icons">add</i></a>
                 </div>
