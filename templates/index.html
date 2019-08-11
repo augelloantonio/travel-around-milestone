@@ -6,7 +6,7 @@
     <div class="carousel_container">
         <div class="carousel carousel-slider">
             {%for images in cities_carousel %} {%if url_image == url %}
-            <a class="carousel-item" href="#one!"><img src="{{images.city_image}}"></a> {%endif%}{%endfor%}
+            <a href="{{url_for( 'city_page', city_id=images._id)}}" class="carousel-item" href="#one!"><img src="{{images.city_image}}"></a> {%endif%}{%endfor%}
         </div>
     </div>
 </div>
@@ -18,7 +18,8 @@
             <p class="index_header">Europe</p>
             <div class="card_container ">
                 <div class="row ">
-                    {%for city in cities%} {%if city.city_region == 'Europe'%}
+                    <!-- Set [0:24] to show only the last 8 elements - bug: it seem that each city occupy 3 spaces -->
+                    {%for city in cities[0:24] %} {%if city.city_region == 'Europe'%}
                     <div class="col s6 m4 l3 card_col ">
                         <div class="card ">
                             <div class="card-image waves-effect waves-block waves-light ">
@@ -40,7 +41,7 @@
             <p class="index_header">North America & Canada</p>
             <div class="col s12 ">
                 <div class="row ">
-                    {%for city in city_named%} {%if city.city_region == 'North America & Canada'%}
+                    {%for city in city_named[0:24]%} {%if city.city_region == 'North America & Canada'%}
                     <div class="col s6 m4 l3 card_col ">
                         <div class="card ">
                             <div class="card-image waves-effect waves-block waves-light ">
@@ -62,7 +63,7 @@
             <p class="index_header">Asia</p>
             <div class="col s12 ">
                 <div class="row ">
-                    {%for city in city_2%} {%if city.city_region == 'Asia'%}
+                    {%for city in city_2[0:24]%} {%if city.city_region == 'Asia'%}
                     <div class="col s6 m4 l3 card_col ">
                         <div class="card ">
                             <div class="card-image waves-effect waves-block waves-light ">
@@ -84,7 +85,7 @@
             <p class="index_header">Central America & South America</p>
             <div class="col s12 ">
                 <div class="row ">
-                    {%for city in city_3%} {%if city.city_region == 'Central America & South America'%}
+                    {%for city in city_3[0:24]%} {%if city.city_region == 'Central America & South America'%}
                     <div class="col s6 m4 l3 card_col ">
                         <div class="card ">
                             <div class="card-image waves-effect waves-block waves-light ">
@@ -106,7 +107,7 @@
             <p class="index_header">Australia & New Zeland</p>
             <div class="col s12 ">
                 <div class="row ">
-                    {%for city in city_4%} {%if city.city_region == 'Australia & New Zeland'%}
+                    {%for city in city_4[0:24]%} {%if city.city_region == 'Australia & New Zeland'%}
                     <div class="col s6 m4 l3 card_col ">
                         <div class="card ">
                             <div class="card-image waves-effect waves-block waves-light ">
@@ -128,7 +129,7 @@
             <p id="name_of_region" class="index_header">Africa & The Middle East</p>
             <div class="col s12 ">
                 <div class="row">
-                    {%for city in city_5%} {%if city.city_region == 'Africa & The Middle East' %}
+                    {%for city in city_5[0:24]%} {%if city.city_region == 'Africa & The Middle East' %}
                     <div class="col s6 m4 l3 card_col ">
                         <div class="card ">
                             <div class="card-image waves-effect waves-block waves-light ">
