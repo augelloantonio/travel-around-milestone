@@ -303,6 +303,14 @@ materialize-textarea {
     width: 100%;
 }
 
+.info_body {
+    padding-left: 20px;
+}
+
+.items {
+    list-style-type: disc!important;
+}
+
 /*............................................Search Page*/
 
 .search_page {
