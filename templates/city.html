@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-<h1>{{cities.city_name}}</h1>
+<h1>{{cities.city_name|capitalize}}</h1>
 <p>Added by - {{cities.city_author}}<span class="new badge" data-badge-caption="{{cities.added_time}}"></span></p>
 
 <!-- Header -->
