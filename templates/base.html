@@ -43,10 +43,10 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a id="search_icon"><i class="material-icons">search</i></a></li>
                     <div id="search_form" class="row">
-                        <form class="col s12">
+                        <form action="{{url_for('search_city')}}" class="col s12" method="POST">
                             <div class="search_box" class="row">
                                 <div class="input-field">
-                                    <input placeholder="Search a city" id="search" type="text" class="searchForm validate">
+                                    <input id="search_city" name="search_city" type="tel" class="validate" required>
                                     <button class="btn waves-effect waves-light btn_search" type="submit" name="action"><i id="search_box_icon" class="material-icons">search</i></button>
                                 </div>
                             </div>
