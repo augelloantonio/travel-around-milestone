@@ -7,12 +7,12 @@
 {% endif %} {% endwith %}
 
 <div class="content_login">
-    <div class="login_row col s12">
+    <div id="loginform" class="login_row col s12">
         <form class="login_form" action="/login" method="POST">
             <i class="material-icons prefix">account_circle</i>
             <div class="input-field">
                 <input id="username" name="username" type="tel" class="validate" required>
-                <label for="icon_telephone">Username</label>
+                <label id="label_username" for="icon_telephone">Username</label>
             </div>
             <i class="material-icons">vpn_key</i>
             <div class="input-field">
@@ -20,7 +20,7 @@
                 <label for="icon_telephone">Password</label>
             </div>
             <div>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Log In!</button>
+                <button id="loginbtn" class="btn waves-effect waves-light" type="submit" name="action">Log In!</button>
             </div>
         </form>
         <div>

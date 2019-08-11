@@ -27,6 +27,20 @@ function autoplay() {
     setTimeout(autoplay, 4500);
 }
 
+// To remove the class error if the login es error
+function errorLogIn() {
+    $('#loginbtn').click(function() {
+        setTimeout(function() {
+            $('#loginform').addClass('error_login');
+            console.log('button clicked');
+        });
+        setTimeout(function() {
+            $('#loginform').removeClass('error_login');
+        }, 1000);
+    });
+}
+
+errorLogIn();
 autoplay();
 
 
@@ -52,7 +66,7 @@ $(document).ready(function() {
 
 $('.carousel.carousel-slider').carousel({
     fullWidth: true
-  });
+});
 
 
 // Matezialize box

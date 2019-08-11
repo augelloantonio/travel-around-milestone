@@ -263,6 +263,10 @@ materialize-textarea {
     text-align: center;
 }
 
+.error_login {
+    border: 5px solid #f44336;
+}
+
 /*..................................................Footer*/
 
 .page-footer {
@@ -285,5 +289,16 @@ materialize-textarea {
 
 .fab {
     padding: 5px;
+}
 
+/*...........................................Cities for region page*/
+
+.row_card {
+    width: 100%
+}
+
+/*............................................City Page*/
+
+.img_city_page {
+    width: 100%;
 }
