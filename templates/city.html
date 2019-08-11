@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 <h1>{{cities.city_name|capitalize}}</h1>
-<p>Added by - {{cities.city_author}}<span class="new badge" data-badge-caption="{{cities.added_time}}"></span></p>
+<p>Added by - {{cities.city_author}}</p>
 
 <!-- Header -->
 <div class="row">
@@ -14,10 +14,14 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Demografic Info</th>
+                            <th>City Info</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <th>Region</th>
+                            <td>{{cities.city_region|capitalize}}</td>
+                        </tr>
                         <tr>
                             <th>Country</th>
                             <td>{{cities.city_country|capitalize}}</td>
@@ -29,6 +33,10 @@
                         <tr>
                             <th>Category</th>
                             <td>{{cities.city_category}}</td>
+                        </tr>
+                        <tr>
+                            <th>Language</th>
+                            <td>{{cities.city_language}}</td>
                         </tr>
                     </tbody>
                 </table>

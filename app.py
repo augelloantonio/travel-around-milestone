@@ -66,10 +66,11 @@ def insert_city():
         'city_country':request.form.get('city_country'),
         'city_region':request.form.get('city_region'),
         'city_population': request.form.get('city_population'),
-        'city_description': request.form.get('city_description').lower(),
+        'city_language': request.form.get('city_language'),
+        'city_description': request.form.getlist('city_description'),
         'city_must_see': request.form.getlist('city_must_see'),
         'city_category': request.form.getlist('city_category'),
-        'city_tips': request.form.get('city_tips').lower(),
+        'city_tips': request.form.getlist('city_tips'),
         'city_author': user['username'],
         'city_image':request.form.get('city_image'),
         'favorite' :[
@@ -81,7 +82,7 @@ def insert_city():
         'added_time' : ctime()
     }
     cities.insert_one(city_info)
-    return redirect(url_for('index'))
+    return redirect(url_for('city_page'))
     
 
 # Get the city data from the city id
@@ -114,10 +115,11 @@ def update_city(city_id):
         'city_country':request.form.get('city_country'),
         'city_region':request.form.get('city_region'),
         'city_population': request.form.get('city_population'),
-        'city_description': request.form.get('city_description').lower(),
+        'city_language': request.form.get('city_language'),
+        'city_description': request.form.get('city_description'),
         'city_must_see': request.form.getlist('city_must_see'),
         'city_category': request.form.getlist('city_category'),
-        'city_tips': request.form.get('city_tips').lower(),
+        'city_tips': request.form.getlist('city_tips'),
         'city_image': request.form.get('city_image'),
         'city_author': request.form.get('city_author')
     })
@@ -135,9 +137,12 @@ def delete_city(city_id):
 @app.route('/city_page/<city_id>')
 def city_page(city_id):
     the_city =  mongo.db.cities.find_one({"_id": ObjectId(city_id)})
+    username=session.get('username')
+    user = mongo.db.user.find_one({'username' : username})
     return render_template("city.html", 
          cities = mongo.db.cities.find_one({'_id': ObjectId(city_id)}), city=the_city,
-                          user=mongo.db.user.find(), cities_carousel=mongo.db.cities.find_one({'_id': ObjectId(city_id)}))
+                          user=mongo.db.user.find(), cities_carousel=mongo.db.cities.find_one({'_id': ObjectId(city_id)}),
+                          city_must_see=mongo.db.cities.find())
 
 
 @app.route('/cities_for_regions/<city_region>')
