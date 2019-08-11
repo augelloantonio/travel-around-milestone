@@ -10,15 +10,27 @@ $(document).ready(function() {
 
 // Function to add a new line to add a new must see in my database
 function addMustSee() {
-    var addMustSee = '<textarea name="city_must_see" id="city_must_see" class="materialize-textarea" required> </textarea>'
+    var addMustSee = '<textarea name="city_must_see" id="city_must_see" class="materialize-textarea new_mustSee" required> </textarea>'
     $("#add_new_must_see").before(addMustSee)
 }
 
+function removeMustSee() {
+    $(".new_mustSee").last().remove()
+}
+
+//Trying to let the function working
+$("body").on("click","#remove_must_see", function() {
+    $(this).parents(".new_mustSee").remove();
+});
 
 // Function to add a new line to add a new tip in my database
 function addTips() {
-    var addTips = '<textarea name="city_tips" id="city_tips" class="materialize-textarea" required></textarea>'
+    var addTips = '<textarea name="city_tips" id="city_tips" class="materialize-textarea new_tips" required></textarea>'
     $("#add_new_tips").before(addTips)
+}
+
+function removeTips() {
+    $("#city_tips textarea").last().remove()
 }
 
 // Let carousel self slide
