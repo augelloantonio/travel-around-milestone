@@ -49,9 +49,10 @@ def add_city():
     #open region.json
     with open('data/region.json') as json_file_region:
         json_file_region = json.loads(json_file_region.read())
-        
-        return render_template('addcity.html', country=json_file_country, regions=json_file_region,
-        city=mongo.db.cieties.find(), user=mongo.db.user.find())
+    cities = mongo.db.cities.find()
+    
+    return render_template('addcity.html', country=json_file_country, regions=json_file_region,
+    city=mongo.db.cieties.find(), user=mongo.db.user.find(), count_cities = cities.count())
 
 
 # Create city function
@@ -136,7 +137,7 @@ def city_page(city_id):
     the_city =  mongo.db.cities.find_one({"_id": ObjectId(city_id)})
     return render_template("city.html", 
          cities = mongo.db.cities.find_one({'_id': ObjectId(city_id)}), city=the_city,
-                          user=mongo.db.user.find())
+                          user=mongo.db.user.find(), cities_carousel=mongo.db.cities.find_one({'_id': ObjectId(city_id)}))
 
 
 @app.route('/cities_for_regions/<city_region>')
