@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="user_page_header">
+    <div class="row">
+        <div class="">
+            <h3>This page is reserved to the admin of Travel Around.</h3>
+        </div>
+    </div>
+</div>
+<div>
+    <h5>Here you can manage the users.</h5>
+</div>
+
+<div class="col s12">
+    <div class="row">
+        <table class="highlight centered">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Users Right</th>
+                    <th>Users email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for user in users %}
+                <tr>
+                    <td>{{user.username}}</td>
+                    <td>{{user.right}}</td>
+                    <td>{{user.email}}</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock%}
