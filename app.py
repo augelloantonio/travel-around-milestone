@@ -71,18 +71,17 @@ def insert_city():
         'city_must_see': request.form.getlist('city_must_see'),
         'city_category': request.form.getlist('city_category'),
         'city_tips': request.form.getlist('city_tips'),
-        'city_author': user['username'],
+        'city_author': username,
         'city_image':request.form.get('city_image'),
-        'favorite' :[
-                    {'overall_favorite': 0.0,
-                    'total_favorite': 0,
-                    'no_of_favorite':0
-                    }
-                ],
         'added_time' : ctime()
     }
     cities.insert_one(city_info)
-    return redirect(url_for('city_page'))
+    
+    mongo.db.users.update({"username": username},
+                {'$addToSet': 
+                {'number_city_added' : +1}}) 
+    
+    return redirect(url_for('index'))
     
 
 # Get the city data from the city id
@@ -198,8 +197,8 @@ def get_user_data():
             'password': password,
             'email': email,
             'city_author': city_author,
-            'recipes_rated':[],
-            'right': right
+            'right': right,
+            'number_city_added': []
         })
         session['logged_in'] = True
         flash('Your User has been creates, please Log In now')
@@ -249,6 +248,13 @@ def logout():
     session['logged_in'] = False
     return index()
     
+#~~~~~~~~~~~~~~~~~~~~~~~~ Admin Settings Page ~~~~~~~~~~~~~~~~~~~~~~~~~#
+@app.route('/admin_settings')
+def admin_settings():
+    users = mongo.db.user.find()
+    return render_template('admin_settings.html', users = mongo.db.user.find())
+
+
     
 #~~~~~~~~~~~~~~~~~~~~~~~~ Search Form ~~~~~~~~~~~~~~~~~~~~~~~~~#
 # Get the city
