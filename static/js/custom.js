@@ -15,7 +15,18 @@ $(document).ready(function() {
 });
 
 
-// Function to add a new line to add a new must see in my database
+//Function to hide password from the form
+function hide_password() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+
+// Function to add a new line to add and remove a new must see in my database
 function addMustSee() {
     var addMustSee = '<textarea name="city_must_see" id="city_must_see" class="materialize-textarea new_mustSee" required> </textarea>'
     $("#add_new_must_see").before(addMustSee)
@@ -56,8 +67,10 @@ function errorLogIn() {
     });
 }
 
+// Calling my functions
 errorLogIn();
 autoplay();
+hide_password();
 
 
 // Materialize Customiztions
