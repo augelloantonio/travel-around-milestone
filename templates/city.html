@@ -1,12 +1,12 @@
 {% extends 'base.html' %} {% block content %}
 <h1>{{cities.city_name|capitalize}}</h1>
-<p>Added by - {{cities.city_author}}</p>
+<p>Added by - <a href="{{url_for('userpublicpage', user_id=user._id)}}">{{cities.city_author}}</a></p>
 
 <!-- Header -->
 <div class="row">
     <div>
         <div class="col s12 m8">
-            <img class="img_city_page" src="{{cities.city_image}}" alt="{{city.city_name}}">
+            <img class="img_city_page" src="{{cities.city_image}}" alt="{{cities.city_name}}">
         </div>
         <!-- Adise Table -->
         <div class="col s12 m4">
