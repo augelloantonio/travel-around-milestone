@@ -28,7 +28,8 @@ def index():
         json_file_region = json.loads(json_file_region.read())
         
         username=session.get('username')
-
+        user = mongo.db.user.find_one({'username' : username})
+        
     return render_template("index.html", cities=mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), 
                             cities_carousel= mongo.db.cities.find(), city=mongo.db.cities.find(), 
                             city_named= mongo.db.cities.find(), city_2=mongo.db.cities.find(),
@@ -311,4 +312,4 @@ def search_a_city(search_city):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
