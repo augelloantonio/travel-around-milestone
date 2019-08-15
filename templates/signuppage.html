@@ -1,16 +1,19 @@
 {% extends 'base.html' %} {% block content %}
 
+{% if session['logged_in']%}
+<h3> You are already a user, please go to the Home Page</h3>
+{%else%}
 <div class="content_login">
     <div id="loginform" class="login_row col s12 ">
-        <form class="login_form" action="{{url_for('get_user_data')}}" method="POST">
+        <form class="login_form" action="{{url_for('get_user_data')}}" method="POST" novalidate>
             <i class="material-icons prefix">account_circle</i>
             <div class="input-field">
-                <input id="username" name="username" type="text" class="validate" required>
+                <input id="username" name="username" type="text">
                 <label for="icon_prefix">Username</label>
             </div>
             <i class="material-icons prefix">email</i>
             <div class="input-field">
-                <input id="email" name="email" type="tel" class="validate" required>
+                <input id="email" name="email" type="tel">
                 <label for="icon_telephone">Email Address</label>
             </div>
             <i class="material-icons">vpn_key</i>
@@ -24,5 +27,5 @@
         </form>
     </div>
 </div>
-
+{%endif%}
 {% endblock %}
