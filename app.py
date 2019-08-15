@@ -19,6 +19,7 @@ mongo = PyMongo(app)
 
 #~~~~~~~~~~~~~~~~~~#Set as homepage my index.html~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 @app.route('/')
+@app.route('/index')
 def index():
     #open coutries.json 
     with open('data/countries.json') as json_file_country:
