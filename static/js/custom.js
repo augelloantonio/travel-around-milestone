@@ -67,11 +67,6 @@ function errorLogIn() {
     });
 }
 
-// Calling my functions
-errorLogIn();
-autoplay();
-hide_password();
-
 
 // Materialize Customiztions
 
@@ -102,3 +97,8 @@ $('.carousel.carousel-slider').carousel({
 $(document).ready(function() {
     $('.materialboxed').materialbox();
 });
+
+// Calling my functions
+errorLogIn();
+autoplay();
+hide_password();
