@@ -7,6 +7,13 @@ $(document).ready(function() {
     });
 });
 
+// Function that will remove my hidden class to the html to let the page show only when fully charged
+// to prevent to show any not charged css and elements - this fix the bug that my personal style.css
+// font and styling is not fully charged at the load of the page
+$(document).ready(function() {
+  document.getElementsByTagName("html")[0].style.visibility = "visible";
+});
+
 
 // Function to add a new line to add a new must see in my database
 function addMustSee() {
