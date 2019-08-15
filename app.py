@@ -77,9 +77,14 @@ def insert_city():
     }
     cities.insert_one(city_info)
     
-    mongo.db.users.update({"username": username},
+    #Add city to user log 
+    city_added = mongo.db.user['number_city_added']
+    tot_cities_added = city_added +1
+    mongo.db.user.update({"username": username},
                 {'$addToSet': 
-                {'number_city_added' : +1}}) 
+                {'number_city_added' : tot_cities_added,
+                 'name_city_added': request.form.get('city_name')
+                }}) 
     
     return redirect(url_for('index'))
     
@@ -136,8 +141,6 @@ def delete_city(city_id):
 @app.route('/city_page/<city_id>')
 def city_page(city_id):
     the_city =  mongo.db.cities.find_one({"_id": ObjectId(city_id)})
-    username=session.get('username')
-    user = mongo.db.user.find_one({'username' : username})
     return render_template("city.html", 
          cities = mongo.db.cities.find_one({'_id': ObjectId(city_id)}), city=the_city,
                           user=mongo.db.user.find(), cities_carousel=mongo.db.cities.find_one({'_id': ObjectId(city_id)}),
@@ -207,18 +210,7 @@ def get_user_data():
         session['logged_in'] = False
         flash('Username already exists, please try again.')
         return redirect(url_for('register'))
-
-# User Page
-@app.route('/user_page')
-def user_page():
-    username=session.get('username')
-    user = mongo.db.user.find_one({'username': username})
-    
-    if session['logged_in'] == False and username is None:
-        return login_page()
-    else:
-        return render_template('user.html', user=mongo.db.user.find(),
-        cities = mongo.db.cities.find().sort('added_time', pymongo.DESCENDING))
+        
         
 @app.route('/login',  methods=['POST', 'GET'])
 def login():
@@ -248,12 +240,33 @@ def logout():
     session['logged_in'] = False
     return index()
     
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~Personal pages~~~~~~~~~~~~~~~~~~~~~~#
+# User Personal Page
+@app.route('/user_page')
+def user_page():
+    username=session.get('username')
+    user = mongo.db.user.find_one({'username': username})
+    cities = mongo.db.cities.find()
+    
+    if session['logged_in'] == False and username is None:
+        return login_page()
+    else:
+        return render_template('user.html', user=mongo.db.user.find(),
+        cities = mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), tot_cities=cities.count())
+        
+
+#Display the City webpage 
+@app.route('/userpublicpage/<user_id>')
+def userpublicpage(user_id):
+    the_user =  mongo.db.user.find_one({"_id": ObjectId(user_id)})
+    return render_template("userpage.html", username = mongo.db.user.find_one({"_id": ObjectId(user_id)}),
+                          cities = mongo.db.cities.find(), user = the_user)
+    
+
 #~~~~~~~~~~~~~~~~~~~~~~~~ Admin Settings Page ~~~~~~~~~~~~~~~~~~~~~~~~~#
 @app.route('/admin_settings')
 def admin_settings():
-    users = mongo.db.user.find()
     return render_template('admin_settings.html', users = mongo.db.user.find())
-
 
     
 #~~~~~~~~~~~~~~~~~~~~~~~~ Search Form ~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -275,7 +288,7 @@ def search_a_city(search_city):
                     ("_id", pymongo.ASCENDING)])
                     
     return render_template('search_city.html', search_city=search_city.lower(), cities=mongo.db.cities.find(),
-        search_results = city_page.sort('date_time',pymongo.DESCENDING), count_cities=count_cities)
+        search_results = city_page.sort('date_time',pymongo.DESCENDING), count_cities=count_cities, )
     
     
 #Permitt the server to run the web app
