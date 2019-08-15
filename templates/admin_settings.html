@@ -26,7 +26,9 @@
                 {%for user in users %}
                 <tr>
                     <td><a href="{{url_for('userpublicpage', user_id=user._id)}}">{{user.username}}</a></td>
-                    <td>{{user.right}}</td>
+                    <td>{{user.right}}
+                        <a href="{{url_for('user_rights', user_id=user._id)}}" class="waves-effect waves-light btn modal-trigger" >Change User Right</a>
+                    </td>
                     <td>{{user.email}}</td>
                     <td>{{count_cities}}</td>
                 </tr>
@@ -35,6 +37,5 @@
         </table>
     </div>
 </div>
-
 
 {% endblock%}
