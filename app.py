@@ -159,29 +159,28 @@ def cities_for_regions(city_region):
 
 #~~~~~~~~~~~~~~~~~~ Register / Log In/ Account section ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-# register form
+# register page form
 @app.route('/register')
 def register():
    return render_template ('signuppage.html')
    
    
-# register form
+# login page form
 @app.route('/login_page')
 def login_page():
    return render_template ('login.html')
 
-
-# Get new user details and send them to MongoDB giving to all the users the right of user
 
 #Check if user already logged in 
 @app.route('/user_logged')
 def user_logged():
     if not session.get('logged_in'):
         flash("Please, Log In")
-        return render_template('login.html')
+        return login_page()
     else:
         return redirect(url_for('user_page'))
 
+# Get new user details and send them to MongoDB giving to all the users the right of user
 @app.route('/get_user_data', methods=['POST'])
 def get_user_data():
     username = request.form['username'].lower()
@@ -206,7 +205,7 @@ def get_user_data():
         })
         session['logged_in'] = True
         flash('Your User has been creates, please Log In now')
-        return render_template('login.html')
+        return login()
     else:
         session['logged_in'] = False
         flash('Username already exists, please try again.')
@@ -215,12 +214,15 @@ def get_user_data():
         
 @app.route('/login',  methods=['POST', 'GET'])
 def login():
-    username = request.form['username'].lower()
-    password = request.form['password']
+    if session['logged_in'] == True:
+        return user_page()
+    else:
+        username = request.form['username'].lower()
+        password = request.form['password']
     
-    session['username'] = username
-    session.permanent = True
-    user = mongo.db.user.find_one({'username' : username})
+        session['username'] = username
+        session.permanent = True
+        user = mongo.db.user.find_one({'username' : username})
 
     if not user:
         session['logged_in'] = False
@@ -232,8 +234,8 @@ def login():
         return login_page()   
     else:
         session['logged_in'] = True
-        return render_template('user.html', user=mongo.db.user.find(), 
-        city_author=user['username'], cities=mongo.db.cities.find())
+        return redirect(url_for('user_page', user=mongo.db.user.find(), 
+        city_author=user['username'], cities=mongo.db.cities.find()))
     
 #Log Out
 @app.route('/logout')
@@ -241,15 +243,14 @@ def logout():
     session['logged_in'] = False
     return index()
     
+    
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~Personal pages~~~~~~~~~~~~~~~~~~~~~~#
 # User Personal Page
 @app.route('/user_page')
 def user_page():
-    username=session.get('username')
-    user = mongo.db.user.find_one({'username': username})
     cities = mongo.db.cities.find()
     
-    if session['logged_in'] == False and username is None:
+    if session['logged_in'] == False:
         return login_page()
     else:
         return render_template('user.html', user=mongo.db.user.find(),
@@ -262,36 +263,45 @@ def userpublicpage(user_id):
     the_user =  mongo.db.user.find_one({"_id": ObjectId(user_id)})
     return render_template("userpage.html", username = mongo.db.user.find_one({"_id": ObjectId(user_id)}),
                           cities = mongo.db.cities.find(), user = the_user)
-    
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~ Admin Settings Page ~~~~~~~~~~~~~~~~~~~~~~~~~#
 @app.route('/admin_settings')
 def admin_settings():
+    username=session.get('username')
     return render_template('admin_settings.html', users = mongo.db.user.find())
 
 #Make a change user right page
 @app.route('/user_rights/<user_id>')
 def user_rights(user_id):
+    username=session.get('username')
     the_user = mongo.db.user.find_one({'_id': ObjectId(user_id)})
-    return render_template('user_right.html', user = the_user, users = mongo.db.user.find())
-    
+    if session['logged_in'] == False and username != 'admin':
+            return index()
+    else:
+            return render_template('user_right.html', user = the_user, users = mongo.db.user.find())
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~BUG NOT WORKING~~~~~~~~~~~~~~~~~~~~#
 # Change the user right and update info in mongodb
 @app.route('/edit_user_rights/<user_id>', methods=['POST'])
 def edit_user_rights(user_id):
+    username=session.get('username')
     users = mongo.db.user.find()
     the_user = mongo.db.user.find_one({'_id': ObjectId(user_id)})
     users.update( {'_id': ObjectId(user_id)},
     {
         'right': request.form.get('user_right'),
     })
-    return redirect(url_for('admin_settings'))
-    
+    return redirect(url_for('admin_settings'), user= the_user)
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~ Search Form ~~~~~~~~~~~~~~~~~~~~~~~~~#
 # Get the city
 @app.route('/search_city', methods=['POST'])
 def search_city():
     return redirect(url_for('search_a_city', search_city = request.form.get('search_city')))
+
 
 @app.route('/search_a_city/<search_city>', methods=['GET'])
 def search_a_city(search_city):
@@ -306,11 +316,11 @@ def search_a_city(search_city):
                     ("_id", pymongo.ASCENDING)])
                     
     return render_template('search_city.html', search_city=search_city.lower(), cities=mongo.db.cities.find(),
-        search_results = city_page.sort('date_time',pymongo.DESCENDING), count_cities=count_cities, )
-    
+        search_results = city_page.sort('date_time',pymongo.DESCENDING), count_cities=count_cities)
+
     
 #Permitt the server to run the web app
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)
