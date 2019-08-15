@@ -161,16 +161,6 @@ def register():
 def login_page():
    return render_template ('login.html')
 
-
-#Check if user already logged in 
-@app.route('/user_logged')
-def user_logged():
-    if not session.get('logged_in'):
-        flash("Please, Log In")
-        return login_page()
-    else:
-        return redirect(url_for('user_page'))
-
 # Get new user details and send them to MongoDB giving to all the users the right of user
 @app.route('/get_user_data', methods=['POST'])
 def get_user_data():
