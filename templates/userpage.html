@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="user_page_header">
+    <div class="row">
+        <div class="">
+            <h3>All cities made by: {{user.username}}</h3>
+            <h4>Tot cities made: {{count_cities}}</h4>
+        </div>
+    </div>
+</div>
+<div>
+    <h5> </h5> 
+    <p>Tot cities made: {{tot_cities}}</p>
+</div>
+
+
+
+<div class="col s12">
+    <div class="row">
+        {%for city in cities%} {% if city.city_author == user.username %}
+        <div class="col s6 m4 l3 card_col">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator img_card" src="{{city.city_image}}">
+                    <a href="{{url_for('city_page', city_id = city._id)}}"> <span class="card-title city_card_title">{{city.city_name}}</span></a>
+                </div>
+            </div>
+        </div>
+        {%endif%} {%endfor%}
+    </div>
+</div>
+
+
+{% endblock%}
