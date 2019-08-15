@@ -19,14 +19,16 @@
                     <th>Username</th>
                     <th>Users Right</th>
                     <th>Users email</th>
+                    <th>Cities Created</th>
                 </tr>
             </thead>
             <tbody>
                 {%for user in users %}
                 <tr>
-                    <td>{{user.username}}</td>
+                    <td><a href="{{url_for('userpublicpage', user_id=user._id)}}">{{user.username}}</a></td>
                     <td>{{user.right}}</td>
                     <td>{{user.email}}</td>
+                    <td>{{count_cities}}</td>
                 </tr>
                 {%endfor%}
             </tbody>
