@@ -1,6 +1,5 @@
 {% extends 'base.html' %} {% block content %}
 <h1>{{cities.city_name|capitalize}}</h1>
-<p>Added by - <a href="{{url_for('userpublicpage', user_id=user._id)}}">{{cities.city_author}}</a></p>
 
 <!-- Header -->
 <div class="row">
@@ -32,11 +31,15 @@
                         </tr>
                         <tr>
                             <th>Category</th>
-                            <td>{{cities.city_category}}</td>
+                            <td>{{cities.city_category|capitalize}}</td>
                         </tr>
                         <tr>
                             <th>Language</th>
-                            <td>{{cities.city_language}}</td>
+                            <td>{{cities.city_language|capitalize}}</td>
+                        </tr>
+                        <tr>
+                            <th>Author</th>
+                            <td>{{cities.city_author}}</td>
                         </tr>
                     </tbody>
                 </table>
