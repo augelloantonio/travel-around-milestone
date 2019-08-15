@@ -30,7 +30,7 @@ def index():
         
         username=session.get('username')
 
-    return render_template("index.html", cities=mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), 
+    return render_template("index.html", 
                             cities_carousel= mongo.db.cities.find(), city=mongo.db.cities.find(), 
                             city_named= mongo.db.cities.find(), city_2=mongo.db.cities.find(),
                             city_3=mongo.db.cities.find(), city_4=mongo.db.cities.find(),
@@ -312,4 +312,4 @@ def search_a_city(search_city):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)
