@@ -47,6 +47,16 @@ function removeTips() {
     $(".new_tips").last().remove()
 }
 
+// Function to add a new line to add a new to avoid tips in my database
+function addToAvoid() {
+    var addToAvoid = '<textarea name="city_to_avoid" id="city_to_avoid" class="materialize-textarea new_tips" required></textarea>'
+    $("#add_to_avoid").before(addToAvoid)
+}
+
+function removeToAvoid() {
+    $(".new_to_avoid").last().remove()
+}
+
 
 // Let carousel self slide
 function autoplay() {

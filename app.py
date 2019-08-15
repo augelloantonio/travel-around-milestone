@@ -72,6 +72,7 @@ def insert_city():
         'city_must_see': request.form.getlist('city_must_see'),
         'city_category': request.form.get('city_category'),
         'city_tips': request.form.getlist('city_tips'),
+        'city_to_avoid': request.form.getlist('city_to_avoid'),
         'city_author': username,
         'city_image':request.form.get('city_image'),
         'added_time' : ctime()
@@ -116,6 +117,7 @@ def update_city(city_id):
         'city_must_see': request.form.getlist('city_must_see'),
         'city_category': request.form.get('city_category'),
         'city_tips': request.form.getlist('city_tips'),
+        'city_to_avoid': request.form.getlist('city_to_avoid'),
         'city_image': request.form.get('city_image'),
         'city_author': request.form.get('city_author')
     })
