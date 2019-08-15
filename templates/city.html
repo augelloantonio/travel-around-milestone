@@ -50,7 +50,7 @@
 
 <!-- Content-->
 <div class="row">
-    <div class="col s12 m4">
+    <div class="col s12 m6 l3">
         <div class="info_header">
             <p class="info_title">City Info</p>
         </div>
@@ -58,7 +58,7 @@
             <p class="">{{cities.city_description}}</p>
         </div>
     </div>
-    <div class="col s12 m4">
+    <div class="col s12 m6 l3">
         <div class="info_header">
             <p class="info_title">City Must See</p>
         </div>
@@ -70,13 +70,25 @@
             </ul>
         </div>
     </div>
-    <div class="col s12 m4">
+    <div class="col s12 m6 l3">
         <div class="info_header">
             <p class="info_title">City Tips</p>
         </div>
         <div class="info_body">
             <ul class="">
                 {%for item in city.city_tips%}
+                <li class="items">{{item}}</li>
+                {%endfor%}
+            </ul>
+        </div>
+    </div>
+    <div class="col s12 m6 l3">
+        <div class="info_header">
+            <p class="info_title">To Avoid</p>
+        </div>
+        <div class="info_body">
+            <ul class="">
+                {%for item in city.city_to_avoid%}
                 <li class="items">{{item}}</li>
                 {%endfor%}
             </ul>
