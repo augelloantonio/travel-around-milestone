@@ -68,24 +68,15 @@ def insert_city():
         'city_region':request.form.get('city_region'),
         'city_population': request.form.get('city_population'),
         'city_language': request.form.get('city_language'),
-        'city_description': request.form.getlist('city_description'),
+        'city_description': request.form.get('city_description'),
         'city_must_see': request.form.getlist('city_must_see'),
-        'city_category': request.form.getlist('city_category'),
+        'city_category': request.form.get('city_category'),
         'city_tips': request.form.getlist('city_tips'),
         'city_author': username,
         'city_image':request.form.get('city_image'),
         'added_time' : ctime()
     }
     cities.insert_one(city_info)
-    
-    #Add city to user log 
-    city_added = mongo.db.user['number_city_added']
-    tot_cities_added = city_added +1
-    mongo.db.user.update({"username": username},
-                {'$addToSet': 
-                {'number_city_added' : tot_cities_added,
-                 'name_city_added': request.form.get('city_name')
-                }}) 
     
     return redirect(url_for('index'))
     
@@ -123,7 +114,7 @@ def update_city(city_id):
         'city_language': request.form.get('city_language'),
         'city_description': request.form.get('city_description'),
         'city_must_see': request.form.getlist('city_must_see'),
-        'city_category': request.form.getlist('city_category'),
+        'city_category': request.form.get('city_category'),
         'city_tips': request.form.getlist('city_tips'),
         'city_image': request.form.get('city_image'),
         'city_author': request.form.get('city_author')
@@ -231,7 +222,7 @@ def login():
     elif not check_password_hash(user['password'],password):
         session['logged_in'] = False
         flash('Incorrect Password, please try again.')
-        return login_page()   
+        return redirect(url_for('login_page'))
     else:
         session['logged_in'] = True
         return redirect(url_for('user_page', user=mongo.db.user.find(), 
@@ -241,7 +232,7 @@ def login():
 @app.route('/logout')
 def logout():
     session['logged_in'] = False
-    return index()
+    return redirect(url_for('index'))
     
     
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~Personal pages~~~~~~~~~~~~~~~~~~~~~~#
@@ -251,7 +242,7 @@ def user_page():
     cities = mongo.db.cities.find()
     
     if session['logged_in'] == False:
-        return login_page()
+        return redirect(url_for('login_page'))
     else:
         return render_template('user.html', user=mongo.db.user.find(),
         cities = mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), tot_cities=cities.count())
@@ -277,7 +268,7 @@ def user_rights(user_id):
     username=session.get('username')
     the_user = mongo.db.user.find_one({'_id': ObjectId(user_id)})
     if session['logged_in'] == False and username != 'admin':
-            return index()
+            return redirect(url_for('index'))
     else:
             return render_template('user_right.html', user = the_user, users = mongo.db.user.find())
 
