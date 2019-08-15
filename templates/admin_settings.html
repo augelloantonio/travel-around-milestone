@@ -1,5 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 
+{% if session['logged_in'] == False or session.username != 'admin' %}
+<h3>We are sorry, but only Travel Around admins can manage users info.</h3>
+
+{% else %}
+
 <div class="user_page_header">
     <div class="row">
         <div class="">
@@ -37,5 +42,5 @@
         </table>
     </div>
 </div>
-
+{%endif%}
 {% endblock%}
