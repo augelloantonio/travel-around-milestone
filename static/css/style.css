@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto|Alfa+Slab+One&display=swap');
 
+html{
+    visibility:hidden;
+}
 
 body {
     display: flex;
     min-height: 100vh!important;
     flex-direction: column;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif!important;
 }
 
 .content {
@@ -214,6 +217,12 @@ materialize-textarea {
 @media (max-width: 720px) {
     .card_col {
         padding: 5px!important;
+    }
+}
+
+@media (max-width: 450px) {
+    .card .card-image .card-title {
+        padding: 14px;
     }
 }
 
