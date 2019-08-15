@@ -268,7 +268,24 @@ def userpublicpage(user_id):
 def admin_settings():
     return render_template('admin_settings.html', users = mongo.db.user.find())
 
+#Make a change user right page
+@app.route('/user_rights/<user_id>')
+def user_rights(user_id):
+    the_user = mongo.db.user.find_one({'_id': ObjectId(user_id)})
+    return render_template('user_right.html', user = the_user, users = mongo.db.user.find())
     
+# Change the user right and update info in mongodb
+@app.route('/edit_user_rights/<user_id>', methods=['POST'])
+def edit_user_rights(user_id):
+    users = mongo.db.user.find()
+    the_user = mongo.db.user.find_one({'_id': ObjectId(user_id)})
+    users.update( {'_id': ObjectId(user_id)},
+    {
+        'right': request.form.get('user_right'),
+    })
+    return redirect(url_for('admin_settings'))
+    
+
 #~~~~~~~~~~~~~~~~~~~~~~~~ Search Form ~~~~~~~~~~~~~~~~~~~~~~~~~#
 # Get the city
 @app.route('/search_city', methods=['POST'])
