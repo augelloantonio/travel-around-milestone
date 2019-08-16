@@ -5,7 +5,7 @@ import json, pymongo
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
-from time import ctime
+from time import ctime, strftime
 from werkzeug.security import generate_password_hash, check_password_hash
 
 #~~~~~~~~~~~~~~~~~~Inizialize Flask and connect to MongoDB~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -16,6 +16,8 @@ app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
 app.secret_key = os.getenv('SECRET', 'randomstring123')
 
 mongo = PyMongo(app)
+
+date = strftime('%d' + "/" + '%m' + "/"+ '%Y')
 
 #~~~~~~~~~~~~~~~~~~#Set as homepage my index.html~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 @app.route('/')
@@ -75,7 +77,7 @@ def insert_city():
         'city_to_avoid': request.form.getlist('city_to_avoid'),
         'city_author': username,
         'city_image':request.form.get('city_image'),
-        'added_time' : ctime()
+        'added_time' : date
     }
     cities.insert_one(city_info)
     
