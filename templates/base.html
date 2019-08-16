@@ -46,17 +46,18 @@
                     {%endif%}
                 </ul>
                 <ul class="right hide-on-med-and-down">
-                    <li><a id="search_icon"><i class="material-icons">search</i></a></li>
-                    <div id="search_form" class="row">
-                        <form action="{{url_for('search_city')}}" class="col s12" method="POST">
-                            <div class="search_box" class="row">
-                                <div class="input-field">
-                                    <input id="search_city" name="search_city" type="tel" class="validate" required>
+                    <li class='search_box'><a id="search_icon"><i class="material-icons">search</i></a>
+                        <form id="search_form" action="{{url_for('search_city')}}" class="" method="POST">
+                            <div class="row search_row">
+                                <div class="s9">
+                                    <input id="search_city" name="search_city" type="tel" class="validate search_form">
+                                </div>
+                                <div class="s3">
                                     <button class="btn waves-effect waves-light btn_search" type="submit" name="action"><i id="search_box_icon" class="material-icons">search</i></button>
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    </li>
                 </ul>
 
                 <!-- Mobile Navbar-->
@@ -77,9 +78,8 @@
                         {%else%}
                         <li><a href="{{url_for('login_page')}}"><i class="material-icons">person</i> Log In</a></li>
                         <li><a href="{{url_for('register')}}"><i class="material-icons">person_add</i> Register</a></li>
-                        {%endif%} 
-                        {%if session['logged_in'] and session.username == 'admin'%}
-                        <li><a href="{{ url_for ('admin_settings')}}" ><i class="material-icons">settings</i>Admin Area</a> </li>
+                        {%endif%} {%if session['logged_in'] and session.username == 'admin'%}
+                        <li><a href="{{ url_for ('admin_settings')}}"><i class="material-icons">settings</i>Admin Area</a> </li>
                         {%endif%}
                     </ul>
                     <div class="user_page_header">
