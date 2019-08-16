@@ -142,6 +142,21 @@ materialize-textarea {
 
 .input-field {
     margin: 0px;
+    padding: 25px!important;
+    left: 1.5px;
+    right: 1.5rem;
+}
+
+@media (min-width: 920px) {
+    .input-field {
+        max-width: 70%
+    }
+}
+
+@media (min-width: 920px) {
+    .input_description {
+        max-width: 98%
+    }
 }
 
 /*..........................................Card Style  */
@@ -246,10 +261,6 @@ materialize-textarea {
     padding-bottom: 25px!important;
 }
 
-.input-field {
-    padding-bottom: 20px!important;
-}
-
 
 /*....................................................Signup/Login*/
 
@@ -320,7 +331,7 @@ materialize-textarea {
     border-radius: 10px;
 }
 
-.info_header{
+.info_header {
     text-align: center;
     font-family: Roboto;
     font-size: 1.5rem;
@@ -348,6 +359,8 @@ materialize-textarea {
 }
 
 /*..........................................Table*/
-td, th{
+
+td,
+th {
     padding: 5px!important;
 }
