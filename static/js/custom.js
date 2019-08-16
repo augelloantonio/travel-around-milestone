@@ -1,28 +1,28 @@
-//Function to display my search form on click
+// Function that will remove my hidden class to the html to let the page show only when fully charged
+// to prevent to show any not charged css and elements - this fix the bug that my personal style.css
+// font and styling is not fully charged at the load of the page
+$(document).ready(function() {
+    document.getElementsByTagName("html")[0].style.visibility = "visible";
+});
 
-// 
+
+//Function to display my search form on click
 $(document).ready(function() {
     $('#search_icon').click(function() {
         $('#search_form').toggle();
     });
 });
 
-// Function that will remove my hidden class to the html to let the page show only when fully charged
-// to prevent to show any not charged css and elements - this fix the bug that my personal style.css
-// font and styling is not fully charged at the load of the page
-$(document).ready(function() {
-  document.getElementsByTagName("html")[0].style.visibility = "visible";
-});
-
 
 //Function to hide password from the form
 function hide_password() {
-  var x = document.getElementById("password");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
+    }
+    else {
+        x.type = "password";
+    }
 }
 
 
@@ -88,10 +88,6 @@ $(document).ready(function() {
     $('.tooltipped').tooltip();
 });
 
-// Add the collpase to the search box
-$(document).ready(function() {
-    $('#search_cities').collapsible();
-});
 
 // Add select function
 $(document).ready(function() {
