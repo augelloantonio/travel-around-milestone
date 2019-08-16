@@ -17,8 +17,6 @@ app.secret_key = os.getenv('SECRET', 'randomstring123')
 
 mongo = PyMongo(app)
 
-date = strftime('%d' + "/" + '%m' + "/"+ '%Y')
-
 #~~~~~~~~~~~~~~~~~~#Set as homepage my index.html~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 @app.route('/')
 @app.route('/index')
@@ -77,7 +75,7 @@ def insert_city():
         'city_to_avoid': request.form.getlist('city_to_avoid'),
         'city_author': username,
         'city_image':request.form.get('city_image'),
-        'added_time' : date
+        'added_time' : strftime('%d' + "/" + '%m' + "/"+ '%Y')
     }
     cities.insert_one(city_info)
     
@@ -121,7 +119,8 @@ def update_city(city_id):
         'city_tips': request.form.getlist('city_tips'),
         'city_to_avoid': request.form.getlist('city_to_avoid'),
         'city_image': request.form.get('city_image'),
-        'city_author': request.form.get('city_author')
+        'city_author': request.form.get('city_author'),
+        'added_time' : request.form.get('added_time')
     })
     return redirect(url_for('index'))
 
