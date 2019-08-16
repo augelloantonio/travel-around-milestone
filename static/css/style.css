@@ -268,7 +268,7 @@ materialize-textarea {
     padding: 40px 0 40px;
 }
 
-.login_row {
+.login_area {
     max-width: 400px;
     max-height: 500px;
     margin: auto;
@@ -278,12 +278,24 @@ materialize-textarea {
     text-align: center;
 }
 
+.login_row {
+    padding: 2.5rem;
+}
+
 .login_form {
     padding: 70px 0;
     margin: auto;
     width: 50%;
     text-align: center;
 }
+
+@media (max-width: 720px) {
+    .login_form {
+        width: 80%;
+        padding: 0;
+    }
+}
+
 
 .error_login {
     border: 5px solid #f44336;
