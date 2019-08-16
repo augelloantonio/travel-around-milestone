@@ -350,8 +350,15 @@ materialize-textarea {
     font-weight: 500;
 }
 
+.info_title {
+    font-family: 'Alfa Slab One', cursive;
+    color: #524c4c;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
 .info_body {
-    padding-left: 20px;
+    padding-left: 2rem;
 }
 
 .items {
@@ -360,6 +367,15 @@ materialize-textarea {
 
 .edit_btn_row {
     float: right;
+}
+
+.content_body{
+    padding: 10px;
+    margin: 0px auto;
+}
+
+.info_paragraph{
+    padding: 10px;
 }
 
 /*............................................Search Page*/

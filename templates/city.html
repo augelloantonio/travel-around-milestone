@@ -55,55 +55,63 @@
 <!-- Content-->
 <div class="row">
     <div class="col s12 m6 l3">
-        <div class="info_header">
-            <p class="info_title">Description</p>
-        </div>
-        <div class="">
-            <p class="">{{cities.city_description}}</p>
-        </div>
-    </div>
-    <div class="col s12 m6 l3">
-        <div class="info_header">
-            <p class="info_title">City Must See</p>
-        </div>
-        <div class="info_body">
-            <ul>
-                {%for item in city.city_must_see%}
-                <li class="items">{{item}}</li>
-                {%endfor%}
-            </ul>
+        <div class="content_body">
+            <div class="info_header">
+                <p class="info_title">Description</p>
+            </div>
+            <div class="">
+                <p class="info_paragraph">{{cities.city_description}}</p>
+            </div>
         </div>
     </div>
     <div class="col s12 m6 l3">
-        <div class="info_header">
-            <p class="info_title">City Tips</p>
-        </div>
-        <div class="info_body">
-            <ul class="">
-                {%for item in city.city_tips%}
-                <li class="items">{{item}}</li>
-                {%endfor%}
-            </ul>
+        <div class="content_body">
+            <div class="info_header">
+                <p class="info_title">City Must See</p>
+            </div>
+            <div class="info_body">
+                <ul class="info_paragraph">
+                    {%for item in city.city_must_see%}
+                    <li class="items">{{item}}</li>
+                    {%endfor%}
+                </ul>
+            </div>
         </div>
     </div>
     <div class="col s12 m6 l3">
-        <div class="info_header">
-            <p class="info_title">To Avoid</p>
+        <div class="content_body">
+            <div class="info_header">
+                <p class="info_title">City Tips</p>
+            </div>
+            <div class="info_body">
+                <ul class="info_paragraph">
+                    {%for item in city.city_tips%}
+                    <li class="items">{{item}}</li>
+                    {%endfor%}
+                </ul>
+            </div>
         </div>
-        <div class="info_body">
-            <ul class="">
-                {%for item in city.city_to_avoid%}
-                <li class="items">{{item|capitalize}}</li>
-                {%endfor%}
-            </ul>
+    </div>
+    <div class="col s12 m6 l3">
+        <div class="content_body">
+            <div class="info_header">
+                <p class="info_title">To Avoid</p>
+            </div>
+            <div class="info_body">
+                <ul class="info_paragraph">
+                    {%for item in city.city_to_avoid%}
+                    <li class="items">{{item|capitalize}}</li>
+                    {%endfor%}
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
 <!-- Edit Buttons-->
 <div class="row">
-<div class="edit_btn_row">
-            {% if session['logged_in']%}
+    <div class="edit_btn_row">
+        {% if session['logged_in']%}
         <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Edit</a> {%if session.username == 'admin'%}
         <a href="{{url_for('delete_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal">Delete</a> {%endif%} {%endif%}
     </div>
