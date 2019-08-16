@@ -358,7 +358,12 @@ materialize-textarea {
 }
 
 .info_body {
-    padding-left: 2rem;
+    padding-left: 4rem;
+}
+
+.description_body{
+    width: 85%;
+    margin: 0px auto;
 }
 
 .items {
@@ -369,13 +374,13 @@ materialize-textarea {
     float: right;
 }
 
-.content_body{
+.content_body {
     padding: 10px;
     margin: 0px auto;
 }
 
-.info_paragraph{
-    padding: 10px;
+.info_paragraph {
+    padding-left: 1.5rem;
 }
 
 /*............................................Search Page*/
