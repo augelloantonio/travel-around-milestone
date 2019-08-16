@@ -4,7 +4,7 @@ from app import app
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
-from time import ctime
+from time import ctime, strftime
 import unittest
 
 
@@ -40,25 +40,35 @@ with open('data/region.json') as json_file_region:
         if region['region_name']:
             print(region['region_name'])
             print('')
+        
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~Testing if time is printed~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+print(strftime('Time is: ' + '%d' + "/" + '%m' + "/"+ '%Y'))
+print('')
 
 
 #~~~~~~~~~~~~~~~~~~Testing if the date is correctly setted~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-time = ctime()
-print ("actual time is: " + time)
-print('')
+class test_timen(unittest.TestCase):
+    def test_time(self):
+        time = ctime()
+        print ("actual time is: " + time)
+        print('')
 
 #~~~~~~~~~~~~~~~~~~Testing login form~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 class testing_login(unittest.TestCase):
     def test_login(self):
-        session = True
+        session = False
         username = 'admin'
         password = 'admin'
         if session == True and username == 'admin' and password == 'admin':
-          print ('user logged in')
-        else:
-          print('test fail')
+            print ('user logged in')
+            print('')
+        elif session == False:
+            print('please login')
+            print('')
     
+
 #~~~~~~~~~~~~~~~~~~Testing the links ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 """
 class testing_links(unittest.TestCase):
