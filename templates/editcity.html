@@ -2,16 +2,19 @@
 <h3>Edit City</h3>
 
 <div class="row">
+    <!-- Edit City Form-->
     <form action="{{ url_for('update_city', city_id=city._id) }}" method="POST">
         <div class="row">
-            <div class="input-field col s12 m6">
-                <i class="material-icons prefix">subject</i>
-                <textarea name="city_name" id="city_name" class="materialize-textarea">{{city.city_name}}</textarea>
-                <label for="icon_telephone">City's Name</label>
-            </div>
-            <div class="col s12 m6 select_country">
-                <label>Country</label>
-                <select name="city_country" id="city_country" method="POST">
+            <!--First input row-->
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">subject</i>
+                    <textarea name="city_name" id="city_name" class="materialize-textarea">{{city.city_name}}</textarea>
+                    <label for="icon_telephone">City's Name</label>
+                </div>
+                <div class="col s12 m6 select_country">
+                    <label>Country</label>
+                    <select name="city_country" id="city_country" method="POST">
                   <option value="{{city.city_country}}" selected>{{city.city_country}}</option>
                       {% for name in country %}
                            {% if name.name == city.name %}
@@ -21,16 +24,18 @@
                           {%endif%}
                       {%endfor%}
                  </select>
+                </div>
             </div>
-            <div class="input-field col s12 m6">
-                <i class="material-icons prefix">subject</i>
-                <textarea name="city_population" id="city_population" class="materialize-textarea">{{city.city_population}}</textarea>
-                <label for="icon_telephone">Population</label>
-            </div>
-
-            <div class="col s12 m6 select_country">
-                <label>Region</label>
-                <select name="city_region" id="city_region" method="POST">
+            <!--Second input row-->
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">subject</i>
+                    <textarea name="city_population" id="city_population" class="materialize-textarea">{{city.city_population}}</textarea>
+                    <label for="icon_telephone">Population</label>
+                </div>
+                <div class="col s12 m6 select_country">
+                    <label>Region</label>
+                    <select name="city_region" id="city_region" method="POST">
                   <option value="{{city.city_region}}" selected>{{city.city_region}}</option>
                         {% for region in regions %}
                            {% if region.region_name == city.region_name %}
@@ -40,15 +45,18 @@
                           {%endif%}
                       {%endfor%}
                  </select>
+                </div>
             </div>
-            <div class="input-field col s12 m6">
-                <i class="material-icons prefix">subject</i>
-                <textarea name="city_language" id="city_language" class="materialize-textarea">{{city.city_language}}</textarea>
-                <label for="icon_telephone">Language</label>
-            </div>
-            <div class="select_country col s12 m6">
-                <label>Select Category</label>
-                <select name="city_category" id="city_category" method="POST" required>
+            <!--Third input row-->
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">subject</i>
+                    <textarea name="city_language" id="city_language" class="materialize-textarea">{{city.city_language}}</textarea>
+                    <label for="icon_telephone">Language</label>
+                </div>
+                <div class="select_country col s12 m6">
+                    <label>Select Category</label>
+                    <select name="city_category" id="city_category" method="POST" required>
                   <option value="{{city.city_category}}" selected>{{city.city_category}}</option>
                   <option value="city break">City Break</option>
                   <option value="week end">Week End</option>
@@ -59,31 +67,37 @@
                   <option value="Historical">Religious</option>
                   <option value="Historical">Winter Break</option>
              </select>
+                </div>
             </div>
-            <div class="input-field col s12 m6">
-                <i class="material-icons prefix">subject</i>
-                <textarea name="city_image" id="city_image" class="materialize-textarea">{{city.city_image}}</textarea>
-                <label for="icon_telephone">Attach Url here</label>
+            <!--Fourth input row-->
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">subject</i>
+                    <textarea name="city_image" id="city_image" class="materialize-textarea">{{city.city_image}}</textarea>
+                    <label for="icon_telephone">Attach Url here</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">subject</i>
+                    <textarea name="city_author" id="city_author" class="materialize-textarea">{{city.city_author}}</textarea>
+                    <label for="icon_telephone">Author</label>
+                </div>
             </div>
-            <div class="input-field col s12 m6">
-                <i class="material-icons prefix">subject</i>
-                <textarea name="city_author" id="city_author" class="materialize-textarea">{{city.city_author}}</textarea>
-                <label for="icon_telephone">Author</label>
-            </div>
-            <div class="input-field col s12 m6">
-                <i class="material-icons prefix">subject</i>
-                <textarea name="added_time" id="added_time" class="materialize-textarea">{{city.added_time}}</textarea>
-                <label for="icon_telephone">Date</label>
+            <!--Fifth input row-->
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">subject</i>
+                    <textarea name="added_time" id="added_time" class="materialize-textarea">{{city.added_time}}</textarea>
+                    <label for="icon_telephone">Date</label>
+                </div>
             </div>
         </div>
+        <!--City info input-->
         <div class="input_forms">
             <div class="row">
                 <div class="input-field col s12">
-                    <div class="input-field">
-                        <i class="material-icons prefix">subject</i>
-                        <textarea name="city_description" id="city_description" class="materialize-textarea">{{city.city_description}}</textarea>
-                        <label for="icon_telephone">Description</label>
-                    </div>
+                    <i class="material-icons prefix">subject</i>
+                    <textarea name="city_description" id="city_description" class="materialize-textarea">{{city.city_description}}</textarea>
+                    <label for="icon_telephone">Description</label>
                 </div>
                 <div class="input-field col s12">
                     <i class="material-icons prefix">subject</i> {%for item in city.city_must_see%}
@@ -104,13 +118,13 @@
                     <textarea name="city_to_avoid" id="city_to_avoid" class="materialize-textarea">{{items}}</textarea> {%endfor%}
                     <label for="icon_telephone">To Avoid</label>
                     <a id="add_new_to_avoid" class="btn-floating btn-small waves-effect waves-light red tooltipped" onClick="addToAvoid();" data-position="bottom" data-tooltip="Add another Tip"><i class="material-icons">add</i></a>
-                    <a id="remove_to_avoid" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="bottom" data-tooltip="Remove Tips" onClick="removeToAvoid();"><i class="material-icons">remove</i></a>
+                    <a id="remove_to_avoid" class="btn-floating btn-small waves-effect waves-light red tooltipped" onClick="removeToAvoid();" data-position=" bottom " data-tooltip="Remove Tips"><i class="material-icons">remove</i></a>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col s12">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <div class="edit_btn_row">
+                <button class="btn waves-effect waves-light btn_personal" type="submit" name="action">Submit
                 <i class="material-icons right">playlist_add</i>
                 </button>
             </div>
