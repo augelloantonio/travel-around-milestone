@@ -269,8 +269,6 @@ materialize-textarea {
 }
 
 .login_area {
-    max-width: 400px;
-    max-height: 500px;
     margin: auto;
     background-color: #f5f5f5;
     border-radius: 20px;
@@ -283,9 +281,9 @@ materialize-textarea {
 }
 
 .login_form {
-    padding: 70px 0;
+    padding: 20px 0;
     margin: auto;
-    width: 50%;
+    width: 30%;
     text-align: center;
 }
 
@@ -361,7 +359,7 @@ materialize-textarea {
     padding-left: 4rem;
 }
 
-.description_body{
+.description_body {
     width: 85%;
     margin: 0px auto;
 }
