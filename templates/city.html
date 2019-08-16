@@ -38,8 +38,12 @@
                             <td>{{cities.city_language|capitalize}}</td>
                         </tr>
                         <tr>
-                            <th>Author</th>
+                            <th>Added by</th>
                             <td>{{cities.city_author}}</td>
+                        </tr>
+                        <tr>
+                            <th>Date Added</th>
+                            <td>{{cities.added_time}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -96,12 +100,13 @@
     </div>
 </div>
 
-<div>
-    {% if session['logged_in']%}
-    <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a> 
-    {%if session.username == 'admin'%}
-    <a href="{{url_for('delete_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small">Delete</a>
-    {%endif%} {%endif%}
+<!-- Edit Buttons-->
+<div class="row">
+    <div class="edit_btn_row">
+        {% if session['logged_in']%}
+        <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Edit</a> {%if session.username == 'admin'%}
+        <a href="{{url_for('delete_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal">Delete</a> {%endif%} {%endif%}
+    </div>
 </div>
 
 
