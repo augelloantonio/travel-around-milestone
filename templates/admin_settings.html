@@ -33,7 +33,7 @@
                 <tr>
                     <td><a href="{{url_for('userpublicpage', user_id=user._id)}}">{{user.username}}</a></td>
                     <td>{{user.right}}
-                        <a href="{{url_for('user_rights', user_id=user._id)}}" class="waves-effect waves-light btn modal-trigger btn_personal" >Change User Right</a>
+                        <a href="{{url_for('user_rights', user_id=user._id)}}" class="waves-effect waves-light btn modal-trigger btn_right" >Change User Right</a>
                     </td>
                     <td>{{user.email}}</td>
                     <td>{{count_cities}}</td>
