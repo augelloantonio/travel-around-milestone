@@ -416,9 +416,18 @@ materialize-textarea {
     font-size: 1.5rem;
 }
 
-/*..........................................Table*/
+/*..........................................Admin Page*/
 
 td,
 th {
     padding: 5px!important;
+}
+
+.btn_right {
+    display: flow-root;
+}
+
+.change_user_right {
+    width: 50%;
+    margin: auto;
 }
