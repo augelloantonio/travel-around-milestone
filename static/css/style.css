@@ -142,6 +142,20 @@ nav .brand-logo {
     padding: 5px!important;
 }
 
+.mobile_search_box {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.search_mobile {
+    display: inline-flex;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.btn_search_mobile {
+    width: 25%;
+}
 
 /*..........................................Add city page */
 

@@ -45,6 +45,7 @@
                     <li><a href="{{url_for('register')}}" class="tooltipped" data-position="bottom" data-tooltip="Register"><i class="material-icons">person_add</i></a></li>
                     {%endif%}
                 </ul>
+                <!-- Search Box Desktop Width -->
                 <ul class="right hide-on-med-and-down">
                     <li class='search_box'><a id="search_icon"><i class="material-icons">search</i></a>
                         <form id="search_form" action="{{url_for('search_city')}}" class="" method="POST">
@@ -62,12 +63,19 @@
 
                 <!-- Mobile Navbar-->
                 <div class="side-nav" id="mobile-demo">
-                    <div class="search_box" class="row">
-                        <div class="input-field">
-                            <input placeholder="Search a city" id="search" type="text" class="searchForm validate">
-                            <button class="btn waves-effect waves-light btn_search" type="submit" name="action"><i id="search_box_icon" class="material-icons">search</i></button>
-                        </div>
-                    </div>
+                    <!-- Search Box Mobile Width -->
+                    <ul>
+                        <li>
+                            <form id="" action="{{url_for('search_city')}}" class="" method="POST">
+                                <div class="mobile_search_box">
+                                    <div class="row search_mobile">
+                                        <input id="search_city" name="search_city" type="text" value="Search" class="validate search_form" required>
+                                        <button class="btn waves-effect waves-light btn_search_mobile btn_search" type="submit" name="action"><i id="search_box_icon" class="material-icons">search</i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
                     <ul>
                         <li><a href="{{ url_for ('index')}}"><i class="material-icons">home</i> Home</a></li>
                         {% if session['logged_in'] == True %}
