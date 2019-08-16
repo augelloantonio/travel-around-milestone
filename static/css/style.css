@@ -362,6 +362,9 @@ materialize-textarea {
 }
 
 /*............................................City Page*/
+.info_title{
+    text-align: center;
+}
 
 .img_city_page {
     width: 100%;
@@ -423,8 +426,9 @@ th {
     padding: 5px!important;
 }
 
+
 .btn_right {
-    display: flow-root;
+    display: list-item;
 }
 
 .change_user_right {

@@ -8,7 +8,11 @@
         <div class="search_page">
             <p>We are sorry, the city you are looking for is not in the system yet.</p>
             <p>Why don't you add it?</p>
+            {% if session['logged_in'] == True%}
+            <p><a href="{{url_for('add_city')}}">Add a new city now!</a></p>
+            {%else%}
             <p><a href="{{url_for('register')}}">Register</a> and add a city now! We will be glad to have you on board!</p>
+            {%endif%}
         </div> {% else %} {%for city in cities%} {% if city.city_name == search_city %}
         <div class="col s6 m4 l3 card_col">
             <div class="card">
