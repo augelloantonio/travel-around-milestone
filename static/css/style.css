@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto|Alfa+Slab+One&display=swap');
 
-html{
-    visibility:hidden;
+html {
+    visibility: hidden;
 }
 
 body {
@@ -9,6 +9,7 @@ body {
     min-height: 100vh!important;
     flex-direction: column;
     font-family: 'Roboto', sans-serif!important;
+    font-size: 1rem;
 }
 
 .content {
@@ -19,13 +20,14 @@ body {
     width: 90%;
 }
 
+
 /*.................................Index*/
 
 .index_header {
     font-family: 'Alfa Slab One', cursive;
     color: #524c4c;
     text-align: center;
-    font-size: 40px;
+    font-size: 2.5rem;
 }
 
 .discover_all_btn {
@@ -34,7 +36,7 @@ body {
     border-radius: 10px;
     background-color: #b3b2b2;
     text-align: center;
-    font-size: 16px;
+    font-size: 1rem;
     font-family: 'Roboto', sans-serif;
     padding: 10px!important;
 }
@@ -45,7 +47,7 @@ body {
 
 @media (max-width: 720px) {
     .discover_all_btn {
-        font-size: 16px;
+        font-size: 1rem;
         padding: 3px!important;
         line-height: 1.5;
     }
@@ -283,7 +285,7 @@ materialize-textarea {
 }
 
 .icon_footer {
-    font-size: 30px;
+    font-size: 1.8rem;
     padding: 10px;
 }
 
@@ -294,10 +296,15 @@ materialize-textarea {
     background-color: #484545;
 }
 
-/*..............................................Icon personal style*/
+/*..............................................Icons & general personal style*/
 
 .fab {
     padding: 5px;
+}
+
+.btn_personal {
+    padding: 10px;
+    line-height: normal;
 }
 
 /*...........................................Cities for region page*/
@@ -310,6 +317,14 @@ materialize-textarea {
 
 .img_city_page {
     width: 100%;
+    border-radius: 10px;
+}
+
+.info_header{
+    text-align: center;
+    font-family: Roboto;
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 
 .info_body {
@@ -320,10 +335,19 @@ materialize-textarea {
     list-style-type: disc!important;
 }
 
+.edit_btn_row {
+    float: right;
+}
+
 /*............................................Search Page*/
 
 .search_page {
     text-align: center;
     padding: 20px;
-    font-size: 18px;
+    font-size: 1.5rem;
+}
+
+/*..........................................Table*/
+td, th{
+    padding: 5px!important;
 }
