@@ -114,6 +114,7 @@ def update_city(city_id):
     with open('data/region.json') as json_file_region:
         json_file_region = json.loads(json_file_region.read())    
     cities.update( {'_id': ObjectId(city_id)},
+    {"$set":
     {
         'city_name':request.form.get('city_name').lower(),
         'city_country':request.form.get('city_country'),
@@ -126,9 +127,7 @@ def update_city(city_id):
         'city_tips': request.form.getlist('city_tips'),
         'city_to_avoid': request.form.getlist('city_to_avoid'),
         'city_image': request.form.get('city_image'),
-        'city_author': request.form.get('city_author'),
-        'added_time' : request.form.get('added_time')
-    })
+    }})
     return redirect(url_for('index'))
 
 
@@ -292,12 +291,13 @@ def edit_user_rights(user_id):
     user_logged = mongo.db.user.find_one({'username' : username})
     users = mongo.db.user.find()
     the_user = mongo.db.user.find_one({'_id': ObjectId(user_id)})
-    users.update( {'_id': ObjectId(user_id)},
-    {
-        'right': request.form.get('user_right'),
+    mongo.db.user.update({'_id': ObjectId(user_id)},
+    {"$set":
+        {'right': request.form.get('user_right'),
+        }
     })
-    return redirect(url_for('admin_settings'), user= the_user, user_logged=user_logged)
-
+    return redirect(url_for('admin_settings', user= the_user, user_logged=user_logged))
+    
 
 #~~~~~~~~~~~~~~~~~~~~~~~~ Search Form ~~~~~~~~~~~~~~~~~~~~~~~~~#
 # Get the city
