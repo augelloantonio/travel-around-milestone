@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
-{% if session['logged_in'] == False or session.username != 'admin' %}
+{% if session['logged_in'] == False or user_logged.right != 'admin' %}
+
 <h3>We are sorry, but only Travel Around admins can manage users info.</h3>
 
 {% else %}

@@ -29,14 +29,14 @@ def index():
         json_file_region = json.loads(json_file_region.read())
         
         username=session.get('username')
-        user = mongo.db.user.find_one({'username' : username})
+        user_logged = mongo.db.user.find_one({'username' : username})
         
     return render_template("index.html", cities=mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), 
                             cities_carousel= mongo.db.cities.find(), city=mongo.db.cities.find(), 
                             city_named= mongo.db.cities.find(), city_2=mongo.db.cities.find(),
                             city_3=mongo.db.cities.find(), city_4=mongo.db.cities.find(),
                             city_5=mongo.db.cities.find(),
-                            country=json_file_country, regions=json_file_region, user=mongo.db.user.find()
+                            country=json_file_country, regions=json_file_region, user_logged=user_logged
                             )
 
 #~~~~~~~~~ CRUD - Create a new city, Read New city, Update existing city, Delete existing City ~~~~~~~~#
@@ -51,16 +51,19 @@ def add_city():
     with open('data/region.json') as json_file_region:
         json_file_region = json.loads(json_file_region.read())
     cities = mongo.db.cities.find()
-    
+    username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
+        
     return render_template('addcity.html', country=json_file_country, regions=json_file_region,
-    city=mongo.db.cieties.find(), user=mongo.db.user.find(), count_cities = cities.count())
+    city=mongo.db.cieties.find(), user=mongo.db.user.find(), count_cities = cities.count(),
+    user_logged=user_logged)
 
 
 # Create city function
 @app.route('/insert_city', methods=['POST'])
 def insert_city():
     username=session.get('username')
-    user = mongo.db.user.find_one({'username' : username})
+    user_logged = mongo.db.user.find_one({'username' : username})
     cities = mongo.db.cities
     city_info = {
         'city_name':request.form.get('city_name').lower(),
@@ -91,10 +94,14 @@ def edit_city(city_id):
          all_cities  = json.loads(json_file.read())
 #open region.json
     with open('data/region.json') as json_file_region:
-        json_file_region = json.loads(json_file_region.read())     
+        json_file_region = json.loads(json_file_region.read())  
+        
+    username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
     
     return render_template('editcity.html', city=the_city,
-                            country=all_cities, regions=json_file_region, user=mongo.db.user)
+                            country=all_cities, regions=json_file_region, user=mongo.db.user, 
+                            user_logged=user_logged)
                             
     
 @app.route('/update_city/<city_id>', methods=['POST'])
@@ -136,19 +143,23 @@ def delete_city(city_id):
 @app.route('/city_page/<city_id>')
 def city_page(city_id):
     the_city =  mongo.db.cities.find_one({"_id": ObjectId(city_id)})
+    username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
     return render_template("city.html", 
          cities = mongo.db.cities.find_one({'_id': ObjectId(city_id)}), city=the_city,
                           user=mongo.db.user.find(), cities_carousel=mongo.db.cities.find_one({'_id': ObjectId(city_id)}),
-                          city_must_see=mongo.db.cities.find())
+                          city_must_see=mongo.db.cities.find(), user_logged=user_logged)
 
 
 @app.route('/cities_for_regions/<city_region>')
 def cities_for_regions(city_region):
         with open('data/region.json') as json_file_region:
             json_file_region = json.loads(json_file_region.read()) 
+            username=session.get('username')
+            user_logged = mongo.db.user.find_one({'username' : username})
             return render_template ("cities_for_regions.html", 
                 regions = json_file_region, cities = mongo.db.cities.find().sort('city_name'),
-                city_region=city_region)
+                city_region=city_region, user_logged=user_logged)
                 
 
 #~~~~~~~~~~~~~~~~~~ Register / Log In/ Account section ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -233,37 +244,44 @@ def logout():
 @app.route('/user_page')
 def user_page():
     cities = mongo.db.cities.find()
-    
+    username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
     if session['logged_in'] == False:
         return redirect(url_for('login_page'))
     else:
         return render_template('user.html', user=mongo.db.user.find(),
-        cities = mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), tot_cities=cities.count())
+        cities = mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), tot_cities=cities.count(),
+        user_logged=user_logged)
         
 
 #Display the City webpage 
 @app.route('/userpublicpage/<user_id>')
 def userpublicpage(user_id):
     the_user =  mongo.db.user.find_one({"_id": ObjectId(user_id)})
+    username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
     return render_template("userpage.html", username = mongo.db.user.find_one({"_id": ObjectId(user_id)}),
-                          cities = mongo.db.cities.find(), user = the_user)
+                          cities = mongo.db.cities.find(), user = the_user, user_logged=user_logged)
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~ Admin Settings Page ~~~~~~~~~~~~~~~~~~~~~~~~~#
 @app.route('/admin_settings')
 def admin_settings():
     username=session.get('username')
-    return render_template('admin_settings.html', users = mongo.db.user.find())
+    user_logged = mongo.db.user.find_one({'username' : username})
+    return render_template('admin_settings.html', users = mongo.db.user.find(), user_logged=user_logged)
 
 #Make a change user right page
 @app.route('/user_rights/<user_id>')
 def user_rights(user_id):
     username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
     the_user = mongo.db.user.find_one({'_id': ObjectId(user_id)})
-    if session['logged_in'] == False and username != 'admin':
+    if session['logged_in'] == False and user_logged.right != 'admin':
             return redirect(url_for('index'))
     else:
-            return render_template('user_right.html', user = the_user, users = mongo.db.user.find())
+            return render_template('user_right.html', user = the_user, users = mongo.db.user.find(),
+            user_logged=user_logged)
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~BUG NOT WORKING~~~~~~~~~~~~~~~~~~~~#
@@ -271,13 +289,14 @@ def user_rights(user_id):
 @app.route('/edit_user_rights/<user_id>', methods=['POST'])
 def edit_user_rights(user_id):
     username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
     users = mongo.db.user.find()
     the_user = mongo.db.user.find_one({'_id': ObjectId(user_id)})
     users.update( {'_id': ObjectId(user_id)},
     {
         'right': request.form.get('user_right'),
     })
-    return redirect(url_for('admin_settings'), user= the_user)
+    return redirect(url_for('admin_settings'), user= the_user, user_logged=user_logged)
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~ Search Form ~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -290,7 +309,9 @@ def search_city():
 @app.route('/search_a_city/<search_city>', methods=['GET'])
 def search_a_city(search_city):
 
-    mongo.db.cities.create_index([('city_name', 'text')])        
+    mongo.db.cities.create_index([('city_name', 'text')])  
+    username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
     
     #Count the number of cities in the Database
     all_cities = mongo.db.cities.find({'$text': {'$search': search_city}}).sort([('date_time', pymongo.DESCENDING), ('_id', pymongo.ASCENDING)])
@@ -300,7 +321,7 @@ def search_a_city(search_city):
                     ("_id", pymongo.ASCENDING)])
                     
     return render_template('search_city.html', search_city=search_city.lower(), cities=mongo.db.cities.find(),
-        search_results = city_page.sort('date_time',pymongo.DESCENDING), count_cities=count_cities)
+        search_results = city_page.sort('date_time',pymongo.DESCENDING), count_cities=count_cities, user_logged=user_logged)
 
     
 #Permitt the server to run the web app

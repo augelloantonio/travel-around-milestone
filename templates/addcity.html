@@ -32,7 +32,7 @@
                 <div class="select_country col s12 m6">
                     <label>Select Region</label>
                     <select name="city_region" id="city_region" method="POST" required>
-                  <option value="" selected>Country</option>
+                  <option value="" selected>Region</option>
                         {% for region in regions %}
                   <option value="{{region.region_name}}">{{region.region_name}}</option>
                       {%endfor%}
@@ -95,7 +95,7 @@
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix">subject</i>
-                        <textarea name="city_to_avoid" id="city_to_avoid" class="materialize-textarea" required></textarea>
+                        <textarea name="city_to_avoid" id="city_to_avoid" class="materialize-textarea"></textarea>
                         <label for="icon_telephone">To Avoid</label>
                         <a id="add_new_to_avoid" class="btn-floating btn-small waves-effect waves-light red tooltipped" onClick="addToAvoid();" data-position="bottom" data-tooltip="Add another Tip"><i class="material-icons">add</i></a>
                         <a id="remove_to_avoid" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="bottom" data-tooltip="Remove Tips" onClick="removeToAvoid();"><i class="material-icons">remove</i></a>

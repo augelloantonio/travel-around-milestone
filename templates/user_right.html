@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %} 
 
-{% if session.username == 'admin' %}
+{% if user_logged.right == 'admin' %}
 <h3>Change {{user.username}} right</h3>
 <h4>Please, be carefull, giving the 'admin' right to the user {{user.username}} you are allowing him to the special functionalities of the web site such as:</h4>
 <div class="info_body">
@@ -11,7 +11,6 @@
         <li class="items">Modify user info</li>
     </ul>
 </div>
-</user>
 
 <div class="row">
     <form action="{{url_for('edit_user_rights', user_id=user._id)}}" method="POST">
