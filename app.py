@@ -53,10 +53,13 @@ def add_city():
     cities = mongo.db.cities.find()
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
-        
-    return render_template('addcity.html', country=json_file_country, regions=json_file_region,
-    city=mongo.db.cieties.find(), user=mongo.db.user.find(), count_cities = cities.count(),
-    user_logged=user_logged)
+    
+    if session['logged_in'] == False:
+        return redirect(url_for('login_page'))
+    else:
+        return render_template('addcity.html', country=json_file_country, regions=json_file_region,
+        city=mongo.db.cieties.find(), user=mongo.db.user.find(), count_cities = cities.count(),
+        user_logged=user_logged)
 
 
 # Create city function
@@ -99,9 +102,12 @@ def edit_city(city_id):
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
     
-    return render_template('editcity.html', city=the_city,
-                            country=all_cities, regions=json_file_region, user=mongo.db.user, 
-                            user_logged=user_logged)
+    if session['logged_in'] == False:
+        return redirect(url_for('login_page'))
+    else:
+        return render_template('editcity.html', city=the_city,
+            country=all_cities, regions=json_file_region, user=mongo.db.user, 
+            user_logged=user_logged)
                             
     
 @app.route('/update_city/<city_id>', methods=['POST'])
@@ -208,7 +214,7 @@ def get_user_data():
 @app.route('/login',  methods=['POST', 'GET'])
 def login():
     if session['logged_in'] == True:
-        return user_page()
+        return redirect(url_for('user_page'))
     else:
         username = request.form['username'].lower()
         password = request.form['password']
@@ -270,7 +276,10 @@ def userpublicpage(user_id):
 def admin_settings():
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
-    return render_template('admin_settings.html', users = mongo.db.user.find(), user_logged=user_logged)
+    if session['logged_in'] == False:
+        return redirect(url_for('login_page'))
+    else:
+        return render_template('admin_settings.html', users = mongo.db.user.find(), user_logged=user_logged)
 
 #Make a change user right page
 @app.route('/user_rights/<user_id>')
@@ -278,11 +287,13 @@ def user_rights(user_id):
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
     the_user = mongo.db.user.find_one({'_id': ObjectId(user_id)})
-    if session['logged_in'] == False and user_logged.right != 'admin':
-            return redirect(url_for('index'))
+    if session['logged_in'] == False:
+        return redirect(url_for('login_page'))
+    elif user_logged['right'] != 'admin':
+        return redirect(url_for('user_page'))
     else:
-            return render_template('user_right.html', user = the_user, users = mongo.db.user.find(),
-            user_logged=user_logged)
+        return render_template('user_right.html', user = the_user, users = mongo.db.user.find(),
+        user_logged=user_logged)
 
 
 # Change the user right and update info in mongodb
