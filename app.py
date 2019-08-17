@@ -245,12 +245,14 @@ def user_page():
     cities = mongo.db.cities.find()
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
+    the_city = mongo.db.cities.find_one({'city_name': 'city_name'})
     if session['logged_in'] == False:
         return redirect(url_for('login_page'))
     else:
         return render_template('user.html', user=mongo.db.user.find(),
         cities = mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), tot_cities=cities.count(),
-        user_logged=user_logged, city=mongo.db.cities.find())
+        user_logged=user_logged, city=mongo.db.cities.find(), city_name = mongo.db.user.find(), 
+        cities_visited=mongo.db.cities.find(), cities_to_visit=mongo.db.cities.find())
         
 
 #Display the City webpage 
@@ -283,7 +285,6 @@ def user_rights(user_id):
             user_logged=user_logged)
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~BUG NOT WORKING~~~~~~~~~~~~~~~~~~~~#
 # Change the user right and update info in mongodb
 @app.route('/edit_user_rights/<user_id>', methods=['POST'])
 def edit_user_rights(user_id):
@@ -325,39 +326,41 @@ def search_a_city(search_city):
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~Def the to visit and visited listes~~~~~~~~~~~~~~~~~~~~~~#
-@app.route('/add_to_visit/<city_id>')
-def add_to_visit(city_id):
+@app.route('/add_to_visit/<city_name>')
+def add_to_visit(city_name):
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
     user = mongo.db.user.find_one({'username' : username}) 
-    the_city = mongo.db.cities.find_one({'_id': ObjectId(city_id)})
+    the_city = mongo.db.cities.find_one({'city_name': city_name})
     
     mongo.db.user.update({"username": username},
             {'$addToSet': 
-            {'city_to_visit' : city_id}})
-    return redirect(url_for('to_visit', city_id = city_id))
+            {'city_to_visit' : city_name}})
+    return redirect(url_for('to_visit', city_name = city_name))
 
 @app.route('/to_visit')
 def to_visit():
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
-    
+
     return render_template('to_visit.html', user=mongo.db.user.find(),
-    cities = mongo.db.cities.find(), user_logged=user_logged, city=mongo.db.cities.find())
+    cities = mongo.db.cities.find(), user_logged=user_logged, city=mongo.db.cities.find(),
+    city_name = mongo.db.user.find())
 
 
 #Visited
-@app.route('/add_to_visited/<city_id>')
-def add_to_visited(city_id):
+@app.route('/add_to_visited/<city_name>')
+def add_to_visited(city_name):
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
     user = mongo.db.user.find_one({'username' : username}) 
-    the_city = mongo.db.cities.find_one({'_id': ObjectId(city_id)})
+    the_city = mongo.db.cities.find_one({'city_name': city_name})
     
     mongo.db.user.update({"username": username},
             {'$addToSet': 
-            {'city_visited' : city_id}})
-    return redirect(url_for('visited', city_id = city_id))
+            {'city_visited' : city_name}})
+    return redirect(url_for('visited', city_name = city_name))
+
 
 @app.route('/visited')
 def visited():
