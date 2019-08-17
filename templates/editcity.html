@@ -78,7 +78,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!--City info input-->
         <div class="input_forms">
             <div class="row">
@@ -102,16 +102,18 @@
                     <a id="remove_tip" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="bottom" data-tooltip="Remove Tips" onClick="removeTips();"><i class="material-icons">remove</i></a>
                 </div>
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">subject</i> {%for item in city.city_to_avoid%}
-                    <textarea name="city_to_avoid" id="city_to_avoid" class="materialize-textarea">{{items}}</textarea> {%endfor%}
+                    <i class="material-icons prefix">subject</i>
+                    {%for item in city.city_to_avoid%}
+                    <textarea name="city_to_avoid" id="city_to_avoid" class="materialize-textarea">{{items}}</textarea>
+                    {%endfor%}
                     <label for="icon_telephone">To Avoid</label>
                     <a id="add_new_to_avoid" class="btn-floating btn-small waves-effect waves-light red tooltipped" onClick="addToAvoid();" data-position="bottom" data-tooltip="Add another Tip"><i class="material-icons">add</i></a>
-                    <a id="remove_to_avoid" class="btn-floating btn-small waves-effect waves-light red tooltipped" onClick="removeToAvoid();" data-position=" bottom " data-tooltip="Remove Tips"><i class="material-icons">remove</i></a>
+                    <a id="remove_to_avoid" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="bottom" data-tooltip="Remove Tips" onClick="removeToAvoid();"><i class="material-icons">remove</i></a>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="edit_btn_row">
+            <div class="edit_btn_float_right">
                 <button class="btn waves-effect waves-light btn_personal" type="submit" name="action">Submit
                 <i class="material-icons right">playlist_add</i>
                 </button>
