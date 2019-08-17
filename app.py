@@ -250,7 +250,7 @@ def user_page():
     else:
         return render_template('user.html', user=mongo.db.user.find(),
         cities = mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), tot_cities=cities.count(),
-        user_logged=user_logged)
+        user_logged=user_logged, city=mongo.db.cities.find())
         
 
 #Display the City webpage 
