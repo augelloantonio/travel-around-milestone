@@ -87,7 +87,7 @@
                         {%else%}
                         <li><a href="{{url_for('login_page')}}"><i class="material-icons">person</i> Log In</a></li>
                         <li><a href="{{url_for('register')}}"><i class="material-icons">person_add</i> Register</a></li>
-                        {%endif%} {%if session['logged_in'] and session.username == 'admin'%}
+                        {%endif%} {%if session['logged_in'] and user_logged.right == 'admin'%}
                         <li><a href="{{ url_for ('admin_settings')}}"><i class="material-icons">settings</i>Admin Area</a> </li>
                         {%endif%}
                     </ul>
