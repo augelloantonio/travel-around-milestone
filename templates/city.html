@@ -12,8 +12,8 @@
             <div>
                 <p class="info_title">City Info</p>
                 <table class="centered bordered">
-                        <tr>
-                        </tr>
+                    <tr>
+                    </tr>
                     </thead>
                     <tbody>
                         <tr>
@@ -109,10 +109,17 @@
 
 <!-- Edit Buttons-->
 <div class="row">
+    <div class="edit_btn_float_left">
+        <a href="{{url_for('add_to_visit', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">To Visit</a>
+        <a href="{{url_for('add_to_visited', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Visited</a>
+
+    </div>
     <div class="edit_btn_float_right">
-        {% if session['logged_in']%}
-        <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Edit</a> {%if session.username == 'admin'%}
-        <a href="{{url_for('delete_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal">Delete</a> {%endif%} {%endif%}
+        <div class="edit_btn_float_right">
+            {% if session['logged_in']%}
+            <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Edit</a> {%if session.username == 'admin'%}
+            <a href="{{url_for('delete_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal">Delete</a> {%endif%} {%endif%}
+        </div>
     </div>
 </div>
 
