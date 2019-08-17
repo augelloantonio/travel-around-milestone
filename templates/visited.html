@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="user_page_header">
+    <div class="row">
+        <div class="">
+            <h3>Visited:</h3>
+        </div>
+    </div>
+</div>
+
+<div class="col s12">
+    <div class="row">
+        {%for item in user_logged.city_to_visit %} 
+        {% for city in cities %}
+        <div class="col s6 m4 l3 card_col">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <a href="{{url_for('city_page', city_id = city._id)}}">
+                    <img class="activator img_card" src="{{city.city_image}}">
+                    <span class="card-title city_card_title">{{city.city_name}}</span>
+                    </a>
+                </div>
+            </div>
+            <div class="edit_btn_row">
+                {% if session['logged_in']%}
+                <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Edit</a> {% if user_logged.right == 'admin' %}
+                <a href="{{url_for('delete_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal">Delete</a> {%endif%} {%endif%}
+            </div>
+        </div>
+     {%endfor%}{%endfor%}
+    </div>
+</div>
+
+
+{% endblock%}
