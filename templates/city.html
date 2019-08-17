@@ -109,7 +109,7 @@
 
 <!-- Edit Buttons-->
 <div class="row">
-    <div class="edit_btn_row">
+    <div class="edit_btn_float_right">
         {% if session['logged_in']%}
         <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Edit</a> {%if session.username == 'admin'%}
         <a href="{{url_for('delete_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal">Delete</a> {%endif%} {%endif%}

@@ -240,6 +240,9 @@ materialize-textarea {
 
 }
 
+.edit_btn_row {
+    position: absolute;
+}
 
 .clearfix {
     clear: both;
@@ -398,10 +401,6 @@ materialize-textarea {
     list-style-type: disc!important;
 }
 
-.edit_btn_row {
-    position: absolute;
-}
-
 .content_body {
     padding: 10px;
     margin: 0px auto;
@@ -409,6 +408,10 @@ materialize-textarea {
 
 .info_paragraph {
     padding-left: 1.5rem;
+}
+
+.edit_btn_float_right {
+    float: right;
 }
 
 /*............................................Search Page*/
