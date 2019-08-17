@@ -10,9 +10,9 @@
 
 <div class="col s12">
     <div class="row">
-        {%for item in user_logged.city_to_visit %} 
-        {% for city in cities %}
-        {% if city._id == item %}
+     {% for city in cities %}
+     {%for item in user_logged.city_visited %} 
+     {%if city.city_name == item %}
         <div class="col s6 m4 l3 card_col">
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
