@@ -447,3 +447,11 @@ th {
 .user_nav{
 width: 33.333%;
 }
+
+#to_visit{
+    display: none;
+}
+
+#visited{
+    display: none;
+}
