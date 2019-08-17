@@ -341,10 +341,11 @@ def add_to_visit(city_id):
 def to_visit():
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
+    
     return render_template('to_visit.html', user=mongo.db.user.find(),
-    cities = mongo.db.cities.find(), user_logged=user_logged)
-    
-    
+    cities = mongo.db.cities.find(), user_logged=user_logged, city=mongo.db.cities.find())
+
+
 #Visited
 @app.route('/add_to_visited/<city_id>')
 def add_to_visited(city_id):
@@ -363,7 +364,7 @@ def visited():
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
     return render_template('visited.html', user=mongo.db.user.find(),
-    cities = mongo.db.cities.find(), user_logged=user_logged)
+    cities = mongo.db.cities.find(), user_logged=user_logged, city=mongo.db.cities.find())
 
 
 #Permitt the server to run the web app
