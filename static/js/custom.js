@@ -58,6 +58,25 @@ function removeToAvoid() {
 }
 
 
+//Change contents in user page
+function change_contents_made() {
+    $("#to_visit").hide();
+    $("#visited").hide();
+    $("#made").show();
+}
+
+function change_contents_to_visit() {
+    $("#made").hide();
+    $("#visited").hide();
+    $("#to_visit").show();
+}
+
+function change_contents_visited() {
+    $("#visited").show();
+    $("#to_visit").hide();
+    $("#made").hide();
+}
+
 // Let carousel self slide
 function autoplay() {
     $('.carousel').carousel('next');
