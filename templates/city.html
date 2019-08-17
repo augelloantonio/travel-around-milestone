@@ -6,6 +6,10 @@
     <div>
         <div class="col s12 m8">
             <img class="img_city_page" src="{{cities.city_image}}" alt="{{cities.city_name}}">
+            <div class="edit_btn_float_left">
+                <a href="{{url_for('add_to_visit', city_name=city.city_name)}}" class="waves-effect waves-light btn btn_small blue btn_personal">To Visit</a>
+                <a href="{{url_for('add_to_visited', city_name=city.city_name)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Visited</a>
+            </div>
         </div>
         <!-- Adise Table -->
         <div class="col s12 m4">
@@ -109,35 +113,26 @@
 
 <!-- Edit Buttons-->
 <div class="row">
-    <div class="edit_btn_float_left">
-        <a href="{{url_for('add_to_visit', city_name=city.city_name)}}" class="waves-effect waves-light btn btn_small blue btn_personal">To Visit</a>
-        <a href="{{url_for('add_to_visited', city_name=city.city_name)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Visited</a>
-
-    </div>
     <div class="edit_btn_float_right">
         <div class="edit_btn_float_right">
             {% if session['logged_in']%}
-            <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Edit</a> {%if session.username == 'admin'%}
-            <a href="{{url_for('delete_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal">Delete</a> {%endif%} {%endif%}
+            <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Edit</a> {%if user_logged.right == 'admin'%}
+            <a class="waves-effect waves-light btn modal-trigger btn_personal" href="#modal1">Delete</a>
         </div>
     </div>
 </div>
 
 
 <!-- Modal Cancel City-->
-<div class="modal fade " id="resetGameModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content resetModal">
-            <div class="modal-header resetModalHeader centeredContent">
-                <h5 class="modal-title resetModalTitle">Are you sure you want to reset the game?</h5>
-            </div>
-            <div class="modal-body">
-                <p>Clicking on Reset all the progress will be lost.</p>
-                <button type="button" class="btn btn-secondary backResetBtn" data-dismiss="modal">Go Back</button>
-                <button class="btn btn-secondary confirmResetBtn" type="button" id="resetBtn" data-dismiss="modal" onclick="dataReset(); successAlert();">Reset</button>
-            </div>
-        </div>
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Be Careful</h4>
+        <p>This option can't be undone!</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-light btn btn_small btn_personal">Go Back!</a>
+        <a href="{{url_for('delete_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal">Delete</a>
     </div>
 </div>
 
-{% endblock %}
+{%endif%} {%endif%} {% endblock %}

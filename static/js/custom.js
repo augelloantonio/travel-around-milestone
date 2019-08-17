@@ -1,8 +1,8 @@
 /**
-* Function that will remove my hidden class to the html to let the page show only when fully charged
-* to prevent to show any not charged css and elements - this fix the bug that my personal style.css
-* font and styling is not fully charged at the load of the page
-*/
+ * Function that will remove my hidden class to the html to let the page show only when fully charged
+ * to prevent to show any not charged css and elements - this fix the bug that my personal style.css
+ * font and styling is not fully charged at the load of the page
+ */
 $(document).ready(function() {
     document.getElementsByTagName("html")[0].style.visibility = "visible";
 });
@@ -66,8 +66,8 @@ function removeToAvoid() {
  * And on click the class of the selected nav will be added or removed to
  * help the user to see in which section it is
  */
- 
- function change_contents_made() {
+
+function change_contents_made() {
     $("#to_visit").hide();
     $("#visited").hide();
     $("#made").show();
@@ -139,6 +139,11 @@ $('.carousel.carousel-slider').carousel({
 // Matezialize box
 $(document).ready(function() {
     $('.materialboxed').materialbox();
+});
+
+// Materialize Modal
+$(document).ready(function() {
+    $('.modal').modal();
 });
 
 // Calling my functions
