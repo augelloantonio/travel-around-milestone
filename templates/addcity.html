@@ -1,4 +1,11 @@
 {% extends 'base.html' %} {% block content %}
+
+{% if not session['logged_in'] %}
+<h3>You need to be registered to add a new city.</h3>
+<h3><a href="{{url_for('register')}}">Register Now!</a></h3>
+
+{%else%}
+
 <h3>Add City</h3>
 
 <div class="row">
@@ -115,4 +122,5 @@
     </form>
 </div>
 
+{%endif%}
 {% endblock %}

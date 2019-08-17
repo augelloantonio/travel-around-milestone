@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block content %} {% if session['logged_in']%}
 <h3> You are already a user, please go to the Home Page</h3>
 {%else%}
+
 <div class="content_login">
     <form class="login_form" action="{{url_for('get_user_data')}}" method="POST" novalidate>
         <div class="row">

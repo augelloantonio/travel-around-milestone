@@ -66,7 +66,8 @@
     </div>
     <div class="col s12">
         <div class="row">
-            {% for city in cities_to_visit %} {%for item in user_logged.city_to_visit %} {%if city.city_name == item %}
+            {% for city in cities_to_visit %} {%for item in user_logged.city_to_visit %} 
+            {%if city.city_name == item %}
             <div class="col s6 m4 l3 card_col">
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
