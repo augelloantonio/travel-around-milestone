@@ -414,6 +414,10 @@ materialize-textarea {
     float: right;
 }
 
+.edit_btn_float_left{
+    float: left;
+}
+
 /*............................................Search Page*/
 
 .search_page {
