@@ -18,9 +18,9 @@
 <nav>
     <div class="nav-wrapper">
         <ul>
-            <li class="user_nav"> <a id="" onClick="change_contents_made();">Cities Made</a></li>
-            <li class="user_nav"> <a id="" onClick="change_contents_to_visit();">To Visit</a></li>
-            <li class="user_nav"> <a id="" onClick="change_contents_visited();">Visited</a></li>
+            <li id="made_li" class="user_nav made_selected"> <a onClick="change_contents_made();">Cities Made</a></li>
+            <li id="to_visit_li" class="user_nav"> <a onClick="change_contents_to_visit();">To Visit</a></li>
+            <li id="visited_li" class="user_nav"> <a onClick="change_contents_visited();">Visited</a></li>
         </ul>
     </div>
 </nav>
@@ -30,7 +30,6 @@
     <div class="user_page_header">
         <div class="row">
             <div class="">
-                <h3>Made:</h3>
             </div>
         </div>
     </div>
@@ -62,7 +61,6 @@
     <div class="user_page_header">
         <div class="row">
             <div class="">
-                <h3>To Visit:</h3>
             </div>
         </div>
     </div>
@@ -89,7 +87,6 @@
     <div class="user_page_header">
         <div class="row">
             <div class="">
-                <h3>Visited:</h3>
             </div>
         </div>
     </div>

@@ -58,23 +58,38 @@ function removeToAvoid() {
 }
 
 
-//Change contents in user page
-function change_contents_made() {
+/**
+ * Display only the section choose by the user in the User Persona Page
+ * Using jQuery to hide or show clicking on the navbar the selected section
+ * And on click the class of the selected nav will be added or removed to
+ * help the user to see in which section it is
+ */
+ 
+ function change_contents_made() {
     $("#to_visit").hide();
     $("#visited").hide();
     $("#made").show();
+    $("#made_li").addClass("made_selected")
+    $("#visited_li").removeClass("visited_selected")
+    $("#to_visit_li").removeClass("to_visit_selected")
 }
 
 function change_contents_to_visit() {
     $("#made").hide();
     $("#visited").hide();
     $("#to_visit").show();
+    $("#made_li").removeClass("made_selected")
+    $("#visited_li").removeClass("visited_selected")
+    $("#to_visit_li").addClass("to_visit_selected")
 }
 
 function change_contents_visited() {
     $("#visited").show();
     $("#to_visit").hide();
     $("#made").hide();
+    $("#made_li").removeClass("made_selected")
+    $("#visited_li").addClass("visited_selected")
+    $("#to_visit_li").removeClass("to_visit_selected")
 }
 
 // Let carousel self slide

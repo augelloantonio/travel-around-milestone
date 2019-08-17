@@ -365,7 +365,8 @@ materialize-textarea {
 }
 
 /*............................................City Page*/
-.info_title{
+
+.info_title {
     text-align: center;
 }
 
@@ -414,7 +415,7 @@ materialize-textarea {
     float: right;
 }
 
-.edit_btn_float_left{
+.edit_btn_float_left {
     float: left;
 }
 
@@ -444,16 +445,29 @@ th {
 }
 
 /*..................................................User Page*/
-.user_nav{
-width: 33.333%;
-text-align: center;
-text-transform: uppercase;
+
+.user_nav {
+    width: 33.333%;
+    text-align: center;
+    text-transform: uppercase;
 }
 
-#to_visit{
+#to_visit {
     display: none;
 }
 
-#visited{
+#visited {
     display: none;
+}
+
+.made_selected {
+    background-color: rgba(226, 224, 224, 0.87);
+}
+
+.visited_selected {
+    background-color: rgba(226, 224, 224, 0.87);
+}
+
+.to_visit_selected {
+    background-color: rgba(226, 224, 224, 0.87);
 }
