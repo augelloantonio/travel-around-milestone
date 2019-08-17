@@ -446,6 +446,8 @@ th {
 /*..................................................User Page*/
 .user_nav{
 width: 33.333%;
+text-align: center;
+text-transform: uppercase;
 }
 
 #to_visit{
