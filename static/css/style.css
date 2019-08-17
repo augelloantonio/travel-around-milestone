@@ -399,7 +399,7 @@ materialize-textarea {
 }
 
 .edit_btn_row {
-    float: right;
+    position: absolute;
 }
 
 .content_body {
