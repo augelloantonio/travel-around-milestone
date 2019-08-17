@@ -336,14 +336,13 @@ def search_a_city(search_city):
         search_results = city_page.sort('date_time',pymongo.DESCENDING), count_cities=count_cities, user_logged=user_logged)
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~Def the to visit and visited listes~~~~~~~~~~~~~~~~~~~~~~#
+#~~~~~~~~~~~~~~~~~~~~~~~~To visit and visited listes~~~~~~~~~~~~~~~~~~~~~~#
 @app.route('/add_to_visit/<city_name>')
 def add_to_visit(city_name):
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
     user = mongo.db.user.find_one({'username' : username}) 
-    the_city = mongo.db.cities.find_one({'city_name': city_name})
-    
+
     mongo.db.user.update({"username": username},
             {'$addToSet': 
             {'city_to_visit' : city_name}})
@@ -358,6 +357,16 @@ def to_visit():
     cities = mongo.db.cities.find(), user_logged=user_logged, city=mongo.db.cities.find(),
     city_name = mongo.db.user.find())
 
+@app.route('/remove_to_visit/<city_name>')
+def remove_to_visit(city_name):
+    username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
+    user = mongo.db.user.find_one({'username' : username}) 
+    mongo.db.user.update({"username": username},
+            {'$pull': 
+            {'city_to_visit' : city_name}})
+    return redirect(url_for('to_visit', city_name = city_name, city=mongo.db.cities.find()))
+    
 
 #Visited
 @app.route('/add_to_visited/<city_name>')
@@ -380,6 +389,15 @@ def visited():
     return render_template('visited.html', user=mongo.db.user.find(),
     cities = mongo.db.cities.find(), user_logged=user_logged, city=mongo.db.cities.find())
 
+@app.route('/remove_visited/<city_name>')
+def remove_visited(city_name):
+    username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
+    user = mongo.db.user.find_one({'username' : username}) 
+    mongo.db.user.update({"username": username},
+            {'$pull': 
+            {'city_visited' : city_name}})
+    return redirect(url_for('visited', city_name = city_name, city=mongo.db.cities.find()))
 
 #Permitt the server to run the web app
 if __name__ == '__main__':
