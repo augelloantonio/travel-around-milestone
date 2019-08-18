@@ -48,13 +48,17 @@
                     </a>
                     </div>
                 </div>
-                <div class="edit_btn_row">
-                    {% if session['logged_in']%}
-                    <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Edit</a> {% if user_logged.right == 'admin' %}
-                    <a class="waves-effect waves-light btn modal-trigger btn_personal" href="#modaldelete">Delete</a> {%endif%} {%endif%}
+                <div class="user_commands">
+                    <div class="edit_btn">
+                        {% if session['logged_in']%}
+                        <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Edit</a>
+                    </div>
+                    <div class="delete_btn">
+                        {% if user_logged.right == 'admin' %}
+                        <a href="{{url_for('delete_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small red btn_personal">Delete</a> {%endif%}{%endif%}
+                    </div>
                 </div>
             </div>
-
             {%endif%} {%endfor%}
         </div>
     </div>
@@ -147,41 +151,5 @@
     </div>
 </div>
 
-
-<!-- Modal Cancel City-->
-<div id="modaldelete" class="modal">
-    <div class="modal-content">
-        <h4>Be Careful</h4>
-        <p>This option can't be undone!</p>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-light btn btn_small btn_personal">Go Back!</a>
-        <a href="{{url_for('delete_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal">Delete</a>
-    </div>
-</div>
-
-<!-- Modal Remove To Visit City-->
-<div id="modalRemoveVisit" class="modal">
-    <div class="modal-content">
-        <h4>Be Careful</h4>
-        <p>This option can't be undone!</p>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-light btn btn_small btn_personal">Go Back!</a>
-        <a href="{{url_for('remove_to_visit', city_name=city.city_name)}}" class="waves-effect waves-light btn btn_small btn_personal">Remove</a>
-    </div>
-</div>
-
-<!-- Modal Remove Visited City-->
-<div id="modal1" class="modal">
-    <div class="modal-content">
-        <h4>Be Careful</h4>
-        <p>This option can't be undone!</p>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-light btn btn_small btn_personal">Go Back!</a>
-        <a href="{{url_for('delete_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal">Delete</a>
-    </div>
-</div>
 
 {% endblock%}

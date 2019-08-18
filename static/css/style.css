@@ -526,3 +526,8 @@ th {
 .preferite_selected {
     background-color: rgba(226, 224, 224, 0.87);
 }
+
+.user_commands {
+    position: absolute;
+    display: flex;
+}
