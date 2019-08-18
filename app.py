@@ -292,7 +292,10 @@ def userpublicpage(user_id):
     the_user =  mongo.db.user.find_one({"_id": ObjectId(user_id)})
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
-    return render_template("userpage.html", username = mongo.db.user.find_one({"_id": ObjectId(user_id)}),
+    if session['logged_in'] == False:
+        return redirect(url_for('login_page'))
+    else:
+        return render_template("userpage.html", username = mongo.db.user.find_one({"_id": ObjectId(user_id)}),
                           cities = mongo.db.cities.find(), user = the_user, user_logged=user_logged,
                           city=mongo.db.cities.find(), city_name = mongo.db.user.find(), 
                           cities_visited=mongo.db.cities.find(), cities_to_visit=mongo.db.cities.find(), 
