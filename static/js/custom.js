@@ -120,7 +120,6 @@ function autoplay() {
 }
 
 
-
 // Materialize Customiztions
 
 // Add the collapse to the navbar button
@@ -153,6 +152,5 @@ $(document).ready(function() {
 });
 
 // Calling my functions
-errorLogIn();
 autoplay();
 hide_password();
