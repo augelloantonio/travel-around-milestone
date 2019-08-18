@@ -6,7 +6,7 @@
     <div class="carousel_container">
         <div class="carousel carousel-slider">
             {%for images in cities_carousel %} {%if url_image == url %}
-            <a href="{{url_for( 'city_page', city_id=images._id)}}" class="carousel-item" href="#one!"><img src="{{images.city_image}}"></a> {%endif%}{%endfor%}
+            <a href="{{url_for( 'city_page', city_id=images._id,)}}" class="carousel-item" href="#one!"><img src="{{images.city_image}}"></a> {%endif%}{%endfor%}
         </div>
     </div>
 </div>
@@ -30,13 +30,13 @@
                         </div>
                         <div class="card_action">
                             <div class="add_row">
-                                <a href="{{url_for('add_to_preferite', city_name=city.city_name)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
+                                <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
                             </div>
                             <div class="add_row">
-                                <a href="{{url_for('add_to_visit', city_name=city.city_name)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
+                                <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
                             </div>
                             <div class="add_row">
-                                <a href="{{url_for('add_to_visited', city_name=city.city_name)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
+                                <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
                             </div>
                         </div>
                     </div>
@@ -65,13 +65,13 @@
                         </div>
                         <div class="card_action">
                             <div class="add_row">
-                                <a href="{{url_for('add_to_preferite', city_name=city.city_name)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
+                                <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
                             </div>
                             <div class="add_row">
-                                <a href="{{url_for('add_to_visit', city_name=city.city_name)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
+                                <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
                             </div>
                             <div class="add_row">
-                                <a href="{{url_for('add_to_visited', city_name=city.city_name)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
+                                <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
                             </div>
                         </div>
                     </div>
@@ -100,13 +100,13 @@
                         </div>
                         <div class="card_action">
                             <div class="add_row">
-                                <a href="{{url_for('add_to_preferite', city_name=city.city_name)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
+                                <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
                             </div>
                             <div class="add_row">
-                                <a href="{{url_for('add_to_visit', city_name=city.city_name)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
+                                <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
                             </div>
                             <div class="add_row">
-                                <a href="{{url_for('add_to_visited', city_name=city.city_name)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
+                                <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
                             </div>
                         </div>
                     </div>
@@ -135,13 +135,13 @@
                         </div>
                         <div class="card_action">
                             <div class="add_row">
-                                <a href="{{url_for('add_to_preferite', city_name=city.city_name)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
+                                <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
                             </div>
                             <div class="add_row">
-                                <a href="{{url_for('add_to_visit', city_name=city.city_name)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
+                                <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
                             </div>
                             <div class="add_row">
-                                <a href="{{url_for('add_to_visited', city_name=city.city_name)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
+                                <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
                             </div>
                         </div>
                     </div>
@@ -170,13 +170,13 @@
                         </div>
                         <div class="card_action">
                             <div class="add_row">
-                                <a href="{{url_for('add_to_preferite', city_name=city.city_name)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
+                                <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
                             </div>
                             <div class="add_row">
-                                <a href="{{url_for('add_to_visit', city_name=city.city_name)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
+                                <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
                             </div>
                             <div class="add_row">
-                                <a href="{{url_for('add_to_visited', city_name=city.city_name)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
+                                <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
                             </div>
                         </div>
                     </div>
@@ -205,13 +205,13 @@
                         </div>
                         <div class="card_action">
                             <div class="add_row">
-                                <a href="{{url_for('add_to_preferite', city_name=city.city_name)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
+                                <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
                             </div>
                             <div class="add_row">
-                                <a href="{{url_for('add_to_visit', city_name=city.city_name)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
+                                <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
                             </div>
                             <div class="add_row">
-                                <a href="{{url_for('add_to_visited', city_name=city.city_name)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
+                                <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
                             </div>
                         </div>
                     </div>

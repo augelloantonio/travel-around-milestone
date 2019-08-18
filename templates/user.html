@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <div class="edit_btn_row">
-                    <a class="waves-effect waves-light btn modal-trigger btn_personal" href="#modalRemove">Remove</a>
+                    <a href="{{url_for('remove_to_visit', city_name=city.city_name, city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal">Remove</a>
                 </div>
             </div>
             {%endif%} {%endfor%} {%endfor%}
@@ -110,7 +110,7 @@
                     </div>
                 </div>
                 <div class="edit_btn_row">
-                    <a href="{{url_for('remove_visited', city_name=city.city_name)}}" class="waves-effect waves-light btn btn_small btn_personal">Remove</a>
+                    <a href="{{url_for('remove_visited', city_name=city.city_name, city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal">Remove</a>
                 </div>
             </div>
             {%endif%} {%endfor%}{%endfor%}
@@ -139,7 +139,7 @@
                     </div>
                 </div>
                 <div class="edit_btn_row">
-                    <a href="{{url_for('remove_preferite', city_name=city.city_name)}}" class="waves-effect waves-light btn btn_small btn_personal"><i class="fas fa-heart-broken"></i></a>
+                    <a href="{{url_for('remove_preferite', city_name=city.city_name, city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal"><i class="fas fa-heart-broken"></i></a>
                 </div>
             </div>
             {%endif%} {%endfor%}{%endfor%}

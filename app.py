@@ -338,16 +338,20 @@ def search_a_city(search_city):
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~To visit list~~~~~~~~~~~~~~~~~~~~~~#
-@app.route('/add_to_visit/<city_name>')
-def add_to_visit(city_name):
+@app.route('/add_to_visit/<city_name>/<city_id>')
+def add_to_visit(city_name, city_id):
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
     user = mongo.db.user.find_one({'username' : username}) 
+    city = mongo.db.cities.find_one({"_id": ObjectId(city_id)})
 
     mongo.db.user.update({"username": username},
             {'$addToSet': 
             {'city_to_visit' : city_name}})
-    return redirect(url_for('to_visit', city_name = city_name))
+    mongo.db.cities.update({"_id": ObjectId(city_id)},
+            {'$addToSet': 
+            {'city_to_visit_by' : username}})
+    return redirect(url_for('to_visit', city_name = city_name, city_id=city_id))
 
 @app.route('/to_visit')
 def to_visit():
@@ -358,30 +362,38 @@ def to_visit():
     cities = mongo.db.cities.find(), user_logged=user_logged, city=mongo.db.cities.find(),
     city_name = mongo.db.user.find())
 
-@app.route('/remove_to_visit/<city_name>')
-def remove_to_visit(city_name):
+@app.route('/remove_to_visit/<city_name>/<city_id>')
+def remove_to_visit(city_name, city_id):
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
     user = mongo.db.user.find_one({'username' : username}) 
+    city = mongo.db.cities.find_one({"_id": ObjectId(city_id)})
     mongo.db.user.update({"username": username},
             {'$pull': 
             {'city_to_visit' : city_name}})
-    return redirect(url_for('to_visit', city_name = city_name, city=mongo.db.cities.find()))
+    mongo.db.cities.update({"_id": ObjectId(city_id)},
+            {'$pull': 
+            {'city_to_visit_by' : username}})
+    return redirect(url_for('to_visit', city_name = city_name, city=mongo.db.cities.find(), city_id=city_id))
     
     
 #~~~~~~~~~~~~~~~~~~~~~~~~Visited list~~~~~~~~~~~~~~~~~~~~~~#
 
-@app.route('/add_to_visited/<city_name>')
-def add_to_visited(city_name):
+@app.route('/add_to_visited/<city_name>/<city_id>')
+def add_to_visited(city_name, city_id):
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
     user = mongo.db.user.find_one({'username' : username}) 
     the_city = mongo.db.cities.find_one({'city_name': city_name})
+    city = mongo.db.cities.find_one({"_id": ObjectId(city_id)})
     
     mongo.db.user.update({"username": username},
             {'$addToSet': 
             {'city_visited' : city_name}})
-    return redirect(url_for('visited', city_name = city_name))
+    mongo.db.cities.update({"_id": ObjectId(city_id)},
+            {'$addToSet': 
+            {'city_visited_by' : username}})
+    return redirect(url_for('visited', city_name = city_name, city_id=city_id))
 
 
 @app.route('/visited')
@@ -391,30 +403,39 @@ def visited():
     return render_template('visited.html', user=mongo.db.user.find(),
     cities = mongo.db.cities.find(), user_logged=user_logged, city=mongo.db.cities.find())
 
-@app.route('/remove_visited/<city_name>')
-def remove_visited(city_name):
+@app.route('/remove_visited/<city_name>/<city_id>')
+def remove_visited(city_name, city_id):
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
     user = mongo.db.user.find_one({'username' : username}) 
+    city = mongo.db.cities.find_one({"_id": ObjectId(city_id)})
+    
     mongo.db.user.update({"username": username},
             {'$pull': 
             {'city_visited' : city_name}})
-    return redirect(url_for('visited', city_name = city_name, city=mongo.db.cities.find()))
+    mongo.db.cities.update({"_id": ObjectId(city_id)},
+            {'$pull': 
+            {'city_visited_by' : username}})
+    return redirect(url_for('visited', city_name = city_name, city=mongo.db.cities.find(), city_id=city_id))
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~Preferite list~~~~~~~~~~~~~~~~~~~~~~#
 
-@app.route('/add_to_preferite/<city_name>')
-def add_to_preferite(city_name):
+@app.route('/add_to_preferite/<city_name>/<city_id>')
+def add_to_preferite(city_name, city_id):
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
     user = mongo.db.user.find_one({'username' : username}) 
     the_city = mongo.db.cities.find_one({'city_name': city_name})
-    
+    city = mongo.db.cities.find_one({"_id": ObjectId(city_id)})
     mongo.db.user.update({"username": username},
             {'$addToSet': 
             {'preferite_cities' : city_name}})
-    return redirect(url_for('preferite', city_name = city_name))
+    mongo.db.cities.update({"_id": ObjectId(city_id)},
+            {'$addToSet': 
+            {'city_preferred_by' : username}})
+    
+    return redirect(url_for('preferite', city_name = city_name, city_id=city_id))
 
 
 @app.route('/preferite')
@@ -425,16 +446,21 @@ def preferite():
     cities = mongo.db.cities.find(), user_logged=user_logged, city=mongo.db.cities.find())
 
 
-@app.route('/remove_preferite/<city_name>')
-def remove_preferite(city_name):
+@app.route('/remove_preferite/<city_name>/<city_id>')
+def remove_preferite(city_name, city_id):
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
     user = mongo.db.user.find_one({'username' : username}) 
+    city = mongo.db.cities.find_one({"_id": ObjectId(city_id)})
+
     mongo.db.user.update({"username": username},
             {'$pull': 
             {'preferite_cities' : city_name}})
-    return redirect(url_for('preferite', city_name = city_name, city=mongo.db.cities.find()),
-    preferites=mongo.db.user.find())
+    mongo.db.cities.update({"_id": ObjectId(city_id)},
+            {'$pull': 
+            {'city_preferred_by' : username}})
+    return redirect(url_for('preferite', city_name = city_name, city=mongo.db.cities.find(),
+    preferites=mongo.db.user.find(), city_id=city_id))
 
 
 #Permitt the server to run the web app
