@@ -31,7 +31,7 @@ def index():
         username=session.get('username')
         user_logged = mongo.db.user.find_one({'username' : username})
         
-    return render_template("index.html", cities=mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), 
+    return render_template("index.html", cities=mongo.db.cities.find().sort('added_time'), 
                             cities_carousel= mongo.db.cities.find(), city=mongo.db.cities.find(), 
                             city_named= mongo.db.cities.find(), city_2=mongo.db.cities.find(),
                             city_3=mongo.db.cities.find(), city_4=mongo.db.cities.find(),
@@ -167,7 +167,7 @@ def cities_for_regions(city_region):
             user_logged = mongo.db.user.find_one({'username' : username})
             return render_template ("cities_for_regions.html", 
                 regions = json_file_region, cities = mongo.db.cities.find().sort('city_name'),
-                city_region=city_region, user_logged=user_logged)
+                city_region=city_region, user_logged=user_logged, city=mongo.db.cities.find())
                 
 
 #~~~~~~~~~~~~~~~~~~ Register / Log In/ Account section ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
