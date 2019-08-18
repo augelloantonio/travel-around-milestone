@@ -531,3 +531,14 @@ th {
     position: absolute;
     display: flex;
 }
+
+/*.........................................User List Page................................*/
+
+.user_icon_img {
+    max-height: 6rem;
+    max-width: 6rem;
+}
+
+.username_card {
+display: inline-grid;
+}

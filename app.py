@@ -260,7 +260,7 @@ def user_page():
         user_logged=user_logged, city=mongo.db.cities.find(), city_name = mongo.db.user.find(), 
         cities_visited=mongo.db.cities.find(), cities_to_visit=mongo.db.cities.find(), 
         cities_preferite=mongo.db.cities.find())
-        
+
 
 #Display the City webpage 
 @app.route('/userpublicpage/<user_id>')
@@ -269,7 +269,10 @@ def userpublicpage(user_id):
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
     return render_template("userpage.html", username = mongo.db.user.find_one({"_id": ObjectId(user_id)}),
-                          cities = mongo.db.cities.find(), user = the_user, user_logged=user_logged)
+                          cities = mongo.db.cities.find(), user = the_user, user_logged=user_logged,
+                          city=mongo.db.cities.find(), city_name = mongo.db.user.find(), 
+                          cities_visited=mongo.db.cities.find(), cities_to_visit=mongo.db.cities.find(), 
+                          cities_preferite=mongo.db.cities.find())
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~ Admin Settings Page ~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -438,6 +441,17 @@ def remove_preferite(city_name, city_id):
             {'city_preferred_by' : username}})
     return redirect(url_for('user_page', city_name = city_name, city=mongo.db.cities.find(),
     preferites=mongo.db.user.find(), city_id=city_id))
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~User List and Info~~~~~~~~~~~~~~~~~~~#
+@app.route('/user_list')
+def user_list():
+    username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
+    if session['logged_in'] == False:
+        return redirect(url_for('login_page'))
+    else:
+        return render_template('users_registered.html', users = mongo.db.user.find(), user_logged=user_logged)
 
 
 #Permitt the server to run the web app
