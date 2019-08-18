@@ -34,10 +34,12 @@
                                 {{city.city_preferred_by|count}}</a>
                             </div>
                             <div class="add_row">
-                                <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
+                                <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i>
+                                {{city.city_to_visit_by|count}}</a>
                             </div>
                             <div class="add_row">
-                                <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
+                                <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i>
+                                {{city.city_visited_by|count}}</a>
                             </div>
                         </div>
                     </div>
