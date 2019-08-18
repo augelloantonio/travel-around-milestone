@@ -405,6 +405,13 @@ materialize-textarea {
     border-radius: 10px;
 }
 
+
+.card_col_city:hover {
+    font-weight: 800;
+}
+
+
+
 .info_header {
     text-align: center;
     font-family: Roboto;
