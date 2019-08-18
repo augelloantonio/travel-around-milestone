@@ -8,6 +8,7 @@ from bson.objectid import ObjectId
 from time import ctime, strftime
 from werkzeug.security import generate_password_hash, check_password_hash
 
+
 #~~~~~~~~~~~~~~~~~~Inizialize Flask and connect to MongoDB~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'travel_around'
@@ -141,9 +142,15 @@ def update_city(city_id):
 
 
 # Delete city - to add an if statement before proceed with javascript
-@app.route('/delete_city/<city_id>')
-def delete_city(city_id):
+@app.route('/delete_city/<city_name>/<city_id>')
+def delete_city(city_name, city_id):
+    username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
     mongo.db.cities.remove({'_id': ObjectId(city_id)})
+    the_city = mongo.db.cities.find_one({'city_name': city_name})
+    mongo.db.user.update({"username": username},
+            {'$pull': 
+            {'cities_made' : city_name}})
     return redirect(url_for('index'))
 
 
@@ -407,7 +414,7 @@ def remove_visited(city_name, city_id):
     mongo.db.cities.update({"_id": ObjectId(city_id)},
             {'$pull': 
             {'city_visited_by' : username}})
-    return redirect(url_for('user_page', city_name = city_name, city=mongo.db.cities.find(), city_id=city_id))
+    return redirect(url_for('index', city_name = city_name, city=mongo.db.cities.find(), city_id=city_id))
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~Preferite list~~~~~~~~~~~~~~~~~~~~~~#
