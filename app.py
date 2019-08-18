@@ -337,7 +337,7 @@ def search_a_city(search_city):
         search_results = city_page.sort('date_time',pymongo.DESCENDING), count_cities=count_cities, user_logged=user_logged)
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~To visit and visited listes~~~~~~~~~~~~~~~~~~~~~~#
+#~~~~~~~~~~~~~~~~~~~~~~~~To visit list~~~~~~~~~~~~~~~~~~~~~~#
 @app.route('/add_to_visit/<city_name>')
 def add_to_visit(city_name):
     username=session.get('username')
@@ -368,8 +368,9 @@ def remove_to_visit(city_name):
             {'city_to_visit' : city_name}})
     return redirect(url_for('to_visit', city_name = city_name, city=mongo.db.cities.find()))
     
+    
+#~~~~~~~~~~~~~~~~~~~~~~~~Visited list~~~~~~~~~~~~~~~~~~~~~~#
 
-#Visited
 @app.route('/add_to_visited/<city_name>')
 def add_to_visited(city_name):
     username=session.get('username')
@@ -401,7 +402,8 @@ def remove_visited(city_name):
     return redirect(url_for('visited', city_name = city_name, city=mongo.db.cities.find()))
 
 
-#Preferite
+#~~~~~~~~~~~~~~~~~~~~~~~~Preferite list~~~~~~~~~~~~~~~~~~~~~~#
+
 @app.route('/add_to_preferite/<city_name>')
 def add_to_preferite(city_name):
     username=session.get('username')

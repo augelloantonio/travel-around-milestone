@@ -21,6 +21,17 @@
                     <a href="{{url_for('city_page', city_id = city._id)}}"> <span class="card-title city_card_title">{{city.city_name}}</span></a>
                 </div>
             </div>
+            <div class="card_action">
+                <div class="add_row">
+                    <a href="{{url_for('add_to_preferite', city_name=city.city_name)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
+                </div>
+                <div class="add_row">
+                    <a href="{{url_for('add_to_visit', city_name=city.city_name)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
+                </div>
+                <div class="add_row">
+                    <a href="{{url_for('add_to_visited', city_name=city.city_name)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
+                </div>
+            </div>
         </div>
         {%endif%} {%endfor%} {%endif%}
     </div>

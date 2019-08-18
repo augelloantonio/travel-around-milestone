@@ -53,7 +53,7 @@ body {
     }
 }
 
-.referite_btn_row {
+.add_row {
     position: relative;
 }
 
@@ -63,6 +63,25 @@ body {
     top: 0.5rem;
     right: 0.5rem;
     color: red;
+    font-size: 2rem;
+}
+
+.add_to_visit_btn {
+    position: absolute;
+    z-index: 1;
+    top: 0.5rem;
+    right: 3rem;
+    color: red;
+    font-size: 2rem;
+}
+
+.add_visited_btn {
+    position: absolute;
+    z-index: 1;
+    top: 0.5rem;
+    right: 5rem;
+    color: red;
+    font-size: 2rem;
 }
 
 /* ................................ NAVBAR */
