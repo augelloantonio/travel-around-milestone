@@ -1,6 +1,4 @@
-{% extends 'base.html' %} {% block content %}
-
-{% if not session['logged_in'] %}
+{% extends 'base.html' %} {% block content %} {% if not session['logged_in'] %}
 <h3>You need to be registered to add a new city.</h3>
 <h3><a href="{{url_for('register')}}">Register Now!</a></h3>
 
@@ -116,11 +114,10 @@
             <div class="edit_btn_float_right">
                 <button class="btn waves-effect waves-light btn_personal" type="submit" name="action">Submit
                 <i class="material-icons right">playlist_add</i>
-            </button>
+                </button>
             </div>
         </div>
     </form>
 </div>
 
-{%endif%}
-{% endblock %}
+{%endif%} {% endblock %}
