@@ -110,8 +110,7 @@ def edit_city(city_id):
         return redirect(url_for('login_page'))
     else:
         return render_template('editcity.html', city=the_city,
-            country=all_cities, regions=json_file_region, user=mongo.db.user, 
-            user_logged=user_logged)
+            country=all_cities, regions=json_file_region, user=mongo.db.user, user_logged=user_logged)
                             
     
 @app.route('/update_city/<city_id>', methods=['POST'])
