@@ -558,6 +558,10 @@ th {
     display: flex;
 }
 
+.hidden_option{
+    display: none;
+}
+
 /*.........................................User List Page................................*/
 
 .user_icon_img {

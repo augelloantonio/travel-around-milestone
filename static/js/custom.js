@@ -120,6 +120,25 @@ function autoplay() {
 }
 
 
+/**
+ * Function to verify that the user want to delete the account
+ * typing 'delete'the delete button will appear
+ * 
+ * **/
+
+function verification_form() {
+    let input_delete = document.getElementById('confirm_delete_account')
+    if (input_delete.value == "delete") {
+        $('#delete_input').hide()
+        $('#hidden_delete_btn').show()
+        setTimeout(function() {
+        $('#delete_input').show()
+        $('#hidden_delete_btn').hide()
+    }, 3000);
+    }
+}
+
+
 // Materialize Customiztions
 
 // Add the collapse to the navbar button
@@ -153,4 +172,5 @@ $(document).ready(function() {
 
 // Calling my functions
 autoplay();
+restore_hidden_delete()
 hide_password();
