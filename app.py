@@ -257,12 +257,6 @@ def logout():
     return redirect(url_for('index'))
     
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Delete User ~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-@app.route('/leaving_page')
-def leaving_page():
-    user_logged = mongo.db.user.find()
-    session['logged_in'] == False
-    return render_template('leaving_page.html', user_logged=user_logged)
-
 @app.route('/delete_user/<user_id>')
 def delete_user(user_id):
     session['logged_in'] == False
