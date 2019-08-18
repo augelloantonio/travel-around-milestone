@@ -3,15 +3,11 @@
 <div class="user_page_header">
     <div class="row">
         <div class="">
-            <h3>All cities made by: {{user.username}}</h3>
+            <h3>{{user.username}}</h3>
+            <p class="title center">Cities made: {{user.cities_made|count}}</p>
         </div>
     </div>
 </div>
-<div>
-    <h5> </h5>
-    <p>Tot cities made: {{tot_cities}}</p>
-</div>
-
 
 <!-- User Nav Bar-->
 <nav class="nav_userpage">
@@ -100,7 +96,7 @@
                     </div>
                 </div>
             </div>
-            {%endif%} {%endfor%}  {%endfor%}
+            {%endif%} {%endfor%} {%endfor%}
         </div>
     </div>
 </div>

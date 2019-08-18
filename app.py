@@ -85,6 +85,10 @@ def insert_city():
     }
     cities.insert_one(city_info)
     
+    mongo.db.user.update({"username": username},
+            {'$addToSet': 
+            {'cities_made' : request.form.get('city_name').lower()}})
+    
     return redirect(url_for('index'))
     
 
