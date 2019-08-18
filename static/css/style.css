@@ -452,12 +452,13 @@ materialize-textarea {
 }
 
 .info_body {
-    padding-left: 4rem;
+    padding-left: 2rem;
 }
 
 .description_body {
     width: 85%;
     margin: 0px auto;
+    text-align: justify;
 }
 
 .items {

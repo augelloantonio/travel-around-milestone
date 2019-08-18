@@ -1,15 +1,9 @@
-{% extends 'base.html' %} {% block content %} {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
-<ul class="flashes">
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %} {% endwith %}
+{% extends 'base.html' %} {% block content %} 
 
 <div class="user_page_header">
     <div class="row">
         <div class="">
-            <h3>Welcome, {{session.username}}</h3>
+            <h3 class="index_header">Welcome, {{session.username}}</h3>
             <p class="title center">Cities made: {{user_logged.cities_made|count}}</p>
         </div>
     </div>
