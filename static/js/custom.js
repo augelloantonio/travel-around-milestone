@@ -71,27 +71,45 @@ function change_contents_made() {
     $("#to_visit").hide();
     $("#visited").hide();
     $("#made").show();
+    $("#preferite").hide();
     $("#made_li").addClass("made_selected")
     $("#visited_li").removeClass("visited_selected")
     $("#to_visit_li").removeClass("to_visit_selected")
+    $("#preferite_li").removeClass("preferite_selected")
+
 }
 
 function change_contents_to_visit() {
     $("#made").hide();
     $("#visited").hide();
     $("#to_visit").show();
+    $("#preferite").hide();
     $("#made_li").removeClass("made_selected")
     $("#visited_li").removeClass("visited_selected")
     $("#to_visit_li").addClass("to_visit_selected")
+    $("#preferite_li").removeClass("preferite_selected")
 }
 
 function change_contents_visited() {
     $("#visited").show();
     $("#to_visit").hide();
     $("#made").hide();
+    $("#preferite").hide();
     $("#made_li").removeClass("made_selected")
     $("#visited_li").addClass("visited_selected")
     $("#to_visit_li").removeClass("to_visit_selected")
+    $("#preferite_li").removeClass("preferite_selected")
+}
+
+function change_contents_preferite() {
+    $("#preferite").show();
+    $("#visited").hide();
+    $("#to_visit").hide();
+    $("#made").hide();
+    $("#made_li").removeClass("made_selected")
+    $("#visited_li").removeClass("visited_selected")
+    $("#to_visit_li").removeClass("to_visit_selected")
+    $("#preferite_li").addClass("preferite_selected")
 }
 
 

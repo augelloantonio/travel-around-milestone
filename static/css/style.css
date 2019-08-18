@@ -53,6 +53,17 @@ body {
     }
 }
 
+.referite_btn_row {
+    position: relative;
+}
+
+.preferite_btn {
+    position: absolute;
+    z-index: 1;
+    top: 0.5rem;
+    right: 0.5rem;
+    color: red;
+}
 
 /* ................................ NAVBAR */
 
@@ -447,7 +458,7 @@ th {
 /*..................................................User Page*/
 
 .user_nav {
-    width: 33.333%;
+    width: 25%;
     text-align: center;
     text-transform: uppercase;
 }
@@ -460,6 +471,10 @@ th {
     display: none;
 }
 
+#preferite {
+    display: none;
+}
+
 .made_selected {
     background-color: rgba(226, 224, 224, 0.87);
 }
@@ -469,5 +484,9 @@ th {
 }
 
 .to_visit_selected {
+    background-color: rgba(226, 224, 224, 0.87);
+}
+
+.preferite_selected {
     background-color: rgba(226, 224, 224, 0.87);
 }

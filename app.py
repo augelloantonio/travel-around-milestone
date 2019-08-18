@@ -258,7 +258,8 @@ def user_page():
         return render_template('user.html', user=mongo.db.user.find(),
         cities = mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), tot_cities=cities.count(),
         user_logged=user_logged, city=mongo.db.cities.find(), city_name = mongo.db.user.find(), 
-        cities_visited=mongo.db.cities.find(), cities_to_visit=mongo.db.cities.find())
+        cities_visited=mongo.db.cities.find(), cities_to_visit=mongo.db.cities.find(), 
+        cities_preferite=mongo.db.cities.find())
         
 
 #Display the City webpage 
@@ -398,6 +399,41 @@ def remove_visited(city_name):
             {'$pull': 
             {'city_visited' : city_name}})
     return redirect(url_for('visited', city_name = city_name, city=mongo.db.cities.find()))
+
+
+#Preferite
+@app.route('/add_to_preferite/<city_name>')
+def add_to_preferite(city_name):
+    username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
+    user = mongo.db.user.find_one({'username' : username}) 
+    the_city = mongo.db.cities.find_one({'city_name': city_name})
+    
+    mongo.db.user.update({"username": username},
+            {'$addToSet': 
+            {'preferite_cities' : city_name}})
+    return redirect(url_for('preferite', city_name = city_name))
+
+
+@app.route('/preferite')
+def preferite():
+    username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
+    return render_template('preferite.html', user=mongo.db.user.find(),
+    cities = mongo.db.cities.find(), user_logged=user_logged, city=mongo.db.cities.find())
+
+
+@app.route('/remove_preferite/<city_name>')
+def remove_preferite(city_name):
+    username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
+    user = mongo.db.user.find_one({'username' : username}) 
+    mongo.db.user.update({"username": username},
+            {'$pull': 
+            {'preferite_cities' : city_name}})
+    return redirect(url_for('preferite', city_name = city_name, city=mongo.db.cities.find()),
+    preferites=mongo.db.user.find())
+
 
 #Permitt the server to run the web app
 if __name__ == '__main__':
