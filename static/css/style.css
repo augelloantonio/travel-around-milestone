@@ -461,6 +461,16 @@ th {
     width: 25%;
     text-align: center;
     text-transform: uppercase;
+    padding: 0px!important;
+}
+
+.nav_userpage {
+    height: auto!important;
+}
+
+.row_user_nav {
+    margin: 0!important;
+
 }
 
 #to_visit {
