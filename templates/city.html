@@ -7,23 +7,19 @@
         <div class="col s12 m8">
             <div class="card_action">
                 <div class="add_row">
-                    <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart card_col_city"></i></a>
+                    <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart card_col_city"></i>
+                    {{city.city_preferred_by|count}}</a>
                 </div>
                 <div class="add_row">
-                    <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square card_col_city"></i></a>
+                    <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square card_col_city"></i>
+                    {{city.city_to_visit_by|count}}</a>
                 </div>
                 <div class="add_row">
-                    <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle card_col_city"></i></a>
+                    <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle card_col_city"></i>
+                    {{city.city_visited_by|count}}</a>
                 </div>
             </div>
-
             <img class="img_city_page" src="{{cities.city_image}}" alt="{{cities.city_name}}">
-            <!-- COMAND BTN
-            <div class="edit_btn_float_left">
-                <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city.id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">To Visit</a>
-                <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city.id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Visited</a>
-            </div> 
-            -->
         </div>
         <!-- Adise Table -->
         <div class="col s12 m4">

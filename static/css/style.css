@@ -60,28 +60,36 @@ body {
 .preferite_btn {
     position: absolute;
     z-index: 1;
-    top: 0.5rem;
+    top: 0.7rem;
     right: 0.5rem;
     color: red;
     font-size: 2rem;
+    display: flex;
 }
 
 .add_to_visit_btn {
     position: absolute;
     z-index: 1;
-    top: 0.5rem;
+    top: 0.7rem;
     right: 3rem;
     color: red;
     font-size: 2rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    display: flex;
 }
+
 
 .add_visited_btn {
     position: absolute;
     z-index: 1;
-    top: 0.5rem;
-    right: 5rem;
+    top: 0.7rem;
+    right: 7rem;
     color: red;
     font-size: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    display: flex;
 }
 
 /* ................................ NAVBAR */
@@ -540,5 +548,5 @@ th {
 }
 
 .username_card {
-display: inline-grid;
+    display: inline-grid;
 }
