@@ -181,7 +181,10 @@ def cities_for_regions(city_region):
 # register page form
 @app.route('/register')
 def register():
-   return render_template ('signuppage.html')
+    if session['logged_in'] == False:
+        return render_template ('signuppage.html')
+    else:
+        return redirect(url_for('user_page'))
    
    
 # login page form
