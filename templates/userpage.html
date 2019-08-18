@@ -127,5 +127,29 @@
     </div>
 </div>
 
+<!-- Delete User Buttons-->
+{% if session['logged_in'] and user_logged.right == 'admin' %}
+<div class="row">
+    <div class="edit_btn_float_right">
+        <div class="edit_btn_float_right">
+            <a class="waves-effect waves-light btn red modal-trigger btn_personal" href="#modal1">Delete Account</a>
+        </div>
+    </div>
+</div>
+{%endif%}
+
+
+<!-- Modal Delete Account-->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Be Careful</h4>
+        <p>This option can't be undone!</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-light btn blue btn_small btn_personal">Go Back!</a>
+            <a href="{{url_for('delete_user', user_id=user._id)}}" class="waves-effect waves-light btn btn_small red btn_personal">Delete Account</a> 
+    </div>
+</div>
+
 
 {% endblock%}
