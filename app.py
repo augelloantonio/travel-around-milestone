@@ -233,15 +233,11 @@ def get_user_data():
         
 @app.route('/login',  methods=['POST', 'GET'])
 def login():
-    if session['logged_in'] == True:
-        return redirect(url_for('user_page'))
-    else:
-        username = request.form['username'].lower()
-        password = request.form['password']
-    
-        session['username'] = username
-        session.permanent = True
-        user = mongo.db.user.find_one({'username' : username})
+    username = request.form['username'].lower()
+    password = request.form['password']
+    session['username'] = username
+    session.permanent = True
+    user = mongo.db.user.find_one({'username' : username})
 
     if not user:
         session['logged_in'] = False
