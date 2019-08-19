@@ -211,7 +211,7 @@ def get_user_data():
     
     if new_email is not None:
         session['logged_in'] = False
-        flash('Email already exists, please try again.')
+        flash('An user with same email exist already, please try again.')
         return redirect(url_for('register'))
     if new_user is None:
         mongo.db.user.insert_one({
@@ -227,7 +227,7 @@ def get_user_data():
         return redirect(url_for('user_page'))
     else:
         session['logged_in'] = False
-        flash('Username already exists, please try again.')
+        flash('An user with same username exist already, please try again.')
         return redirect(url_for('register'))
         
         
