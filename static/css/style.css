@@ -30,15 +30,6 @@ body {
     font-size: 2.5rem;
 }
 
-.card_container {
-    display: table; /* Make the container element behave like a table */
-    width: 100%; /* Set full-width to expand the whole page */
-}
-
-.card {
-     display: table-cell;
-}
-
 .discover_all_btn {
     margin: 0px auto;
     display: table;
@@ -254,13 +245,6 @@ materialize-textarea {
 
 /*..........................................Card Style  */
 
-.img_card {
-    display: block;
-    max-width: 100%;
-    max-height: 250px;
-    height: -webkit-fill-available!important;
-}
-
 .city_card_title {
     background-color: #a9a9a987;
     width: 100%;
@@ -275,68 +259,36 @@ materialize-textarea {
     font-weight: 800;
 }
 
-.card_style {
-    max-height: 250px;
-    padding: 10px;
-}
-
-.card_container {
-    display: flex!important;
-    height: 100%;
-    margin-right: 20px;
-    margin-left: 20px;
-}
-
-.card .card-image {
-    height: 100%;
-    box-shadow: 0 0 8px 0px;
-}
-
-
-@media (max-width: 720px) {
-    .card .card-image img {
-        max-height: 200px;
-    }
-}
-
-@media (max-width: 440px) {
-    .card .card-image img {
-        max-height: 150px;
-    }
-
-}
 
 .edit_btn_row {
     position: absolute;
 }
 
-.clearfix {
-    clear: both;
+.col_card {
+    display: flex;
 }
 
-.card {
+.card-image {
+    height: 250px;
+    overflow: hidden;
+}
+
+.card,
+.card-image img {
+    display: block;
+    border-radius: 2px 2px 0 0;
+    box-shadow: 0 0 8px 0px;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
 }
 
-
-.card_col {
-    padding: 10px!important;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-@media (max-width: 720px) {
-    .card_col {
-        padding: 5px!important;
-    }
-}
-
-@media (max-width: 450px) {
-    .card .card-image .card-title {
-        padding: 14px;
-    }
+.col_card :hover {
+    font-weight: 800;
 }
 
 /*..........................................Carousel*/
@@ -348,6 +300,18 @@ materialize-textarea {
     left: 0;
     right: 0;
 
+}
+
+@media (max-width: 720px) {
+    .card-image {
+        max-height: 200px;
+    }
+}
+
+@media (max-width: 440px) {
+    .card-image {
+        max-height: 150px;
+    }
 }
 
 

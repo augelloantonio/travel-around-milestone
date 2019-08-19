@@ -6,23 +6,25 @@
     <div class="carousel_container">
         <div class="carousel carousel-slider">
             {%for images in cities_carousel %} {%if url_image == url %}
-            <a href="{{url_for( 'city_page', city_id=images._id,)}}" class="carousel-item" href="#one!"><img src="{{images.city_image}}" alt="{{city.city_name}}"></a> {%endif%}{%endfor%}
+            <a href="{{url_for( 'city_page', city_id=images._id,)}}" class="carousel-item" href="#one!"><img src="{{images.city_image}}"></a> {%endif%}{%endfor%}
         </div>
     </div>
 </div>
 
 <!-- Content -->
-<div class="clearfix ">
-    <p class="index_header">Europe</p>
-    <div class=" ">
+<div class="row ">
+    <div>
+        <p class="index_header">Europe</p>
+    </div>
+    <div>
         <div class="row ">
             <!-- Set [0:24] to show only the last 8 elements - bug: it seem that each city occupy 3 spaces -->
             {%for city in cities[0:13] %} {%if city.city_region == 'Europe'%}
-            <div class="col s6 m4 l3 card_col ">
+            <div class="col s6 m4 l3 col_card">
                 <div class="card ">
                     <div class="card-image waves-effect waves-block waves-light ">
                         <a href="{{url_for( 'city_page', city_id=city._id)}} ">
-                                    <img class="activator img_card " src="{{city.city_image}} " alt="{{city.city_name}}">   
+                                    <img class="activator img_card " src="{{city.city_image}} ">   
                                 <span class="card-title city_card_title ">{{city.city_name}}</span></a>
                     </div>
                 </div>
@@ -50,33 +52,33 @@
     </div>
 
     <div>
-        <p class="index_header">North America & Canada</p>
-        <div class="col s12 ">
-            <div class="row ">
-                {%for city in city_named[0:13]%} {%if city.city_region == 'North America & Canada'%}
-                <div class="col s6 m4 l3 card_col ">
-                    <div class="card ">
-                        <div class="card-image waves-effect waves-block waves-light ">
-                            <a href="{{url_for( 'city_page', city_id=city._id)}} "> 
-                                <img class="activator img_card " src="{{city.city_image}}" alt="{{city.city_name}}">
+        <div>
+            <p class="index_header">North America & Canada</p>
+        </div>
+        <div class="row ">
+            {%for city in city_named[0:13]%} {%if city.city_region == 'North America & Canada'%}
+            <div class="col s6 m4 l3 col_card">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light ">
+                        <a href="{{url_for( 'city_page', city_id=city._id)}} "> 
+                                <img class="activator img_card " src="{{city.city_image}} ">
                                 <span class="card-title city_card_title ">{{city.city_name}}</span>
                                 </a>
-                        </div>
-                    </div>
-                    <div class="card_action">
-                        <div class="add_row">
-                            <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
-                        </div>
-                        <div class="add_row">
-                            <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
-                        </div>
-                        <div class="add_row">
-                            <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
-                        </div>
                     </div>
                 </div>
-                {%endif%} {%endfor%}
+                <div class="card_action">
+                    <div class="add_row">
+                        <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
+                    </div>
+                    <div class="add_row">
+                        <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
+                    </div>
+                    <div class="add_row">
+                        <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
+                    </div>
+                </div>
             </div>
+            {%endif%} {%endfor%}
         </div>
     </div>
 
@@ -85,33 +87,33 @@
     </div>
 
     <div>
-        <p class="index_header">Asia</p>
-        <div class="col s12 ">
-            <div class="row ">
-                {%for city in city_2[0:13]%} {%if city.city_region == 'Asia'%}
-                <div class="col s6 m4 l3 card_col ">
-                    <div class="card ">
-                        <div class="card-image waves-effect waves-block waves-light ">
-                            <a href="{{url_for( 'city_page', city_id=city._id)}} ">
-                                <img class="activator img_card " src="{{city.city_image}} " alt="{{city.city_name}}">
+        <div>
+            <p class="index_header">Asia</p>
+        </div>
+        <div class="row ">
+            {%for city in city_2[0:13]%} {%if city.city_region == 'Asia'%}
+            <div class="col s6 m4 l3 col_card">
+                <div class="card ">
+                    <div class="card-image waves-effect waves-block waves-light ">
+                        <a href="{{url_for( 'city_page', city_id=city._id)}} ">
+                                <img class="activator img_card " src="{{city.city_image}} ">
                                  <span class="card-title city_card_title ">{{city.city_name}}</span>
                                  </a>
-                        </div>
-                    </div>
-                    <div class="card_action">
-                        <div class="add_row">
-                            <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
-                        </div>
-                        <div class="add_row">
-                            <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
-                        </div>
-                        <div class="add_row">
-                            <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
-                        </div>
                     </div>
                 </div>
-                {%endif%} {%endfor%}
+                <div class="card_action">
+                    <div class="add_row">
+                        <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
+                    </div>
+                    <div class="add_row">
+                        <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
+                    </div>
+                    <div class="add_row">
+                        <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
+                    </div>
+                </div>
             </div>
+            {%endif%} {%endfor%}
         </div>
     </div>
 
@@ -120,33 +122,33 @@
     </div>
 
     <div>
-        <p class="index_header">Central America & South America</p>
-        <div class="col s12 ">
-            <div class="row ">
-                {%for city in city_3[0:13]%} {%if city.city_region == 'Central America & South America'%}
-                <div class="col s6 m4 l3 card_col ">
-                    <div class="card ">
-                        <div class="card-image waves-effect waves-block waves-light ">
-                            <a href="{{url_for( 'city_page', city_id=city._id)}} ">
-                                <img class="activator img_card" src="{{city.city_image}} " alt="{{city.city_name}}">
+        <div>
+            <p class="index_header">Central America & South America</p>
+        </div>
+        <div class="row ">
+            {%for city in city_3[0:13]%} {%if city.city_region == 'Central America & South America'%}
+            <div class="col s6 m4 l3 col_card">
+                <div class="card ">
+                    <div class="card-image waves-effect waves-block waves-light ">
+                        <a href="{{url_for( 'city_page', city_id=city._id)}} ">
+                                <img class="activator img_card " src="{{city.city_image}} ">
                                  <span class="card-title city_card_title ">{{city.city_name}}</span>
                                  </a>
-                        </div>
-                    </div>
-                    <div class="card_action">
-                        <div class="add_row">
-                            <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
-                        </div>
-                        <div class="add_row">
-                            <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
-                        </div>
-                        <div class="add_row">
-                            <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
-                        </div>
                     </div>
                 </div>
-                {%endif%} {%endfor%}
+                <div class="card_action">
+                    <div class="add_row">
+                        <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
+                    </div>
+                    <div class="add_row">
+                        <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
+                    </div>
+                    <div class="add_row">
+                        <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
+                    </div>
+                </div>
             </div>
+            {%endif%} {%endfor%}
         </div>
     </div>
 
@@ -155,33 +157,33 @@
     </div>
 
     <div>
-        <p class="index_header">Australia & New Zeland</p>
-        <div class="col s12 ">
-            <div class="row ">
-                {%for city in city_4[0:13]%} {%if city.city_region == 'Australia & New Zeland'%}
-                <div class="col s6 m4 l3 card_col ">
-                    <div class="card ">
-                        <div class="card-image waves-effect waves-block waves-light ">
-                            <a href="{{url_for( 'city_page', city_id=city._id)}} ">
-                                <img class="activator img_card " src="{{city.city_image}} " alt="{{city.city_name}}">
+        <div>
+            <p class="index_header">Australia & New Zeland</p>
+        </div>
+        <div class="row ">
+            {%for city in city_4[0:13]%} {%if city.city_region == 'Australia & New Zeland'%}
+            <div class="col s6 m4 l3 col_card ">
+                <div class="card ">
+                    <div class="card-image waves-effect waves-block waves-light ">
+                        <a href="{{url_for( 'city_page', city_id=city._id)}} ">
+                                <img class="activator img_card " src="{{city.city_image}} ">
                                  <span class="card-title city_card_title ">{{city.city_name}}</span>
                                  </a>
-                        </div>
-                    </div>
-                    <div class="card_action">
-                        <div class="add_row">
-                            <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
-                        </div>
-                        <div class="add_row">
-                            <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
-                        </div>
-                        <div class="add_row">
-                            <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
-                        </div>
                     </div>
                 </div>
-                {%endif%} {%endfor%}
+                <div class="card_action">
+                    <div class="add_row">
+                        <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
+                    </div>
+                    <div class="add_row">
+                        <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
+                    </div>
+                    <div class="add_row">
+                        <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
+                    </div>
+                </div>
             </div>
+            {%endif%} {%endfor%}
         </div>
     </div>
 
@@ -190,33 +192,33 @@
     </div>
 
     <div>
-        <p id="name_of_region" class="index_header">Africa & The Middle East</p>
-        <div class="col s12 ">
-            <div class="row">
-                {%for city in city_5[0:13]%} {%if city.city_region == 'Africa & The Middle East' %}
-                <div class="col s6 m4 l3 card_col ">
-                    <div class="card ">
-                        <div class="card-image waves-effect waves-block waves-light ">
-                            <a href="{{url_for( 'city_page', city_id=city._id)}} ">
-                                <img class="activator img_card " src="{{city.city_image}} " alt="{{city.city_name}}">
+        <div>
+            <p id="name_of_region" class="index_header">Africa & The Middle East</p>
+        </div>
+        <div class="row">
+            {%for city in city_5[0:13]%} {%if city.city_region == 'Africa & The Middle East' %}
+            <div class="col s6 m4 l3 col_card ">
+                <div class="card ">
+                    <div class="card-image waves-effect waves-block waves-light ">
+                        <a href="{{url_for( 'city_page', city_id=city._id)}} ">
+                                <img class="activator img_card " src="{{city.city_image}} ">
                                  <span class="card-title city_card_title ">{{city.city_name}}</span>
                                  </a>
-                        </div>
-                    </div>
-                    <div class="card_action">
-                        <div class="add_row">
-                            <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
-                        </div>
-                        <div class="add_row">
-                            <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
-                        </div>
-                        <div class="add_row">
-                            <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
-                        </div>
                     </div>
                 </div>
-                {%endif%} {%endfor%}
+                <div class="card_action">
+                    <div class="add_row">
+                        <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i></a>
+                    </div>
+                    <div class="add_row">
+                        <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i></a>
+                    </div>
+                    <div class="add_row">
+                        <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i></a>
+                    </div>
+                </div>
             </div>
+            {%endif%} {%endfor%}
         </div>
     </div>
     <div class="discover_all">
