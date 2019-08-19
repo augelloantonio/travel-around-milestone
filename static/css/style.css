@@ -30,6 +30,15 @@ body {
     font-size: 2.5rem;
 }
 
+.card_container {
+    display: table; /* Make the container element behave like a table */
+    width: 100%; /* Set full-width to expand the whole page */
+}
+
+.card {
+     display: table-cell;
+}
+
 .discover_all_btn {
     margin: 0px auto;
     display: table;
@@ -58,7 +67,9 @@ body {
 }
 
 @media (max-width:420px) {
-    .preferite_btn, .add_to_visit_btn, .add_visited_btn {
+    .preferite_btn,
+    .add_to_visit_btn,
+    .add_visited_btn {
         font-size: 1.6rem!important;
     }
 }
@@ -85,15 +96,15 @@ body {
     display: flex;
 }
 
-@media (max-width: 420px){
-    .add_to_visit_btn{
+@media (max-width: 420px) {
+    .add_to_visit_btn {
         right: 2rem!important;
     }
 }
 
-@media (max-width: 420px){
-    .add_visited_btn{
-        right:5rem!important;
+@media (max-width: 420px) {
+    .add_visited_btn {
+        right: 5rem!important;
     }
 }
 
@@ -558,7 +569,7 @@ th {
     display: flex;
 }
 
-.hidden_option{
+.hidden_option {
     display: none;
 }
 
@@ -574,7 +585,8 @@ th {
 }
 
 /*...............................................Alert Message................................*/
-.alert_messagge_header{
+
+.alert_messagge_header {
     font-family: 'Alfa Slab One', cursive;
     color: #524c4c;
     text-align: center;
