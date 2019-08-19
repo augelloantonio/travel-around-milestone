@@ -7,6 +7,8 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
 from time import ctime, strftime
 from werkzeug.security import generate_password_hash, check_password_hash
+from bson import json_util
+from bson.json_util import dumps
 
 
 #~~~~~~~~~~~~~~~~~~Inizialize Flask and connect to MongoDB~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -90,7 +92,7 @@ def insert_city():
             {'$addToSet': 
             {'cities_made' : request.form.get('city_name').lower()}})
     
-    return redirect(url_for('index'))
+    return redirect(url_for('user_page'))
     
 
 # Get the city data from the city id
@@ -151,7 +153,7 @@ def delete_city(city_name, city_id):
     mongo.db.user.update({"username": username},
             {'$pull': 
             {'cities_made' : city_name}})
-    return redirect(url_for('index'))
+    return redirect(url_for('user_page'))
 
 
 #Display the City webpage 

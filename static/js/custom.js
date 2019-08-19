@@ -132,9 +132,9 @@ function verification_form() {
         $('#delete_input').hide()
         $('#hidden_delete_btn').show()
         setTimeout(function() {
-        $('#delete_input').show()
-        $('#hidden_delete_btn').hide()
-    }, 3000);
+            $('#delete_input').show()
+            $('#hidden_delete_btn').hide()
+        }, 3000);
     }
 }
 
@@ -172,5 +172,5 @@ $(document).ready(function() {
 
 // Calling my functions
 autoplay();
-restore_hidden_delete()
 hide_password();
+restore_hidden_delete();
