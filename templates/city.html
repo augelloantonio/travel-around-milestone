@@ -122,12 +122,15 @@
 </div>
 
 <!-- Edit Buttons-->
+{% if session['logged_in']%}
 <div class="row">
     <div class="edit_btn_float_right">
         <div class="edit_btn_float_right">
-            {% if session['logged_in']%}
-            <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Edit</a> {%if user_logged.right == 'admin'%}
-            <a class="waves-effect waves-light btn red modal-trigger btn_personal" href="#modal1">Delete</a>
+            <!--Edit BTN showing to registered users -->
+            <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Edit</a>
+            <!--Delete BTN showing only to admin users -->
+            {%if user_logged.right == 'admin'%}
+            <a class="waves-effect waves-light btn red modal-trigger btn_personal" href="#modal1">Delete</a> {%endif%}{%endif%}
         </div>
     </div>
 </div>
@@ -154,4 +157,4 @@
     </div>
 </div>
 
-{%endif%} {%endif%} {% endblock %}
+{% endblock %}
