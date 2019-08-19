@@ -1,10 +1,18 @@
-{% extends 'base.html' %} {% block content %} {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
-<ul class="flashes">
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %} {% endwith %} {% if session['logged_in']%}
+{% extends 'base.html' %} {% block content %}
+
+<!-- Alert Messagge-->
+{% with messages = get_flashed_messages() %} {% if messages %}
+<div class="container">
+    <div class="alert_messagge">
+        {% for message in messages %}
+        <p class="alert_messagge_header">{{ message }}</p>
+        {% endfor %}
+    </div>
+</div>
+{% endif %} {% endwith %}
+
+<!-- Main Content-->
+{% if session['logged_in']%}
 <h1> You are alreade logged in, please go to the Home Page</h1>
 {%else%}
 <div class="content_login">

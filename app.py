@@ -207,7 +207,12 @@ def get_user_data():
     session.permanent = True
 
     new_user = mongo.db.user.find_one({'username' : username})
+    new_email = mongo.db.user.find_one({'email': email})
     
+    if new_email is not None:
+        session['logged_in'] = False
+        flash('Email already exists, please try again.')
+        return redirect(url_for('register'))
     if new_user is None:
         mongo.db.user.insert_one({
             'username': username,
@@ -218,8 +223,8 @@ def get_user_data():
             'number_city_added': []
         })
         session['logged_in'] = True
-        flash('Your User has been creates, please Log In now')
-        return login()
+        flash('Welcome aboard ' + username)
+        return redirect(url_for('user_page'))
     else:
         session['logged_in'] = False
         flash('Username already exists, please try again.')

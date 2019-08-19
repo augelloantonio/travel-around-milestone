@@ -1,9 +1,21 @@
 {% extends 'base.html' %} {% block content %}
 
+<!-- Alert Messagge-->
+{% with messages = get_flashed_messages() %} {% if messages %}
+<div class="container">
+    <div class="alert_messagge">
+        {% for message in messages %}
+        <p class="alert_messagge_header">{{ message }}</p>
+        {% endfor %}
+    </div>
+</div>
+{% endif %} {% endwith %}
+
+<!-- Main Content-->
 <div class="user_page_header">
     <div class="row">
         <div class="">
-            <h3 class="index_header">Welcome, {{session.username}}</h3>
+            <h3 class="index_header">{{session.username}}</h3>
             <p class="title center">Cities made: {{user_logged.cities_made|count}}</p>
         </div>
     </div>
