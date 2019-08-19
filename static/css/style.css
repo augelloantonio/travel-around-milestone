@@ -253,6 +253,14 @@ materialize-textarea {
     font-weight: 600;
     max-height: 40%;
     line-height: 0.9;
+    padding: 1.5rem;
+}
+
+@media (max-width: 450px) {
+    .city_card_title {
+        max-height: 30%!important;
+        padding: 1.2rem!important;
+    }
 }
 
 .card_col :hover {
@@ -303,14 +311,18 @@ materialize-textarea {
 }
 
 @media (max-width: 720px) {
-    .card-image {
+    .card-image,
+    .card-title {
         max-height: 200px;
+        font-size: 1.3rem!important;
     }
 }
 
 @media (max-width: 440px) {
-    .card-image {
+    .card-image,
+    .card-title {
         max-height: 150px;
+        font-size: 1.1rem!important;
     }
 }
 
