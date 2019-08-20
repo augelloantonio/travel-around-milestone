@@ -27,10 +27,7 @@ def index():
     #open coutries.json 
     with open('data/countries.json') as json_file_country:
         json_file_country = json.loads(json_file_country.read())
-    #open region.json
-    with open('data/region.json') as json_file_region:
-        json_file_region = json.loads(json_file_region.read())
-        
+
         username=session.get('username')
         user_logged = mongo.db.user.find_one({'username' : username})
         
@@ -39,8 +36,8 @@ def index():
                             city_named= mongo.db.cities.find(), city_2=mongo.db.cities.find(),
                             city_3=mongo.db.cities.find(), city_4=mongo.db.cities.find(),
                             city_5=mongo.db.cities.find(),
-                            country=json_file_country, regions=json_file_region, user_logged=user_logged
-                            )
+                            country=json_file_country, regions=mongo.db.region.find(),
+                            user_logged=user_logged)
 
 #~~~~~~~~~ CRUD - Create a new city, Read New city, Update existing city, Delete existing City ~~~~~~~~#
 # Create city WebPage
@@ -50,9 +47,6 @@ def add_city():
     #open coutries.json 
     with open('data/countries.json') as json_file_country:
         json_file_country = json.loads(json_file_country.read())
-    #open region.json
-    with open('data/region.json') as json_file_region:
-        json_file_region = json.loads(json_file_region.read())
     cities = mongo.db.cities.find()
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
@@ -60,7 +54,7 @@ def add_city():
     if session['logged_in'] == False:
         return redirect(url_for('login_page'))
     else:
-        return render_template('addcity.html', country=json_file_country, regions=json_file_region,
+        return render_template('addcity.html', country=json_file_country, regions=mongo.db.regions.find(),
         city=mongo.db.cieties.find(), user=mongo.db.user.find(), count_cities = cities.count(),
         user_logged=user_logged)
 
@@ -88,9 +82,16 @@ def insert_city():
     }
     cities.insert_one(city_info)
     
+    # Add to the user the list of cities made
     mongo.db.user.update({"username": username},
             {'$addToSet': 
             {'cities_made' : request.form.get('city_name').lower()}})
+            
+    # Add to region the list of cities in that region
+    region_name = request.form.get('city_region')
+    mongo.db.regions.update({"region_name": region_name},
+            {'$addToSet': 
+            {'cities_in _region' : request.form.get('city_name')}})
     
     return redirect(url_for('user_page'))
     
@@ -102,10 +103,6 @@ def edit_city(city_id):
 #open countries.json
     with open('data/countries.json') as json_file:
          all_cities  = json.loads(json_file.read())
-#open region.json
-    with open('data/region.json') as json_file_region:
-        json_file_region = json.loads(json_file_region.read())  
-        
     username=session.get('username')
     user_logged = mongo.db.user.find_one({'username' : username})
     
@@ -113,7 +110,7 @@ def edit_city(city_id):
         return redirect(url_for('login_page'))
     else:
         return render_template('editcity.html', city=the_city,
-            country=all_cities, regions=json_file_region, user=mongo.db.user, user_logged=user_logged)
+            country=all_cities, regions=mongo.db.regions.find(), user=mongo.db.user, user_logged=user_logged)
                             
     
 @app.route('/update_city/<city_id>', methods=['POST'])
@@ -122,9 +119,7 @@ def update_city(city_id):
 #open countries.json
     with open('data/countries.json') as json_file:
         json_file = json.loads(json_file.read())
-#open region.json
-    with open('data/region.json') as json_file_region:
-        json_file_region = json.loads(json_file_region.read())    
+        regions=mongo.db.regions.find()
     cities.update( {'_id': ObjectId(city_id)},
     {"$set":
     {
@@ -169,12 +164,11 @@ def city_page(city_id):
 
 @app.route('/cities_for_regions/<city_region>')
 def cities_for_regions(city_region):
-        with open('data/region.json') as json_file_region:
-            json_file_region = json.loads(json_file_region.read()) 
+
             username=session.get('username')
             user_logged = mongo.db.user.find_one({'username' : username})
             return render_template ("cities_for_regions.html", 
-                regions = json_file_region, cities = mongo.db.cities.find().sort('city_name'),
+                regions=mongo.db.regions.find(), cities = mongo.db.cities.find().sort('city_name'),
                 city_region=city_region, user_logged=user_logged, city=mongo.db.cities.find())
                 
 
