@@ -299,6 +299,11 @@ materialize-textarea {
     font-weight: 800;
 }
 
+.img_card{
+    max-width: 350px;
+    max-height: 250px;
+}
+
 /*..........................................Carousel*/
 
 .carousel_container {
