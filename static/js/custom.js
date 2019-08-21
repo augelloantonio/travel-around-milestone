@@ -3,13 +3,16 @@
  * to prevent to show any not charged css and elements - this fix the bug that my personal style.css
  * font and styling is not fully charged at the load of the page
  */
- 
- function retard_loading(){
-$(document).ready(function() {
-    document.getElementsByTagName("html")[0].style.visibility = "visible";
-});
+
+function retard_loading() {
+    $(document).ready(function() {
+        document.getElementsByTagName("html")[0].style.visibility = "visible";
+    });
 }
 
+    $(window).on('load', function() {
+        $('#loading').hide();
+    });
 
 //Function to display my search form on click
 $(document).ready(function() {
@@ -21,12 +24,12 @@ $(document).ready(function() {
 
 //Function to hide password from the form
 function hide_password() {
-    var x = document.getElementById("password");
-    if (x.type === "password") {
-        x.type = "text";
+    var password = document.getElementById("password");
+    if (password === "password") {
+        password = "text";
     }
     else {
-        x.type = "password";
+        password = "password";
     }
 }
 

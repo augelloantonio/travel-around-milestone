@@ -8,7 +8,7 @@ body {
     display: flex;
     min-height: 100vh!important;
     flex-direction: column;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif!important;
     font-size: 1rem;
 }
 
@@ -58,9 +58,7 @@ body {
 }
 
 @media (max-width:420px) {
-    .preferite_btn,
-    .add_to_visit_btn,
-    .add_visited_btn {
+    .preferite_btn, .add_to_visit_btn, .add_visited_btn {
         font-size: 1.6rem!important;
     }
 }
@@ -87,15 +85,15 @@ body {
     display: flex;
 }
 
-@media (max-width: 420px) {
-    .add_to_visit_btn {
+@media (max-width: 420px){
+    .add_to_visit_btn{
         right: 2rem!important;
     }
 }
 
-@media (max-width: 420px) {
-    .add_visited_btn {
-        right: 5rem!important;
+@media (max-width: 420px){
+    .add_visited_btn{
+        right:5rem!important;
     }
 }
 
@@ -245,6 +243,13 @@ materialize-textarea {
 
 /*..........................................Card Style  */
 
+.img_card {
+    display: block;
+    max-width: 100%;
+    max-height: 250px;
+    height: -webkit-fill-available!important;
+}
+
 .city_card_title {
     background-color: #a9a9a987;
     width: 100%;
@@ -253,55 +258,74 @@ materialize-textarea {
     font-weight: 600;
     max-height: 40%;
     line-height: 0.9;
-    padding: 1.5rem;
-}
-
-@media (max-width: 450px) {
-    .city_card_title {
-        max-height: 30%!important;
-        padding: 1.2rem!important;
-    }
 }
 
 .card_col :hover {
     font-weight: 800;
 }
 
+.card_style {
+    max-height: 250px;
+    padding: 10px;
+}
+
+.card_container {
+    display: flex!important;
+    height: 100%;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.card .card-image {
+    height: 100%;
+    box-shadow: 0 0 8px 0px;
+}
+
+
+@media (max-width: 720px) {
+    .card .card-image img {
+        max-height: 200px;
+    }
+}
+
+@media (max-width: 440px) {
+    .card .card-image img {
+        max-height: 150px;
+    }
+
+}
 
 .edit_btn_row {
     position: absolute;
 }
 
-.col_card {
-    display: flex;
+.clearfix {
+    clear: both;
 }
 
-.card-image {
-    height: 250px;
-    overflow: hidden;
-}
-
-.card,
-.card-image img {
-    display: block;
-    border-radius: 2px 2px 0 0;
-    box-shadow: 0 0 8px 0px;
-    position: relative;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+.card {
     width: 100%;
     height: 100%;
 }
 
-.col_card :hover {
-    font-weight: 800;
+
+.card_col {
+    padding: 10px!important;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.img_card {
-    max-width: 350px;
-    max-height: 250px;
+@media (max-width: 720px) {
+    .card_col {
+        padding: 5px!important;
+    }
+}
+
+@media (max-width: 450px) {
+    .card .card-image .card-title {
+        padding: 14px;
+    }
 }
 
 /*..........................................Carousel*/
@@ -313,27 +337,6 @@ materialize-textarea {
     left: 0;
     right: 0;
 
-}
-
-.img_carousel {
-    max-width: 1000px;
-    max-height: 450px;
-}
-
-@media (max-width: 720px) {
-    .card-image,
-    .card-title {
-        max-height: 200px;
-        font-size: 1.3rem!important;
-    }
-}
-
-@media (max-width: 440px) {
-    .card-image,
-    .card-title {
-        max-height: 150px;
-        font-size: 1.1rem!important;
-    }
 }
 
 
@@ -555,7 +558,7 @@ th {
     display: flex;
 }
 
-.hidden_option {
+.hidden_option{
     display: none;
 }
 
@@ -571,31 +574,9 @@ th {
 }
 
 /*...............................................Alert Message................................*/
-
-.alert_messagge_header {
+.alert_messagge_header{
     font-family: 'Alfa Slab One', cursive;
     color: #524c4c;
     text-align: center;
     font-size: 1.5rem;
-}
-
-
-/*...........................................Loading gif .........................*/
-
-#loading {
-    background: url('static/img/preloader.gif') no-repeat center center;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    position: fixed;
-    display: block;
-    opacity: 0.7;
-    background-color: #fff;
-    z-index: 99;
-    text-align: center;
-}
-
-.hide {
-    display: none;
 }
