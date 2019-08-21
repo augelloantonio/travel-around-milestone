@@ -477,6 +477,18 @@ def user_list():
         return render_template('users_registered.html', users = mongo.db.user.find(), user_logged=user_logged)
 
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~Error Pages~~~~~~~~~~~~~~~~~~~~~~~#
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(500)
+def something_wrong(error):
+    return render_template('500.html'), 500
+
+
+
 #Permitt the server to run the web app
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
