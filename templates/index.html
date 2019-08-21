@@ -6,7 +6,7 @@
     <div class="carousel_container">
         <div class="carousel carousel-slider">
             {%for images in cities_carousel %} {%if url_image == url %}
-            <a href="{{url_for( 'city_page', city_id=images._id,)}}" class="carousel-item" href="#one!"><img src="{{images.city_image}}" alt="{{city.city_name}}"></a> {%endif%}{%endfor%}
+            <a href="{{url_for( 'city_page', city_id=images._id,)}}" class="carousel-item img_carousel" href="#one!"><img src="{{images.city_image}}" alt="{{city.city_name}}" ></a> {%endif%}{%endfor%}
         </div>
     </div>
 </div>
