@@ -20,23 +20,22 @@ app.secret_key = os.getenv('SECRET', 'randomstring123')
 
 mongo = PyMongo(app)
 
+# Variable
+cities = mongo.db.cities
+regions = mongo.db.regions
+
 #~~~~~~~~~~~~~~~~~~#Set as homepage my index.html~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 @app.route('/')
 @app.route('/index')
 def index():
-    #open coutries.json 
-    with open('data/countries.json') as json_file_country:
-        json_file_country = json.loads(json_file_country.read())
+    username=session.get('username')
+    user_logged = mongo.db.user.find_one({'username' : username})
 
-        username=session.get('username')
-        user_logged = mongo.db.user.find_one({'username' : username})
-
-    return render_template("index.html", cities=mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), 
-                            cities_carousel= mongo.db.cities.find(), city=mongo.db.cities.find(), 
-                            city_named= mongo.db.cities.find(), city_2=mongo.db.cities.find(),
-                            city_3=mongo.db.cities.find(), city_4=mongo.db.cities.find(),
-                            city_5=mongo.db.cities.find(),
-                            country=json_file_country, regions = mongo.db.regions.find(),
+    return render_template("index.html", cities=cities.find().sort('added_time', pymongo.DESCENDING), 
+                            cities_carousel= cities.find(), city=cities.find(), 
+                            city_named= cities.find(), city_2=cities.find(),
+                            city_3=cities.find(), city_4=cities.find(),
+                            city_5=cities.find(), regions = regions.find(),
                             user_logged=user_logged)
 
 #~~~~~~~~~ CRUD - Create a new city, Read New city, Update existing city, Delete existing City ~~~~~~~~#
