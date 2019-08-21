@@ -8,11 +8,12 @@ function retard_loading() {
     $(document).ready(function() {
         document.getElementsByTagName("html")[0].style.visibility = "visible";
     });
-}
-
     $(window).on('load', function() {
         $('#loading').hide();
     });
+}
+
+
 
 //Function to display my search form on click
 $(document).ready(function() {

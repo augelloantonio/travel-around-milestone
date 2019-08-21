@@ -182,7 +182,7 @@ nav .brand-logo {
     padding: 0px;
 }
 
-#search_box_icon {
+#search_box_icon, #search_box_icon_mobile {
     line-height: inherit;
 }
 
@@ -583,12 +583,12 @@ th {
 /*...........................................Loading gif .........................*/
 
 #loading {
-    background: url('static/img/preloader.gif') no-repeat center center;
+    background: url('/static/img/preloader.gif') no-repeat center center;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-    position: fixed;
+    position: absolute;
     display: block;
     opacity: 0.7;
     background-color: #fff;
