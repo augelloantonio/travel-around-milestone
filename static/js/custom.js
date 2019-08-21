@@ -3,9 +3,12 @@
  * to prevent to show any not charged css and elements - this fix the bug that my personal style.css
  * font and styling is not fully charged at the load of the page
  */
+ 
+ function retard_loading(){
 $(document).ready(function() {
     document.getElementsByTagName("html")[0].style.visibility = "visible";
 });
+}
 
 
 //Function to display my search form on click
@@ -171,6 +174,6 @@ $(document).ready(function() {
 });
 
 // Calling my functions
+retard_loading();
 autoplay();
 hide_password();
-restore_hidden_delete();
