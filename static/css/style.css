@@ -52,7 +52,7 @@ body {
     }
 }
 
-.discover{
+.discover {
     line-height: 1.5rem
 }
 
@@ -185,7 +185,8 @@ nav .brand-logo {
     padding: 0px;
 }
 
-#search_box_icon, #search_box_icon_mobile {
+#search_box_icon,
+#search_box_icon_mobile {
     line-height: inherit;
 }
 
@@ -565,12 +566,26 @@ th {
 /*.........................................User List Page................................*/
 
 .user_icon_img {
-    max-height: 6rem;
-    max-width: 6rem;
+    width: 100%;
+    min-width: 80px;
+    height: auto;
+    border-radius: 25%;
+    margin: auto;
 }
 
 .username_card {
-    display: inline-grid;
+}
+
+.user_card{
+    padding: 15px!important;
+}
+
+.user_card_title {
+    text-align: center;
+    font-weight: 600;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-size: 1rem;
 }
 
 /*...............................................Alert Message................................*/
