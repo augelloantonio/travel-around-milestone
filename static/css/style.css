@@ -49,8 +49,11 @@ body {
     .discover_all_btn {
         font-size: 1rem;
         padding: 3px!important;
-        line-height: 1.5;
     }
+}
+
+.discover{
+    line-height: 1.5rem
 }
 
 .add_row {
