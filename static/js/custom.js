@@ -5,15 +5,14 @@
  */
 
 function retard_loading() {
-    $(document).ready(function() {
-        document.getElementsByTagName("html")[0].style.visibility = "visible";
-    });
     $(window).on('load', function() {
         $('#loading').hide();
+        autoplay();
+    });
+     $(document).ready(function() {
+        document.getElementsByTagName("html")[0].style.visibility = "visible";
     });
 }
-
-
 
 //Function to display my search form on click
 $(document).ready(function() {
@@ -122,6 +121,7 @@ function change_contents_preferite() {
 
 // Let carousel self slide
 function autoplay() {
+    setTimeout()
     $('.carousel').carousel('next');
     setTimeout(autoplay, 4500);
 }
@@ -145,37 +145,6 @@ function verification_form() {
     }
 }
 
-
-// Materialize Customiztions
-
-// Add the collapse to the navbar button
-$(".button-collapse").sideNav();
-
-// Add the tooltip
-$(document).ready(function() {
-    $('.tooltipped').tooltip();
-});
-
-
-// Add select function
-$(document).ready(function() {
-    $('select').toggle();
-});
-
-$('.carousel.carousel-slider').carousel({
-    fullWidth: true
-});
-
-
-// Matezialize box
-$(document).ready(function() {
-    $('.materialboxed').materialbox();
-});
-
-// Materialize Modal
-$(document).ready(function() {
-    $('.modal').modal();
-});
 
 // Calling my functions
 retard_loading();

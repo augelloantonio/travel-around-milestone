@@ -19,7 +19,7 @@
     <div>
         <div class="row ">
             <!-- Set [0:24] to show only the last 8 elements - bug: it seem that each city occupy 3 spaces -->
-            {%for city in cities %} {%if city.city_region == 'Europe'%}
+            {% for city in cities %} {%if city.city_region == 'Europe'%}
             <div class="col xs 12 s6 m4 l3 col_card">
                 <div class="card ">
                     <div class="card-image waves-effect waves-block waves-light ">
@@ -56,7 +56,7 @@
             <p class="index_header">North America & Canada</p>
         </div>
         <div class="row ">
-            {%for city in city_named%} {%if city.city_region == 'North America & Canada'%}
+            {%for city in cities_named%} {%if city.city_region == 'North America & Canada'%}
             <div class="col s6 m4 l3 col_card">
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light ">
@@ -92,7 +92,7 @@
     <div>
         <p class="index_header">Asia</p>
         <div class="row ">
-            {%for city in city_2%} {%if city.city_region == 'Asia'%}
+            {%for city in cities_2%} {%if city.city_region == 'Asia'%}
             <div class="col s6 m4 l3 col_card">
                 <div class="card ">
                     <div class="card-image waves-effect waves-block waves-light ">
@@ -128,7 +128,7 @@
     <div>
         <p class="index_header">Central America & South America</p>
         <div class="row ">
-            {%for city in city_3%} {%if city.city_region == 'Central America & South America'%}
+            {%for city in cities_3%} {%if city.city_region == 'Central America & South America'%}
             <div class="col s6 m4 l3 col_card">
                 <div class="card ">
                     <div class="card-image waves-effect waves-block waves-light ">
@@ -166,7 +166,7 @@
             <p class="index_header">Australia & New Zeland</p>
         </div>
         <div class="row ">
-            {%for city in city_4%} {%if city.city_region == 'Australia & New Zeland'%}
+            {%for city in cities_4%} {%if city.city_region == 'Australia & New Zeland'%}
             <div class="col s6 m4 l3 col_card">
                 <div class="card ">
                     <div class="card-image waves-effect waves-block waves-light ">
@@ -204,7 +204,7 @@
             <p id="name_of_region" class="index_header">Africa & The Middle East</p>
         </div>
         <div class="row">
-            {%for city in city_5%} {%if city.city_region == 'Africa & The Middle East' %}
+            {%for city in cities_5%} {%if city.city_region == 'Africa & The Middle East' %}
             <div class="col s6 m4 l3 col_card ">
                 <div class="card ">
                     <div class="card-image waves-effect waves-block waves-light ">

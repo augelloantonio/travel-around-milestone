@@ -23,19 +23,20 @@ mongo = PyMongo(app)
 # Variable
 cities = mongo.db.cities
 regions = mongo.db.regions
+users = mongo.db.user
 
 #~~~~~~~~~~~~~~~~~~#Set as homepage my index.html~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 @app.route('/')
 @app.route('/index')
 def index():
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
+    user_logged = users.find_one({'username' : username})
 
     return render_template("index.html", cities=cities.find().sort('added_time', pymongo.DESCENDING), 
                             cities_carousel= cities.find(), city=cities.find(), 
-                            city_named= cities.find(), city_2=cities.find(),
-                            city_3=cities.find(), city_4=cities.find(),
-                            city_5=cities.find(), regions = regions.find(),
+                            cities_named= cities.find(), cities_2=cities.find(),
+                            cities_3=cities.find(), cities_4=cities.find(),
+                            cities_5=cities.find(), regions = regions.find(),
                             user_logged=user_logged)
 
 #~~~~~~~~~ CRUD - Create a new city, Read New city, Update existing city, Delete existing City ~~~~~~~~#
@@ -46,15 +47,14 @@ def add_city():
     #open coutries.json 
     with open('data/countries.json') as json_file_country:
         json_file_country = json.loads(json_file_country.read())
-    cities = mongo.db.cities.find()
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
+    user_logged = users.find_one({'username' : username})
     
     if session['logged_in'] == False:
         return redirect(url_for('login_page'))
     else:
-        return render_template('addcity.html', country=json_file_country, regions=mongo.db.regions.find(),
-        city=mongo.db.cieties.find(), user=mongo.db.user.find(), count_cities = cities.count(),
+        return render_template('addcity.html', country=json_file_country, regions=regions.find(),
+        city=cities.find(), user=users.find(), count_cities = cities.count(),
         user_logged=user_logged)
 
 
@@ -62,8 +62,7 @@ def add_city():
 @app.route('/insert_city', methods=['POST'])
 def insert_city():
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
-    cities = mongo.db.cities
+    user_logged = users.find_one({'username' : username})
     city_info = {
         'city_name':request.form.get('city_name').lower(),
         'city_country':request.form.get('city_country'),
@@ -82,13 +81,13 @@ def insert_city():
     cities.insert_one(city_info)
     
     # Add to the user the list of cities made
-    mongo.db.user.update({"username": username},
+    users.update({"username": username},
             {'$addToSet': 
             {'cities_made' : request.form.get('city_name').lower()}})
             
     # Add to region the list of cities in that region
     region_name = request.form.get('city_region')
-    mongo.db.regions.update({"region_name": region_name},
+    regions.update({"region_name": region_name},
             {'$addToSet': 
             {'cities_in _region' : request.form.get('city_name')}})
     
@@ -98,27 +97,25 @@ def insert_city():
 # Get the city data from the city id
 @app.route('/edit_city/<city_id>')
 def edit_city(city_id):
-    the_city =  mongo.db.cities.find_one({"_id": ObjectId(city_id)})
+    the_city =  cities.find_one({"_id": ObjectId(city_id)})
 #open countries.json
     with open('data/countries.json') as json_file:
          all_cities  = json.loads(json_file.read())
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
+    user_logged = users.find_one({'username' : username})
     
     if session['logged_in'] == False:
         return redirect(url_for('login_page'))
     else:
         return render_template('editcity.html', city=the_city,
-            country=all_cities, regions=mongo.db.regions.find(), user=mongo.db.user, user_logged=user_logged)
+            country=all_cities, regions=regions.find(), user=users, user_logged=user_logged)
                             
     
 @app.route('/update_city/<city_id>', methods=['POST'])
 def update_city(city_id):
-    cities = mongo.db.cities
 #open countries.json
     with open('data/countries.json') as json_file:
         json_file = json.loads(json_file.read())
-        regions=mongo.db.regions.find()
     cities.update( {'_id': ObjectId(city_id)},
     {"$set":
     {
@@ -141,10 +138,10 @@ def update_city(city_id):
 @app.route('/delete_city/<city_name>/<city_id>')
 def delete_city(city_name, city_id):
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
-    mongo.db.cities.remove({'_id': ObjectId(city_id)})
-    the_city = mongo.db.cities.find_one({'city_name': city_name})
-    mongo.db.user.update({"username": username},
+    user_logged = users.find_one({'username' : username})
+    cities.remove({'_id': ObjectId(city_id)})
+    the_city = cities.find_one({'city_name': city_name})
+    users.update({"username": username},
             {'$pull': 
             {'cities_made' : city_name}})
     return redirect(url_for('user_page'))
@@ -153,22 +150,22 @@ def delete_city(city_name, city_id):
 #Display the City webpage 
 @app.route('/city_page/<city_id>')
 def city_page(city_id):
-    the_city =  mongo.db.cities.find_one({"_id": ObjectId(city_id)})
+    the_city =  cities.find_one({"_id": ObjectId(city_id)})
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
-    return render_template("city.html", cities = mongo.db.cities.find_one({'_id': ObjectId(city_id)}),
-    city=the_city, user=mongo.db.user.find(), cities_carousel=mongo.db.cities.find_one({'_id': ObjectId(city_id)}),
-    city_must_see=mongo.db.cities.find(), user_logged=user_logged)
+    user_logged = users.find_one({'username' : username})
+    return render_template("city.html", cities = cities.find_one({'_id': ObjectId(city_id)}),
+    city=the_city, user=users.find(), cities_carousel=cities.find_one({'_id': ObjectId(city_id)}),
+    city_must_see=cities.find(), user_logged=user_logged)
 
 
 @app.route('/cities_for_regions/<city_region>')
 def cities_for_regions(city_region):
 
             username=session.get('username')
-            user_logged = mongo.db.user.find_one({'username' : username})
+            user_logged = users.find_one({'username' : username})
             return render_template ("cities_for_regions.html", 
-                regions=mongo.db.regions.find(), cities = mongo.db.cities.find().sort('city_name'),
-                city_region=city_region, user_logged=user_logged, city=mongo.db.cities.find())
+                regions=regions.find(), cities = cities.find().sort('city_name'),
+                city_region=city_region, user_logged=user_logged, city=cities.find())
                 
 
 #~~~~~~~~~~~~~~~~~~ Register / Log In/ Account section ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -199,15 +196,15 @@ def get_user_data():
     session['username'] = username
     session.permanent = True
 
-    new_user = mongo.db.user.find_one({'username' : username})
-    new_email = mongo.db.user.find_one({'email': email})
+    new_user = users.find_one({'username' : username})
+    new_email = users.find_one({'email': email})
     
     if new_email is not None:
         session['logged_in'] = False
         flash('An user with same email exist already, please try again.')
         return redirect(url_for('register'))
     if new_user is None:
-        mongo.db.user.insert_one({
+        users.insert_one({
             'username': username,
             'password': password,
             'email': email,
@@ -230,7 +227,7 @@ def login():
     password = request.form['password']
     session['username'] = username
     session.permanent = True
-    user = mongo.db.user.find_one({'username' : username})
+    user = users.find_one({'username' : username})
 
     if not user:
         session['logged_in'] = False
@@ -242,9 +239,9 @@ def login():
         return redirect(url_for('login_page'))
     else:
         session['logged_in'] = True
-        user_logged = mongo.db.user.find_one({'username' : username})
-        return redirect(url_for('user_page', user=mongo.db.user.find(), 
-        city_author=user['username'], cities=mongo.db.cities.find(), user_logged=user_logged))
+        user_logged = users.find_one({'username' : username})
+        return redirect(url_for('user_page', user=users.find(), 
+        city_author=user['username'], cities=cities.find(), user_logged=user_logged))
     
 #Log Out
 @app.route('/logout')
@@ -257,8 +254,8 @@ def logout():
 def delete_user(user_id):
     session['logged_in'] == False
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
-    mongo.db.user.remove({'_id': ObjectId(user_id)})
+    user_logged = users.find_one({'username' : username})
+    users.remove({'_id': ObjectId(user_id)})
     if user_logged['right'] == 'admin':
         return redirect(url_for('index'))
     else:
@@ -268,58 +265,57 @@ def delete_user(user_id):
 # User Personal Page
 @app.route('/user_page')
 def user_page():
-    cities = mongo.db.cities.find()
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
-    the_city = mongo.db.cities.find_one({'city_name': 'city_name'})
+    user_logged = users.find_one({'username' : username})
+    the_city = cities.find_one({'city_name': 'city_name'})
     if session['logged_in'] == False:
         return redirect(url_for('login_page'))
     else:
-        return render_template('user.html', user=mongo.db.user.find(),
-        cities = mongo.db.cities.find().sort('added_time', pymongo.DESCENDING), tot_cities=cities.count(),
-        user_logged=user_logged, city=mongo.db.cities.find(), city_name = mongo.db.user.find(), 
-        cities_visited=mongo.db.cities.find(), cities_to_visit=mongo.db.cities.find(), 
-        cities_preferite=mongo.db.cities.find())
+        return render_template('user.html', user=users.find(),
+        cities = cities.find().sort('added_time', pymongo.DESCENDING), tot_cities=cities.count(),
+        user_logged=user_logged, city=cities.find(), city_name = users.find(), 
+        cities_visited=cities.find(), cities_to_visit=cities.find(), 
+        cities_preferite=cities.find())
 
 
 #Display the City webpage 
 @app.route('/userpublicpage/<user_id>')
 def userpublicpage(user_id):
-    the_user =  mongo.db.user.find_one({"_id": ObjectId(user_id)})
+    the_user =  users.find_one({"_id": ObjectId(user_id)})
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
+    user_logged = users.find_one({'username' : username})
     if session['logged_in'] == False:
         return redirect(url_for('login_page'))
     else:
-        return render_template("userpage.html", username = mongo.db.user.find_one({"_id": ObjectId(user_id)}),
-                          cities = mongo.db.cities.find(), user = the_user, user_logged=user_logged,
-                          city=mongo.db.cities.find(), city_name = mongo.db.user.find(), 
-                          cities_visited=mongo.db.cities.find(), cities_to_visit=mongo.db.cities.find(), 
-                          cities_preferite=mongo.db.cities.find())
+        return render_template("userpage.html", username = users.find_one({"_id": ObjectId(user_id)}),
+                          cities = cities.find(), user = the_user, user_logged=user_logged,
+                          city=cities.find(), city_name = users.find(), 
+                          cities_visited=cities.find(), cities_to_visit=cities.find(), 
+                          cities_preferite=cities.find())
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~ Admin Settings Page ~~~~~~~~~~~~~~~~~~~~~~~~~#
 @app.route('/admin_settings')
 def admin_settings():
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
+    user_logged = users.find_one({'username' : username})
     if session['logged_in'] == False:
         return redirect(url_for('login_page'))
     else:
-        return render_template('admin_settings.html', users = mongo.db.user.find(), user_logged=user_logged)
+        return render_template('admin_settings.html', users = users.find(), user_logged=user_logged)
 
 #Make a change user right page
 @app.route('/user_rights/<user_id>')
 def user_rights(user_id):
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
-    the_user = mongo.db.user.find_one({'_id': ObjectId(user_id)})
+    user_logged = users.find_one({'username' : username})
+    the_user = users.find_one({'_id': ObjectId(user_id)})
     if session['logged_in'] == False:
         return redirect(url_for('login_page'))
     elif user_logged['right'] != 'admin':
         return redirect(url_for('user_page'))
     else:
-        return render_template('user_right.html', user = the_user, users = mongo.db.user.find(),
+        return render_template('user_right.html', user = the_user, users = users.find(),
         user_logged=user_logged)
 
 
@@ -327,10 +323,9 @@ def user_rights(user_id):
 @app.route('/edit_user_rights/<user_id>', methods=['POST'])
 def edit_user_rights(user_id):
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
-    users = mongo.db.user.find()
-    the_user = mongo.db.user.find_one({'_id': ObjectId(user_id)})
-    mongo.db.user.update({'_id': ObjectId(user_id)},
+    user_logged = users.find_one({'username' : username})
+    the_user = users.find_one({'_id': ObjectId(user_id)})
+    users.update({'_id': ObjectId(user_id)},
     {"$set":
         {'right': request.form.get('user_right'),
         }
@@ -348,18 +343,18 @@ def search_city():
 @app.route('/search_a_city/<search_city>', methods=['GET'])
 def search_a_city(search_city):
 
-    mongo.db.cities.create_index([('city_name', 'text')])  
+    cities.create_index([('city_name', 'text')])  
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
+    user_logged = users.find_one({'username' : username})
     
     #Count the number of cities in the Database
-    all_cities = mongo.db.cities.find({'$text': {'$search': search_city}}).sort([('date_time', pymongo.DESCENDING), ('_id', pymongo.ASCENDING)])
+    all_cities = cities.find({'$text': {'$search': search_city}}).sort([('date_time', pymongo.DESCENDING), ('_id', pymongo.ASCENDING)])
     count_cities = all_cities.count()
     
-    city_page = mongo.db.cities.find({'$text': {'$search': search_city}}).sort([("date_time", pymongo.DESCENDING), 
+    city_page = cities.find({'$text': {'$search': search_city}}).sort([("date_time", pymongo.DESCENDING), 
                     ("_id", pymongo.ASCENDING)])
                     
-    return render_template('search_city.html', search_city=search_city.lower(), cities=mongo.db.cities.find(),
+    return render_template('search_city.html', search_city=search_city.lower(), cities=cities.find(),
         search_results = city_page.sort('date_time',pymongo.DESCENDING), count_cities=count_cities, user_logged=user_logged)
 
 
@@ -367,32 +362,32 @@ def search_a_city(search_city):
 @app.route('/add_to_visit/<city_name>/<city_id>')
 def add_to_visit(city_name, city_id):
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
-    user = mongo.db.user.find_one({'username' : username}) 
-    city = mongo.db.cities.find_one({"_id": ObjectId(city_id)})
+    user_logged = users.find_one({'username' : username})
+    user = users.find_one({'username' : username}) 
+    city = cities.find_one({"_id": ObjectId(city_id)})
 
-    mongo.db.user.update({"username": username},
+    users.update({"username": username},
             {'$addToSet': 
             {'city_to_visit' : city_name}})
-    mongo.db.cities.update({"_id": ObjectId(city_id)},
+    cities.update({"_id": ObjectId(city_id)},
             {'$addToSet': 
             {'city_to_visit_by' : username}})
-    return redirect(url_for('user_page', city_name = city_name, city_id=city_id))
+    return redirect(url_for('index', city_name = city_name, city_id=city_id))
 
 
 @app.route('/remove_to_visit/<city_name>/<city_id>')
 def remove_to_visit(city_name, city_id):
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
-    user = mongo.db.user.find_one({'username' : username}) 
-    city = mongo.db.cities.find_one({"_id": ObjectId(city_id)})
-    mongo.db.user.update({"username": username},
+    user_logged = users.find_one({'username' : username})
+    user = users.find_one({'username' : username}) 
+    city = cities.find_one({"_id": ObjectId(city_id)})
+    users.update({"username": username},
             {'$pull': 
             {'city_to_visit' : city_name}})
-    mongo.db.cities.update({"_id": ObjectId(city_id)},
+    cities.update({"_id": ObjectId(city_id)},
             {'$pull': 
             {'city_to_visit_by' : username}})
-    return redirect(url_for('user_page', city_name = city_name, city=mongo.db.cities.find(), city_id=city_id))
+    return redirect(url_for('user_page', city_name = city_name, city=cities.find(), city_id=city_id))
     
     
 #~~~~~~~~~~~~~~~~~~~~~~~~Visited list~~~~~~~~~~~~~~~~~~~~~~#
@@ -400,34 +395,34 @@ def remove_to_visit(city_name, city_id):
 @app.route('/add_to_visited/<city_name>/<city_id>')
 def add_to_visited(city_name, city_id):
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
-    user = mongo.db.user.find_one({'username' : username}) 
-    the_city = mongo.db.cities.find_one({'city_name': city_name})
-    city = mongo.db.cities.find_one({"_id": ObjectId(city_id)})
+    user_logged = users.find_one({'username' : username})
+    user = users.find_one({'username' : username}) 
+    the_city = cities.find_one({'city_name': city_name})
+    city = cities.find_one({"_id": ObjectId(city_id)})
     
-    mongo.db.user.update({"username": username},
+    users.update({"username": username},
             {'$addToSet': 
             {'city_visited' : city_name}})
-    mongo.db.cities.update({"_id": ObjectId(city_id)},
+    cities.update({"_id": ObjectId(city_id)},
             {'$addToSet': 
             {'city_visited_by' : username}})
-    return redirect(url_for('user_page', city_name = city_name, city_id=city_id))
+    return redirect(url_for('index', city_name = city_name, city_id=city_id))
 
 
 @app.route('/remove_visited/<city_name>/<city_id>')
 def remove_visited(city_name, city_id):
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
-    user = mongo.db.user.find_one({'username' : username}) 
-    city = mongo.db.cities.find_one({"_id": ObjectId(city_id)})
+    user_logged = users.find_one({'username' : username})
+    user = users.find_one({'username' : username}) 
+    city = cities.find_one({"_id": ObjectId(city_id)})
     
-    mongo.db.user.update({"username": username},
+    users.update({"username": username},
             {'$pull': 
             {'city_visited' : city_name}})
-    mongo.db.cities.update({"_id": ObjectId(city_id)},
+    cities.update({"_id": ObjectId(city_id)},
             {'$pull': 
             {'city_visited_by' : username}})
-    return redirect(url_for('index', city_name = city_name, city=mongo.db.cities.find(), city_id=city_id))
+    return redirect(url_for('user_page', city_name = city_name, city=cities.find(), city_id=city_id))
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~Preferite list~~~~~~~~~~~~~~~~~~~~~~#
@@ -435,46 +430,46 @@ def remove_visited(city_name, city_id):
 @app.route('/add_to_preferite/<city_name>/<city_id>')
 def add_to_preferite(city_name, city_id):
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
-    user = mongo.db.user.find_one({'username' : username}) 
-    the_city = mongo.db.cities.find_one({'city_name': city_name})
-    city = mongo.db.cities.find_one({"_id": ObjectId(city_id)})
-    mongo.db.user.update({"username": username},
+    user_logged = users.find_one({'username' : username})
+    user = users.find_one({'username' : username}) 
+    the_city = cities.find_one({'city_name': city_name})
+    city = cities.find_one({"_id": ObjectId(city_id)})
+    users.update({"username": username},
             {'$addToSet': 
             {'preferite_cities' : city_name}})
-    mongo.db.cities.update({"_id": ObjectId(city_id)},
+    cities.update({"_id": ObjectId(city_id)},
             {'$addToSet': 
             {'city_preferred_by' : username}})
     
-    return redirect(url_for('user_page', city_name = city_name, city_id=city_id))
+    return redirect(url_for('index', city_name = city_name, city_id=city_id))
 
 
 @app.route('/remove_preferite/<city_name>/<city_id>')
 def remove_preferite(city_name, city_id):
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
-    user = mongo.db.user.find_one({'username' : username}) 
-    city = mongo.db.cities.find_one({"_id": ObjectId(city_id)})
+    user_logged = users.find_one({'username' : username})
+    user = users.find_one({'username' : username}) 
+    city = cities.find_one({"_id": ObjectId(city_id)})
 
-    mongo.db.user.update({"username": username},
+    users.update({"username": username},
             {'$pull': 
             {'preferite_cities' : city_name}})
-    mongo.db.cities.update({"_id": ObjectId(city_id)},
+    cities.update({"_id": ObjectId(city_id)},
             {'$pull': 
             {'city_preferred_by' : username}})
-    return redirect(url_for('user_page', city_name = city_name, city=mongo.db.cities.find(),
-    preferites=mongo.db.user.find(), city_id=city_id))
+    return redirect(url_for('user_page', city_name = city_name, city=cities.find(),
+    preferites=users.find(), city_id=city_id))
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~User List and Info~~~~~~~~~~~~~~~~~~~#
 @app.route('/user_list')
 def user_list():
     username=session.get('username')
-    user_logged = mongo.db.user.find_one({'username' : username})
+    user_logged = users.find_one({'username' : username})
     if session['logged_in'] == False:
         return redirect(url_for('login_page'))
     else:
-        return render_template('users_registered.html', users = mongo.db.user.find(), user_logged=user_logged)
+        return render_template('users_registered.html', users = users.find(), user_logged=user_logged)
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~Error Pages~~~~~~~~~~~~~~~~~~~~~~~#
@@ -487,10 +482,12 @@ def page_not_found(error):
 def something_wrong(error):
     return render_template('500.html'), 500
 
-
-
 #Permitt the server to run the web app
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get("PORT")),
             debug=True)
+            
+            
+            
+
