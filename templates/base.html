@@ -87,18 +87,18 @@
                     <ul>
                         <li><a href="{{ url_for ('index')}}"><i class="material-icons">home</i> Home</a></li>
                         {% if session['logged_in'] == True %}
-                        <li><a href="{{ url_for ('add_city')}}"><i class="material-icons">add_box</i> Add a City </a></a>
-                        </li>
                         <li><a href="{{ url_for ('user_page')}}"><i class="material-icons">account_circle</i> User Page</a></li>
+                        <li><a href="{{ url_for ('user_list')}}"><i class="material-icons">list</i>Discover Users</a></li>
+                        <li><a href="{{ url_for ('add_city')}}"><i class="material-icons">add_box</i> Add a City </a></li>
+                        {%if session['logged_in'] == True and user_logged.right == 'admin'%}
+                        <li><a href="{{ url_for ('admin_settings')}}"><i class="material-icons">settings</i>Admin Area</a> </li>
+                        {%endif%}
                         <li><a href="{{url_for('logout')}}"><i class="material-icons">power_settings_new</i> Log Out</a></li>
                         {%else%}
                         <li><a href="{{url_for('login_page')}}"><i class="material-icons">person</i> Log In</a></li>
                         <li><a href="{{url_for('register')}}"><i class="material-icons">person_add</i> Register</a></li>
-                        {%endif%} {%if session['logged_in'] == True and user_logged.right == 'admin'%}
-                        <li><a href="{{ url_for ('admin_settings')}}"><i class="material-icons">settings</i>Admin Area</a> </li>
-                        {%endif%} {%if session['logged_in'] == True%}
-                        <li><a href="{{ url_for ('user_list')}}"><i class="material-icons">list</i>Discover Users</a></li>
                         {%endif%}
+
                     </ul>
                     <div class="user_page_header">
                         <div>

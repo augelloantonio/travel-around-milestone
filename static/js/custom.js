@@ -7,6 +7,7 @@
 function retard_loading() {
     $(window).on('load', function() {
         $('#loading').hide();
+        $('.carousel').carousel('next');
         autoplay();
     });
      $(document).ready(function() {
