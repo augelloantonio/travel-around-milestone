@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+
+<div>
+    <div>
+        <h3 class="index_header">We are sorry, but this action can only be done by registered users.</h4>
+            <h3 class="permission_header">Why don't you came aboard with us?</h5>
+    </div>
+    <div class="centered">
+        <p class="permission_header"> Why became a user? Well, here few reasons:</p>
+        <ul class="user_benefits">
+            <li>Add a new city</li>
+            <li>Edit an existing city</li>
+            <li>Add a city to your “city to visit” list</li>
+            <li>Add a city to your “visited" list</li>
+            <li>Add a city to your “preferite" list</li>
+            <li>Manage your own account</li>
+            <li>View other users account and list</li>
+        </ul>
+    </div>
+    <h3 class="important_notice">And more important, became a member of this Travellers Community and share your adventure tips with everyone!</a></h5>
+    <h3 class="permission_header"><a href="{{ url_for ('register')}}">Register now!</a></h5>
+</div>
+
+
+{%endblock%}

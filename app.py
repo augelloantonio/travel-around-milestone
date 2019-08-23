@@ -249,6 +249,7 @@ def login():
 #Log Out
 @app.route('/logout')
 def logout():
+    session.clear()
     session['logged_in'] = False
     return redirect(url_for('index'))
     
@@ -368,13 +369,16 @@ def add_to_visit(city_name, city_id):
     user = users.find_one({'username' : username}) 
     city = cities.find_one({"_id": ObjectId(city_id)})
 
-    users.update({"username": username},
+    if not session.get('logged_in'): 
+        return redirect(url_for('permitt_required'))
+    else:
+        users.update({"username": username},
             {'$addToSet': 
             {'city_to_visit' : city_name}})
-    cities.update({"_id": ObjectId(city_id)},
+        cities.update({"_id": ObjectId(city_id)},
             {'$addToSet': 
             {'city_to_visit_by' : username}})
-    return redirect(url_for('index', city_name = city_name, city_id=city_id))
+        return redirect(url_for('index', city_name = city_name, city_id=city_id))
 
 
 @app.route('/remove_to_visit/<city_name>/<city_id>')
@@ -402,13 +406,16 @@ def add_to_visited(city_name, city_id):
     the_city = cities.find_one({'city_name': city_name})
     city = cities.find_one({"_id": ObjectId(city_id)})
     
-    users.update({"username": username},
+    if not session.get('logged_in'): 
+        return redirect(url_for('permitt_required'))
+    else:
+        users.update({"username": username},
             {'$addToSet': 
             {'city_visited' : city_name}})
-    cities.update({"_id": ObjectId(city_id)},
+        cities.update({"_id": ObjectId(city_id)},
             {'$addToSet': 
             {'city_visited_by' : username}})
-    return redirect(url_for('index', city_name = city_name, city_id=city_id))
+        return redirect(url_for('index', city_name = city_name, city_id=city_id))
 
 
 @app.route('/remove_visited/<city_name>/<city_id>')
@@ -436,14 +443,18 @@ def add_to_preferite(city_name, city_id):
     user = users.find_one({'username' : username}) 
     the_city = cities.find_one({'city_name': city_name})
     city = cities.find_one({"_id": ObjectId(city_id)})
-    users.update({"username": username},
+    
+    if not session.get('logged_in'): 
+        return redirect(url_for('permitt_required'))
+    else:
+        users.update({"username": username},
             {'$addToSet': 
             {'preferite_cities' : city_name}})
-    cities.update({"_id": ObjectId(city_id)},
+        cities.update({"_id": ObjectId(city_id)},
             {'$addToSet': 
             {'city_preferred_by' : username}})
     
-    return redirect(url_for('index', city_name = city_name, city_id=city_id))
+        return redirect(url_for('index', city_name = city_name, city_id=city_id))
 
 
 @app.route('/remove_preferite/<city_name>/<city_id>')
@@ -474,6 +485,14 @@ def user_list():
         return render_template('users_registered.html', users = users.find(), user_logged=user_logged)
 
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Permitt Page ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+@app.route('/permitt_required')
+def permitt_required():
+    username=session.get('username')
+    user_logged = users.find_one({'username' : username})
+    return render_template('permitt_required.html', user_logged=user_logged)
+
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~Error Pages~~~~~~~~~~~~~~~~~~~~~~~#
 @app.errorhandler(404)
 def page_not_found(error):
@@ -481,12 +500,12 @@ def page_not_found(error):
     user_logged = users.find_one({'username' : username})
     return render_template('404.html', user_logged=user_logged), 404
 
-
 @app.errorhandler(500)
 def something_wrong(error):
     username=session.get('username')
     user_logged = users.find_one({'username' : username})
     return render_template('500.html', user_logged=user_logged), 500
+
 
 #Permitt the server to run the web app
 if __name__ == '__main__':
