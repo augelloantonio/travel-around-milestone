@@ -7,8 +7,6 @@
 function retard_loading() {
     $(window).on('load', function() {
         $('#loading').hide();
-        $('.carousel').carousel('next');
-        autoplay();
     });
     $(document).ready(function() {
         document.getElementsByTagName("html")[0].style.visibility = "visible";
@@ -146,6 +144,11 @@ function verification_form() {
     }
 }
 
+// Let carousel self slide
+function autoplay() {
+    $('.carousel').carousel('next');
+    setTimeout(autoplay, 4500);
+}
 
 // Calling my functions
 retard_loading();
