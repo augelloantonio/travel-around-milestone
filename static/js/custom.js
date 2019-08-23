@@ -10,7 +10,7 @@ function retard_loading() {
         $('.carousel').carousel('next');
         autoplay();
     });
-     $(document).ready(function() {
+    $(document).ready(function() {
         document.getElementsByTagName("html")[0].style.visibility = "visible";
     });
 }

@@ -1,5 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Page not found, try again.</h1>
+<div class="not_found_error_div">
+    <h4 class="index_header">We are sorry, but there is a problem on your request.</h4>
+    <h4 class="index_header"><a href="{{ url_for ('index')}}">Go back.</a></h4>
+</div>
 
 {%endblock%}

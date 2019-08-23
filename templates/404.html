@@ -1,5 +1,20 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Page not found, try again.</h1>
+<div class="row">
+    <div class="not_found_error_row flex">
+        <div class="col s12 m4 error_page_col">
+            <div class="not_found_error_div">
+                <img src="{{ url_for('static', filename='img/404.jpg') }}" class="" alt="404">
+            </div>
+        </div>
+        <div class="col s12 m8  error_page_col error_page_text_div">
+            <div class="not_found_error_div">
+                <h4 class="index_header">Ooops, you look lost.</h4>
+                <h4 class="index_header"><a href="{{ url_for ('index')}}">Go back.</a></h4>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 {%endblock%}

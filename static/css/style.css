@@ -12,6 +12,11 @@ body {
     font-size: 1rem;
 }
 
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .content {
     flex: 1 0 auto;
 }
@@ -573,10 +578,9 @@ th {
     margin: auto;
 }
 
-.username_card {
-}
+.username_card {}
 
-.user_card{
+.user_card {
     padding: 15px!important;
 }
 
@@ -616,4 +620,24 @@ th {
 
 .hide {
     display: none;
+}
+
+/*............................................ 404 Page ..........................*/
+
+.not_found_error_img {
+    width: 100%;
+}
+
+
+.not_found_error_div {
+    padding-top: 25px;
+}
+
+.not_found_error_row {
+    overflow: hidden;
+}
+
+
+.error_page_text_div {
+    margin: auto;
 }
