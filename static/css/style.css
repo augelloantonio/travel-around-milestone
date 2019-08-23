@@ -419,6 +419,10 @@ materialize-textarea {
     line-height: normal;
 }
 
+.centered{
+    text-align: center;
+}
+
 /*...........................................Cities for region page*/
 
 .row_card {
@@ -503,6 +507,9 @@ th {
     padding: 5px!important;
 }
 
+.manage_users{
+    margin-bottom: 2rem;
+}
 
 .btn_right {
     display: list-item;

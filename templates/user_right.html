@@ -1,12 +1,12 @@
 {% extends 'base.html' %} {% block content %} {% if user_logged.right == 'admin' %}
-<h3>Change "{{user.username}}" right</h3>
-<h4>Please, be carefull, giving the 'admin' right to the user "{{user.username}}" you are allowing him to the special functionalities of the web site such as:</h4>
+<h3 class="index_header">Change "{{user.username}}" right</h3>
+<h4 class="info_title">Please, be carefull, giving the 'admin' right to the user "{{user.username}}" you are allowing him to the special functionalities of the web site such as:</h4>
 <div class="info_body">
 
-    <ul>
-        <li class="items">Delete cities</li>
-        <li class="items">Access to users info</li>
-        <li class="items">Modify user info</li>
+    <ul class="centered">
+        <li>Delete cities</li>
+        <li>Access to users info</li>
+        <li>Modify user info</li>
     </ul>
 </div>
 

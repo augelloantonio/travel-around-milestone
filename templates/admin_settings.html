@@ -2,19 +2,19 @@
 
 {% if session['logged_in'] == False or user_logged.right != 'admin' %}
 
-<h3>We are sorry, but only Travel Around admins can manage users info.</h3>
+<h3 class="index_header">We are sorry, but only Travel Around admins can manage users info.</h3>
 
 {% else %}
 
 <div class="user_page_header">
     <div class="row">
-        <div class="">
-            <h3>This page is reserved to the admin of Travel Around.</h3>
+        <div>
+            <h3 class="index_header">Admin Settings Area</h3>
         </div>
     </div>
 </div>
-<div>
-    <h5>Here you can manage the users.</h5>
+<div class="manage_users">
+    <h5 class="info_header">Registered Users</h5>
 </div>
 
 <div class="col s12">
@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                {%for user in users %}
+                {%for user in users|sort(attribute='username') %}
                 <tr>
                     <td><a href="{{url_for('userpublicpage', user_id=user._id)}}">{{user.username}}</a></td>
                     <td>{{user.right}}
