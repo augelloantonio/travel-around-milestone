@@ -50,7 +50,7 @@ def add_city():
     username=session.get('username')
     user_logged = users.find_one({'username' : username})
     
-    if session['logged_in'] == False:
+    if not session.get('logged_in'): 
         return redirect(url_for('login_page'))
     else:
         return render_template('addcity.html', country=json_file_country, regions=regions.find(),
@@ -104,7 +104,7 @@ def edit_city(city_id):
     username=session.get('username')
     user_logged = users.find_one({'username' : username})
     
-    if session['logged_in'] == False:
+    if not session.get('logged_in'): 
         return redirect(url_for('login_page'))
     else:
         return render_template('editcity.html', city=the_city,
@@ -173,7 +173,7 @@ def cities_for_regions(city_region):
 # register page form
 @app.route('/register')
 def register():
-    if session['logged_in'] == False:
+    if not session.get('logged_in'):        
         return render_template ('signuppage.html')
     else:
         return redirect(url_for('user_page'))
@@ -182,7 +182,10 @@ def register():
 # login page form
 @app.route('/login_page')
 def login_page():
-   return render_template ('login.html')
+    if not session.get('logged_in'): 
+        return render_template ('login.html')
+    else: 
+        return redirect(url_for('user_page'))
 
 # Get new user details and send them to MongoDB giving to all the users the right of user
 @app.route('/get_user_data', methods=['POST'])
@@ -267,8 +270,7 @@ def delete_user(user_id):
 def user_page():
     username=session.get('username')
     user_logged = users.find_one({'username' : username})
-    the_city = cities.find_one({'city_name': 'city_name'})
-    if session['logged_in'] == False:
+    if not session.get('logged_in'): 
         return redirect(url_for('login_page'))
     else:
         return render_template('user.html', user=users.find(),
@@ -284,7 +286,7 @@ def userpublicpage(user_id):
     the_user =  users.find_one({"_id": ObjectId(user_id)})
     username=session.get('username')
     user_logged = users.find_one({'username' : username})
-    if session['logged_in'] == False:
+    if not session.get('logged_in'): 
         return redirect(url_for('login_page'))
     else:
         return render_template("userpage.html", username = users.find_one({"_id": ObjectId(user_id)}),
@@ -299,7 +301,7 @@ def userpublicpage(user_id):
 def admin_settings():
     username=session.get('username')
     user_logged = users.find_one({'username' : username})
-    if session['logged_in'] == False:
+    if not session.get('logged_in'): 
         return redirect(url_for('login_page'))
     else:
         return render_template('admin_settings.html', users = users.find(), user_logged=user_logged)
@@ -310,7 +312,7 @@ def user_rights(user_id):
     username=session.get('username')
     user_logged = users.find_one({'username' : username})
     the_user = users.find_one({'_id': ObjectId(user_id)})
-    if session['logged_in'] == False:
+    if not session.get('logged_in'): 
         return redirect(url_for('login_page'))
     elif user_logged['right'] != 'admin':
         return redirect(url_for('user_page'))
@@ -466,7 +468,7 @@ def remove_preferite(city_name, city_id):
 def user_list():
     username=session.get('username')
     user_logged = users.find_one({'username' : username})
-    if session['logged_in'] == False:
+    if not session.get('logged_in'): 
         return redirect(url_for('login_page'))
     else:
         return render_template('users_registered.html', users = users.find(), user_logged=user_logged)
