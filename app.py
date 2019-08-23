@@ -34,7 +34,7 @@ def index():
 
     return render_template("index.html", cities=cities.find().sort('added_time', pymongo.DESCENDING), 
                             cities_carousel= cities.find(), city=cities.find(), 
-                            cities_named= cities.find(), cities_2=cities.find(),
+                            cities_1= cities.find(), cities_2=cities.find(),
                             cities_3=cities.find(), cities_4=cities.find(),
                             cities_5=cities.find(), regions = regions.find(),
                             user_logged=user_logged)
