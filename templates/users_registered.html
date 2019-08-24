@@ -17,7 +17,7 @@
     <div class="col s3 m2 xl1 user_card">
         <a href="{{url_for('userpublicpage', user_id=user._id)}}">
             <div class="username_card">
-                <img src="{{ url_for('static', filename='img/user_logo.png') }}" class="user_icon_img" alt="User Icon">
+                <img src="{{ url_for('static', filename='img/user_logo.png') }}" class="user_icon_img lazy" alt="User Icon">
                 <span class="card-title user_card_title">{{user.username}}</span>
             </div>
         </a>
