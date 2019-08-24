@@ -147,11 +147,15 @@ function verification_form() {
 // Let carousel self slide
 function autoplay() {
     $('.carousel').carousel('next');
-    setTimeout(autoplay, 4500);
+    setTimeout(autoplay, 2500);
 }
 
+// Set Timeout to autoplay funciton to retard the auto sliding and made the loading time of home page faster
+setTimeout(function() { autoplay(); }, 3000);
 
 // Calling my functions
 retard_loading();
-autoplay();
 hide_password();
+
+
+
