@@ -301,7 +301,8 @@ materialize-textarea {
     top: 0;
     bottom: 0;
     width: 100%;
-    height: 100%;
+    height: 250px;
+    position: relative;
 }
 
 .col_card :hover {
@@ -321,12 +322,33 @@ materialize-textarea {
     margin: auto;
     left: 0;
     right: 0;
-
 }
 
 .img_carousel {
-    max-width: 1000px;
-    max-height: 450px;
+    height: 400px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+@media (max-width: 720px){
+    .img_carousel{
+        height: 300px;
+    }
+}
+
+
+@media (max-width: 1200px){
+    .img_carousel, .carousel_container{
+        height: 250px;
+    }
+}
+
+@media (max-width: 680px){
+    .img_carousel, .carousel_container{
+        height: 150px;
+    }
 }
 
 @media (max-width: 720px) {
@@ -427,6 +449,15 @@ materialize-textarea {
 
 .row_card {
     width: 100%
+}
+
+.card_bg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    height: 250px;
+    position: relative;
 }
 
 /*............................................City Page*/
@@ -668,9 +699,9 @@ th {
     font-weight: 500;
 }
 
-@media (min-width: 720px){
+@media (min-width: 720px) {
     .important_notice {
-    padding: 0 100px 0 100px;
+        padding: 0 100px 0 100px;
 
-}
+    }
 }

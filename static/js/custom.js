@@ -150,6 +150,7 @@ function autoplay() {
     setTimeout(autoplay, 4500);
 }
 
+
 // Calling my functions
 retard_loading();
 autoplay();

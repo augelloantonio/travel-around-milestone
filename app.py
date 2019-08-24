@@ -31,12 +31,19 @@ users = mongo.db.user
 def index():
     username=session.get('username')
     user_logged = users.find_one({'username' : username})
+    cities_preferred_count = cities.find({'cities_preferred_by': 1}).count()
 
-    return render_template("index.html", cities=cities.find().sort('added_time', pymongo.DESCENDING), 
-                            cities_carousel= cities.find(), city=cities.find(), 
-                            cities_1= cities.find(), cities_2=cities.find(),
-                            cities_3=cities.find(), cities_4=cities.find(),
-                            cities_5=cities.find(), regions = regions.find(),
+
+# Set limit 16 to prevent showing more than 8 elements for region
+    return render_template("index.html", cities=cities.find().sort('added_time', pymongo.DESCENDING).limit(16),
+                            cities_carousel= cities.find().sort('city_name').limit(6),
+                            city=cities.find().sort('added_time', pymongo.DESCENDING).limit(16), 
+                            cities_1= cities.find().sort('added_time', pymongo.DESCENDING).limit(16), 
+                            cities_2=cities.find().sort('added_time', pymongo.DESCENDING).limit(16),
+                            cities_3=cities.find().sort('added_time', pymongo.DESCENDING).limit(16), 
+                            cities_4=cities.find().sort('added_time', pymongo.DESCENDING).limit(16),
+                            cities_5=cities.find().sort('added_time', pymongo.DESCENDING).limit(16), 
+                            regions = regions.find(),
                             user_logged=user_logged)
 
 #~~~~~~~~~ CRUD - Create a new city, Read New city, Update existing city, Delete existing City ~~~~~~~~#
@@ -76,7 +83,8 @@ def insert_city():
         'city_to_avoid': request.form.getlist('city_to_avoid'),
         'city_author': username,
         'city_image':request.form.get('city_image'),
-        'added_time' : strftime('%d' + "/" + '%m' + "/"+ '%Y')
+        'added_time' : strftime('%d' + "/" + '%m' + "/"+ '%Y'),
+        'no_preferite': 0
     }
     cities.insert_one(city_info)
     
@@ -443,7 +451,7 @@ def add_to_preferite(city_name, city_id):
     user = users.find_one({'username' : username}) 
     the_city = cities.find_one({'city_name': city_name})
     city = cities.find_one({"_id": ObjectId(city_id)})
-    
+
     if not session.get('logged_in'): 
         return redirect(url_for('permitt_required'))
     else:
@@ -452,9 +460,10 @@ def add_to_preferite(city_name, city_id):
             {'preferite_cities' : city_name}})
         cities.update({"_id": ObjectId(city_id)},
             {'$addToSet': 
-            {'city_preferred_by' : username}})
-    
-        return redirect(url_for('index', city_name = city_name, city_id=city_id))
+            {'city_preferred_by' : username }
+            })
+    return redirect(url_for('index', city_name = city_name, city_id=city_id))
+
 
 
 @app.route('/remove_preferite/<city_name>/<city_id>')

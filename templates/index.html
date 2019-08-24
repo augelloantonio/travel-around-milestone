@@ -6,7 +6,9 @@
     <div class="carousel_container">
         <div class="carousel carousel-slider">
             {%for images in cities_carousel %} {%if url_image == url %}
-            <a href="{{url_for( 'city_page', city_id=images._id,)}}" class="carousel-item img_carousel" href="#one!"><img src="{{images.city_image}}" alt="{{city.city_name}}" ></a> {%endif%}{%endfor%}
+            <a href="{{url_for( 'city_page', city_id=images._id,)}}" class="carousel-item img_carousel" href="#one!">
+                <div class="img_carousel" style="background-image: url({{images.city_image}})"></div>
+            </a> {%endif%}{%endfor%}
         </div>
     </div>
 </div>
@@ -18,15 +20,14 @@
     </div>
     <div>
         <div class="row ">
-            <!-- Set [0:16] to show only the last 8 elements - bug: it seem that each city occupy 2 spaces/collection called twice -->
-            {% for city in cities[0:16] %} {%if city.city_region == 'Europe'%} 
+            {% for city in cities%} {%if city.city_region == 'Europe'%}
             <div class="col xs 12 s6 m4 l3 col_card">
-                <div class="card ">
-                    <div class="card-image waves-effect waves-block waves-light ">
-                        <a href="{{url_for( 'city_page', city_id=city._id)}} ">
-                                    <img class="activator img_card " src="{{city.city_image}}" alt="{{city.city_name}}">   
-                                <span class="card-title city_card_title ">{{city.city_name}}</span></a>
-                    </div>
+                <div class="card card_bg" style="background-image: url({{city.city_image}})">
+                    <a href="{{url_for( 'city_page', city_id=city._id)}} ">
+                        <div class="card-image waves-effect waves-block waves-light ">
+                            <span class="card-title city_card_title ">{{city.city_name}}</span>
+                        </div>
+                    </a>
                 </div>
                 <div class="card_action">
                     <div class="add_row">
@@ -58,15 +59,14 @@
             <p class="index_header">North America & Canada</p>
         </div>
         <div class="row ">
-            {% for city in cities_1[0:16] %} {%if city.city_region == 'North America & Canada'%}
+            {% for city in cities_1 %} {%if city.city_region == 'North America & Canada'%}
             <div class="col s6 m4 l3 col_card">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light ">
-                        <a href="{{url_for( 'city_page', city_id=city._id)}} "> 
-                                <img class="activator img_card " src="{{city.city_image}}" alt="{{city.city_name}}">
-                                <span class="card-title city_card_title ">{{city.city_name}}</span>
-                                </a>
-                    </div>
+                <div class="card card_bg" style="background-image: url({{city.city_image}})">
+                    <a href="{{url_for( 'city_page', city_id=city._id)}} ">
+                        <div class="card-image waves-effect waves-block waves-light ">
+                            <span class="card-title city_card_title ">{{city.city_name}}</span>
+                        </div>
+                    </a>
                 </div>
                 <div class="card_action">
                     <div class="add_row">
@@ -96,15 +96,14 @@
     <div>
         <p class="index_header">Asia</p>
         <div class="row ">
-            {%for city in cities_2[0:16]%} {%if city.city_region == 'Asia'%}
+            {%for city in cities_2%} {%if city.city_region == 'Asia'%}
             <div class="col s6 m4 l3 col_card">
-                <div class="card ">
-                    <div class="card-image waves-effect waves-block waves-light ">
-                        <a href="{{url_for( 'city_page', city_id=city._id)}} ">
-                                <img class="activator img_card " src="{{city.city_image}}" alt="{{city.city_name}}">
-                                 <span class="card-title city_card_title ">{{city.city_name}}</span>
-                                 </a>
-                    </div>
+                <div class="card card_bg" style="background-image: url({{city.city_image}})">
+                    <a href="{{url_for( 'city_page', city_id=city._id)}} ">
+                        <div class="card-image waves-effect waves-block waves-light ">
+                            <span class="card-title city_card_title ">{{city.city_name}}</span>
+                        </div>
+                    </a>
                 </div>
                 <div class="card_action">
                     <div class="add_row">
@@ -134,15 +133,14 @@
     <div>
         <p class="index_header">Central America & South America</p>
         <div class="row ">
-            {%for city in cities_3[0:16]%} {%if city.city_region == 'Central America & South America'%}
+            {%for city in cities_3%} {%if city.city_region == 'Central America & South America'%}
             <div class="col s6 m4 l3 col_card">
-                <div class="card ">
-                    <div class="card-image waves-effect waves-block waves-light ">
-                        <a href="{{url_for( 'city_page', city_id=city._id)}} ">
-                                <img class="activator img_card " src="{{city.city_image}} " alt="{{city.city_name}}">
-                                 <span class="card-title city_card_title ">{{city.city_name}}</span>
-                                 </a>
-                    </div>
+                <div class="card card_bg" style="background-image: url({{city.city_image}})">
+                    <a href="{{url_for( 'city_page', city_id=city._id)}} ">
+                        <div class="card-image waves-effect waves-block waves-light ">
+                            <span class="card-title city_card_title ">{{city.city_name}}</span>
+                        </div>
+                    </a>
                 </div>
                 <div class="card_action">
                     <div class="add_row">
@@ -174,15 +172,14 @@
             <p class="index_header">Australia & New Zeland</p>
         </div>
         <div class="row ">
-            {%for city in cities_4[0:16]%} {%if city.city_region == 'Australia & New Zeland'%}
+            {%for city in cities_4%} {%if city.city_region == 'Australia & New Zeland'%}
             <div class="col s6 m4 l3 col_card">
-                <div class="card ">
-                    <div class="card-image waves-effect waves-block waves-light ">
-                        <a href="{{url_for( 'city_page', city_id=city._id)}} ">
-                                <img class="activator img_card " src="{{city.city_image}} " alt="{{city.city_name}}">
-                                 <span class="card-title city_card_title ">{{city.city_name}}</span>
-                                 </a>
-                    </div>
+                <div class="card card_bg" style="background-image: url({{city.city_image}})">
+                    <a href="{{url_for( 'city_page', city_id=city._id)}} ">
+                        <div class="card-image waves-effect waves-block waves-light ">
+                            <span class="card-title city_card_title ">{{city.city_name}}</span>
+                        </div>
+                    </a>
                 </div>
                 <div class="card_action">
                     <div class="add_row">
@@ -214,15 +211,14 @@
             <p id="name_of_region" class="index_header">Africa & The Middle East</p>
         </div>
         <div class="row">
-            {%for city in cities_5[0:16]%} {%if city.city_region == 'Africa & The Middle East' %}
+            {%for city in cities_5%} {%if city.city_region == 'Africa & The Middle East' %}
             <div class="col s6 m4 l3 col_card ">
-                <div class="card ">
-                    <div class="card-image waves-effect waves-block waves-light ">
-                        <a href="{{url_for( 'city_page', city_id=city._id)}} ">
-                                <img class="activator img_card " src="{{city.city_image}} " alt="{{city.city_name}}">
-                                 <span class="card-title city_card_title ">{{city.city_name}}</span>
-                                 </a>
-                    </div>
+                <div class="card card_bg" style="background-image: url({{city.city_image}})">
+                    <a href="{{url_for( 'city_page', city_id=city._id)}} ">
+                        <div class="card-image waves-effect waves-block waves-light ">
+                            <span class="card-title city_card_title ">{{city.city_name}}</span>
+                        </div>
+                    </a>
                 </div>
                 <div class="card_action">
                     <div class="add_row">
