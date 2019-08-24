@@ -35,6 +35,12 @@ body {
     font-size: 2.5rem;
 }
 
+@media (max-width: 576px) {
+    .index_header {
+        font-size: 1.5rem;
+    }
+}
+
 .discover_all_btn {
     margin: 0px auto;
     display: table;
@@ -332,15 +338,17 @@ materialize-textarea {
     background-position: center;
 }
 
-@media (max-width: 1200px){
-    .img_carousel, .carousel_container{
-        height: 250px;
+@media (max-width: 1200px) {
+    .img_carousel,
+    .carousel_container {
+        height: 200px;
     }
 }
 
-@media (max-width: 680px){
-    .img_carousel, .carousel_container{
-        height: 150px;
+@media (max-width: 680px) {
+    .img_carousel,
+    .carousel_container {
+        height: 100px;
     }
 }
 
@@ -467,7 +475,6 @@ materialize-textarea {
 .card_col_city:hover {
     font-weight: 800;
 }
-
 
 
 .info_header {

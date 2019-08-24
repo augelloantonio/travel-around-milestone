@@ -22,7 +22,7 @@
         <div class="row ">
             {% for city in cities%} {%if city.city_region == 'Europe'%}
             <div class="col xs 12 s6 m4 l3 col_card">
-                <div class="card card_bg" style="background-image: url({{city.city_image}})">
+                <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
                     <a href="{{url_for( 'city_page', city_id=city._id)}} ">
                         <div class="card-image waves-effect waves-block waves-light ">
                             <span class="card-title city_card_title ">{{city.city_name}}</span>
@@ -61,7 +61,7 @@
         <div class="row ">
             {% for city in cities_1 %} {%if city.city_region == 'North America & Canada'%}
             <div class="col s6 m4 l3 col_card">
-                <div class="card card_bg" style="background-image: url({{city.city_image}})">
+                <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
                     <a href="{{url_for( 'city_page', city_id=city._id)}} ">
                         <div class="card-image waves-effect waves-block waves-light ">
                             <span class="card-title city_card_title ">{{city.city_name}}</span>
@@ -98,7 +98,7 @@
         <div class="row ">
             {%for city in cities_2%} {%if city.city_region == 'Asia'%}
             <div class="col s6 m4 l3 col_card">
-                <div class="card card_bg" style="background-image: url({{city.city_image}})">
+                <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
                     <a href="{{url_for( 'city_page', city_id=city._id)}} ">
                         <div class="card-image waves-effect waves-block waves-light ">
                             <span class="card-title city_card_title ">{{city.city_name}}</span>
@@ -135,7 +135,7 @@
         <div class="row ">
             {%for city in cities_3%} {%if city.city_region == 'Central America & South America'%}
             <div class="col s6 m4 l3 col_card">
-                <div class="card card_bg" style="background-image: url({{city.city_image}})">
+                <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
                     <a href="{{url_for( 'city_page', city_id=city._id)}} ">
                         <div class="card-image waves-effect waves-block waves-light ">
                             <span class="card-title city_card_title ">{{city.city_name}}</span>
@@ -174,7 +174,7 @@
         <div class="row ">
             {%for city in cities_4%} {%if city.city_region == 'Australia & New Zeland'%}
             <div class="col s6 m4 l3 col_card">
-                <div class="card card_bg" style="background-image: url({{city.city_image}})">
+                <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
                     <a href="{{url_for( 'city_page', city_id=city._id)}} ">
                         <div class="card-image waves-effect waves-block waves-light ">
                             <span class="card-title city_card_title ">{{city.city_name}}</span>
@@ -213,7 +213,7 @@
         <div class="row">
             {%for city in cities_5%} {%if city.city_region == 'Africa & The Middle East' %}
             <div class="col s6 m4 l3 col_card ">
-                <div class="card card_bg" style="background-image: url({{city.city_image}})">
+                <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
                     <a href="{{url_for( 'city_page', city_id=city._id)}} ">
                         <div class="card-image waves-effect waves-block waves-light ">
                             <span class="card-title city_card_title ">{{city.city_name}}</span>

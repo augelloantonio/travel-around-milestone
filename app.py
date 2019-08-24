@@ -83,8 +83,7 @@ def insert_city():
         'city_to_avoid': request.form.getlist('city_to_avoid'),
         'city_author': username,
         'city_image':request.form.get('city_image'),
-        'added_time' : strftime('%d' + "/" + '%m' + "/"+ '%Y'),
-        'no_preferite': 0
+        'added_time' : strftime('%d' + "/" + '%m' + "/"+ '%Y')
     }
     cities.insert_one(city_info)
     
