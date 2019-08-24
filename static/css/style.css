@@ -318,26 +318,19 @@ materialize-textarea {
 
 .carousel_container {
     max-width: 60%;
-    max-height: 450px;
+    max-height: 300px;
     margin: auto;
     left: 0;
     right: 0;
 }
 
 .img_carousel {
-    height: 400px;
+    height: 300px;
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
-
-@media (max-width: 720px){
-    .img_carousel{
-        height: 300px;
-    }
-}
-
 
 @media (max-width: 1200px){
     .img_carousel, .carousel_container{
