@@ -37,7 +37,7 @@ body {
 
 @media (max-width: 576px) {
     .index_header {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 }
 
@@ -63,8 +63,8 @@ body {
     }
 }
 
-.discover {
-    line-height: 1.5rem
+.discover_text {
+    line-height: 1rem
 }
 
 .add_row {
