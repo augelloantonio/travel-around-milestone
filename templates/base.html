@@ -38,7 +38,7 @@
                     {%endif%}
                 </ul>
 
-                <a href="{{ url_for ('index')}}" class="brand-logo"><img src="{{ url_for('static', filename='img/logo.png') }}" class="logo_image lazy" alt="logo"></img></a>
+                <a href="{{ url_for ('index')}}" class="brand-logo"><img src="{{ url_for('static', filename='img/logo.png') }}" class="logo_image lazy" alt="logo"></a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
 
@@ -56,7 +56,7 @@
                 <!-- Search Box Desktop Width -->
                 <ul class="right hide-on-med-and-down">
                     <li class='search_box'><a id="search_icon"><i class="material-icons">search</i></a>
-                        <form id="search_form" action="{{url_for('search_city')}}" type="text" class="" method="POST">
+                        <form id="search_form" action="{{url_for('search_city')}}" class="" method="POST">
                             <div class="row search_row">
                                 <div class="s9">
                                     <input id="search_city" name="search_city" type="text" class="validate search_form" required>
@@ -74,7 +74,7 @@
                     <!-- Search Box Mobile Width -->
                     <ul>
                         <li>
-                            <form id="" action="{{url_for('search_city')}}" type="text" class="" method="POST">
+                            <form id="" action="{{url_for('search_city')}}" class="" method="POST">
                                 <div class="mobile_search_box">
                                     <div class="row search_mobile">
                                         <input id="search_city" name="search_city" type="text" value="Search" class="validate search_form" required>
