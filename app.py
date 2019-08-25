@@ -220,7 +220,6 @@ def get_user_data():
             'email': email,
             'city_author': city_author,
             'right': right,
-            'number_city_added': []
         })
         session['logged_in'] = True
         flash('Welcome aboard ' + username + ", here you can manage your lists")
