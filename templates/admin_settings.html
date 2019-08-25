@@ -1,6 +1,4 @@
-{% extends 'base.html' %} {% block content %}
-
-{% if session['logged_in'] == False or user_logged.right != 'admin' %}
+{% extends 'base.html' %} {% block content %} {% if ( (session['logged_in'] == False) and (user_logged.right != 'admin' or user_logged.right != 'owner') ) %}
 
 <h3 class="index_header">We are sorry, but only Travel Around admins can manage users info.</h3>
 
@@ -31,8 +29,12 @@
                 {%for user in users|sort(attribute='username') %}
                 <tr>
                     <td><a href="{{url_for('userpublicpage', user_id=user._id)}}">{{user.username}}</a></td>
-                    <td>{{user.right}}
-                        <a href="{{url_for('user_rights', user_id=user._id)}}" class="waves-effect waves-light btn red modal-trigger btn_right" >Change</a>
+                    <td>{{user.right}} 
+                    
+                    <!-- Change user permitt seen only by the owner-->
+                    {% if user_logged.right == 'owner' %}
+                        <a href="{{url_for('user_rights', user_id=user._id)}}" class="waves-effect waves-light btn red modal-trigger btn_right">Change</a>
+                    {%endif%}
                     </td>
                     <td>{{user.email}}</td>
                 </tr>
@@ -41,5 +43,4 @@
         </table>
     </div>
 </div>
-{%endif%}
-{% endblock%}
+{%endif%} {% endblock%}

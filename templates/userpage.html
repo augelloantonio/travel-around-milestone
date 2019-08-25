@@ -116,7 +116,7 @@
 </div>
 
 <!-- Delete User Buttons-->
-{% if session['logged_in'] and user_logged.right == 'admin' %}
+{% if ( (session['logged_in'] == True) and (user_logged.right == 'admin' or user_logged.right == 'owner') ) %}
 <div class="row">
     <div class="edit_btn_float_right">
         <div class="edit_btn_float_right">
