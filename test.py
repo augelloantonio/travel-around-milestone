@@ -76,18 +76,29 @@ class testing_login(unittest.TestCase):
 
 class testing_links(unittest.TestCase):
     
-
-    
+    # Set my app client
     def setUp(self):
         self.mongo = app.test_client()
 
+    # Testing my home page
     def test_home(self):
         page = self.mongo.get('/')
         self.assertEqual(page.status_code, 200)
     
+    # Testing the login page
     def test_login_page(self):
         page = self.mongo.get('/login_page')
         self.assertEqual(page.status_code, 200)
+        
+    # Testing the register page
+    def test_signup_page(self):
+        page = self.mongo.get('/register')
+        self.assertEqual(page.status_code, 200)    
+    
+    # Testing the 404 error
+    def test_error_page(self):
+        page = self.mongo.get('/error')
+        self.assertEqual(page.status_code, 404)
         
     print('Tests passed')
 
