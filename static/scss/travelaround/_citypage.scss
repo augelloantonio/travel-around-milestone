@@ -1,0 +1,61 @@
+/*..........................................Citypage  */
+
+.info_title {
+    text-align: center;
+}
+
+.img_city_page {
+    width: 100%;
+    border-radius: 10px;
+}
+
+
+.card_col_city:hover {
+    font-weight: 800;
+}
+
+
+.info_header {
+    text-align: center;
+    font-family: Roboto;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.info_title {
+    font-family: 'Alfa Slab One', cursive;
+    color: #524c4c;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.info_body {
+    padding-left: 2rem;
+}
+
+.description_body {
+    width: 85%;
+    margin: 0px auto;
+    text-align: justify;
+}
+
+.items {
+    list-style-type: disc!important;
+}
+
+.content_body {
+    padding: 10px;
+    margin: 0px auto;
+}
+
+.info_paragraph {
+    padding-left: 1.5rem;
+}
+
+.edit_btn_float_right {
+    float: right;
+}
+
+.edit_btn_float_left {
+    float: left;
+}

@@ -322,7 +322,7 @@ def user_rights(user_id):
     the_user = users.find_one({'_id': ObjectId(user_id)})
     if not session.get('logged_in'): 
         return redirect(url_for('login_page'))
-    elif user_logged['right'] != 'admin':
+    elif user_logged['right'] != 'owner':
         return redirect(url_for('user_page'))
     else:
         return render_template('user_right.html', user = the_user, users = users.find(),

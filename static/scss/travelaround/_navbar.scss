@@ -1,0 +1,102 @@
+/* ..............................Navbar........................*/
+nav {
+    color: #000;
+    background-color: #ffffff;
+}
+
+nav ul a {
+    color: black;
+}
+
+nav a {
+    color: black;
+}
+
+.logo_image {
+    max-width: 180px;
+}
+
+
+@media (min-width: 768px) {
+    .logo_image {
+        height: auto;
+        max-width: 250px;
+        max-height: 64px;
+        margin: auto;
+    }
+}
+
+nav .brand-logo {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+#search_form {
+    display: none;
+}
+
+.search_box {
+    display: inline-flex;
+    border: none!important;
+}
+
+.search_row {
+    display: inline-flex;
+}
+
+.search_form {
+    display: inline-flex;
+}
+
+.search_box {
+    padding-left: 5px;
+    height: -webkit-fill-available;
+}
+
+#search {
+    width: 75%;
+}
+
+.btn_search {
+    width: 100%;
+}
+
+.btn,
+.btn-large,
+.btn-flat {
+    padding: 0px;
+}
+
+#search_box_icon,
+#search_box_icon_mobile {
+    line-height: inherit;
+}
+
+.user_page_header {
+    padding-right: 32px;
+    padding-left: 32px;
+}
+
+.mob_nav_socials {
+    display: inline-flex;
+}
+
+.icon_mob_nav {
+    padding: 5px!important;
+}
+
+.mobile_search_box {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.search_mobile {
+    display: inline-flex;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.btn_search_mobile {
+    width: 25%;
+}

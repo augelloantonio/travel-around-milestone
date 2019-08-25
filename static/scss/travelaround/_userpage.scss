@@ -1,0 +1,54 @@
+/*..........................................User Page  ...................*/
+
+.user_nav {
+    width: 25%;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0px!important;
+}
+
+.nav_userpage {
+    height: auto!important;
+}
+
+.row_user_nav {
+    margin: 0!important;
+
+}
+
+#to_visit {
+    display: none;
+}
+
+#visited {
+    display: none;
+}
+
+#preferite {
+    display: none;
+}
+
+.made_selected {
+    background-color: rgba(226, 224, 224, 0.87);
+}
+
+.visited_selected {
+    background-color: rgba(226, 224, 224, 0.87);
+}
+
+.to_visit_selected {
+    background-color: rgba(226, 224, 224, 0.87);
+}
+
+.preferite_selected {
+    background-color: rgba(226, 224, 224, 0.87);
+}
+
+.user_commands {
+    position: absolute;
+    display: flex;
+}
+
+.hidden_option {
+    display: none;
+}

@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Alfa+Slab+One&display=swap');
+
+html {
+    visibility: hidden;
+}
+
+body {
+    display: flex;
+    min-height: 100vh!important;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.container {
+    width: 90%;
+}
+
+
+/*..............................................Icons & general personal style*/
+
+.fab {
+    padding: 5px;
+}
+
+.btn_personal {
+    padding: 10px;
+    line-height: normal;
+}
+
+.centered {
+    text-align: center;
+}
+

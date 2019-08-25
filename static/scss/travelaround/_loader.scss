@@ -1,0 +1,19 @@
+/*...........................................Loading gif .........................*/
+
+#loading {
+    background: url('/static/img/preloader.gif') no-repeat center center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: block;
+    opacity: 0.7;
+    background-color: #fff;
+    z-index: 99;
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}

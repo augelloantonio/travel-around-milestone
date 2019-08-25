@@ -1,0 +1,55 @@
+/*..........................................Carousel  */
+
+.carousel_container {
+    max-width: 60%;
+    max-height: 300px;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+
+.img_carousel {
+    height: 300px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+@media (max-width: 1200px) {
+    .img_carousel,
+    .carousel_container {
+        height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .img_carousel,
+    .carousel_container {
+        height: 150px;
+    }
+}
+
+
+@media (max-width: 450px) {
+    .img_carousel,
+    .carousel_container {
+        height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-image,
+    .card-title {
+        max-height: 200px;
+        font-size: 1.3rem!important;
+    }
+}
+
+@media (max-width: 450px) {
+    .card-image,
+    .card-title {
+        max-height: 150px;
+        font-size: 1.1rem!important;
+    }
+}

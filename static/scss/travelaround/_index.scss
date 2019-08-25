@@ -1,0 +1,103 @@
+/*..........................................index  */
+
+
+.index_header {
+    font-family: 'Alfa Slab One', cursive;
+    color: #524c4c;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+@media (max-width: 768px) {
+    .index_header {
+        font-size: 2rem;
+    }
+}
+
+.discover_all_btn {
+    margin: 0px auto;
+    display: table;
+    border-radius: 10px;
+    background-color: #b3b2b2;
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px!important;
+}
+
+.discover_all_btn:hover {
+    background-color: #6e787f;
+}
+
+@media (max-width: 768px) {
+    .discover_all_btn {
+        font-size: 1rem;
+        padding: 3px!important;
+    }
+}
+
+.discover_text {
+    color: white;
+    line-height: normal;
+    font-size: 0.8rem;
+}
+
+
+
+.add_row {
+    position: relative;
+}
+
+@media (max-width:768px) {
+    .preferite_btn,
+    .add_to_visit_btn,
+    .add_visited_btn {
+        font-size: 1.6rem!important;
+    }
+}
+
+.preferite_btn {
+    position: absolute;
+    z-index: 1;
+    top: 0.7rem;
+    right: 0.5rem;
+    color: red;
+    font-size: 2rem;
+    display: flex;
+}
+
+.add_to_visit_btn {
+    position: absolute;
+    z-index: 1;
+    top: 0.7rem;
+    right: 3rem;
+    color: red;
+    font-size: 2rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    display: flex;
+}
+
+@media (max-width: 450px) {
+    .add_to_visit_btn {
+        right: 2rem!important;
+    }
+}
+
+@media (max-width: 450px) {
+    .add_visited_btn {
+        right: 5rem!important;
+    }
+}
+
+.add_visited_btn {
+    position: absolute;
+    z-index: 1;
+    top: 0.7rem;
+    right: 7rem;
+    color: red;
+    font-size: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    display: flex;
+}

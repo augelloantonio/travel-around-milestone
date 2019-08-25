@@ -1,0 +1,26 @@
+/*..........................................Permitt Page  ...................*/
+
+
+.permission_header {
+    font-family: 'Alfa Slab One', cursive;
+    color: #524c4c;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.user_benefits {
+    font-size: 1.3rem;
+}
+
+.important_notice {
+    padding: 0 50px 0 50px;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+@media (min-width: 768px) {
+    .important_notice {
+        padding: 0 100px 0 100px;
+
+    }
+}

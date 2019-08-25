@@ -1,0 +1,73 @@
+/*..........................................Card Style  */
+
+.city_card_title {
+    background-color: #a9a9a987;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    max-height: 40%;
+    line-height: 0.9;
+    padding: 1.5rem;
+}
+
+@media (max-width: 450px) {
+    .city_card_title {
+        max-height: 30%!important;
+        padding: 1.2rem!important;
+    }
+}
+
+.card_col :hover {
+    font-weight: 800;
+}
+
+
+.edit_btn_row {
+    position: absolute;
+}
+
+.col_card {
+    display: flex;
+}
+
+.card-image {
+    height: 250px;
+    overflow: hidden;
+}
+
+.card,
+.card-image img {
+    display: block;
+    border-radius: 2px 2px 0 0;
+    box-shadow: 0 0 8px 0px;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 250px;
+    position: relative;
+}
+
+.col_card :hover {
+    font-weight: 800;
+}
+
+.img_card {
+    max-width: 350px;
+    max-height: 250px;
+}
+
+.row_card {
+    width: 100%
+}
+
+.card_bg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    position: relative;
+}

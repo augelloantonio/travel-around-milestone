@@ -1,0 +1,36 @@
+/*..........................................Login & Register......................*/
+
+.content_login {
+    padding: 40px 0 40px;
+}
+
+.login_area {
+    margin: auto;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    border: 2px solid #00000052;
+    text-align: center;
+}
+
+.login_row {
+    padding: 2.5rem;
+}
+
+.login_form {
+    padding: 20px 0;
+    margin: auto;
+    width: 30%;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .login_form {
+        width: 80%;
+        padding: 20px;
+    }
+}
+
+
+.error_login {
+    border: 5px solid #f44336;
+}
