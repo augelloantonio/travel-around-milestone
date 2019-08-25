@@ -153,6 +153,7 @@ function autoplay() {
 
 /**
  * Lazy image loader taken from https://imagekit.io/blog/lazy-loading-images-complete-guide/
+ * This script will prevent the dowload of the media until same is not in the viewport
  * 
  * **/
  

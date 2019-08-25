@@ -35,7 +35,7 @@ body {
     font-size: 2.5rem;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
     .index_header {
         font-size: 2rem;
     }
@@ -56,7 +56,7 @@ body {
     background-color: #6e787f;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
     .discover_all_btn {
         font-size: 1rem;
         padding: 3px!important;
@@ -71,7 +71,7 @@ body {
     position: relative;
 }
 
-@media (max-width:420px) {
+@media (max-width:768px) {
     .preferite_btn,
     .add_to_visit_btn,
     .add_visited_btn {
@@ -101,13 +101,13 @@ body {
     display: flex;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 450px) {
     .add_to_visit_btn {
         right: 2rem!important;
     }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 450px) {
     .add_visited_btn {
         right: 5rem!important;
     }
@@ -145,7 +145,7 @@ nav a {
 }
 
 
-@media (min-width: 601px) {
+@media (min-width: 768px) {
     .logo_image {
         height: auto;
         max-width: 250px;
@@ -345,14 +345,22 @@ materialize-textarea {
     }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 768px) {
+    .img_carousel,
+    .carousel_container {
+        height: 150px;
+    }
+}
+
+
+@media (max-width: 450px) {
     .img_carousel,
     .carousel_container {
         height: 100px;
     }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
     .card-image,
     .card-title {
         max-height: 200px;
@@ -360,7 +368,7 @@ materialize-textarea {
     }
 }
 
-@media (max-width: 440px) {
+@media (max-width: 450px) {
     .card-image,
     .card-title {
         max-height: 150px;
@@ -401,7 +409,7 @@ materialize-textarea {
     text-align: center;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
     .login_form {
         width: 80%;
         padding: 20px;
@@ -698,7 +706,7 @@ th {
     font-weight: 500;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 768px) {
     .important_notice {
         padding: 0 100px 0 100px;
 
