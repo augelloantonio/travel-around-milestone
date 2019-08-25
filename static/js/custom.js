@@ -151,7 +151,6 @@ function autoplay() {
 }
 
 
-
 /**
  * Lazy image loader taken from https://imagekit.io/blog/lazy-loading-images-complete-guide/
  * 
@@ -168,6 +167,7 @@ document.addEventListener("DOMContentLoaded", function() {
           var image = entry.target;
           image.classList.remove("lazy");
           imageObserver.unobserve(image);
+          console.log('lazy works')
         }
       });
     });
@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var lazyloadThrottleTimeout;
     lazyloadImages = document.querySelectorAll(".lazy");
     
-    function lazyload () {
+    function lazyload() {
       if(lazyloadThrottleTimeout) {
         clearTimeout(lazyloadThrottleTimeout);
       }    
