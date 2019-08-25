@@ -129,7 +129,7 @@
             <!--Edit BTN showing to registered users -->
             <a href="{{url_for('edit_city', city_id=city._id)}}" class="waves-effect waves-light btn btn_small blue btn_personal">Edit</a>
             <!--Delete BTN showing only to admin users -->
-            {%if user_logged.right == 'admin'%}
+            {%if user_logged.right == 'admin' or user_logged.right == 'owner'%}
             <a class="waves-effect waves-light btn red modal-trigger btn_personal" href="#modal1">Delete</a> {%endif%}{%endif%}
         </div>
     </div>
