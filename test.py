@@ -38,17 +38,6 @@ class test_country_collection(unittest.TestCase):
                     print('')
         print ('Test region collection passed')
 
-#testing region directory
-class test_region_collection(unittest.TestCase):
-    def test_region_collection(self):
-        with open('data/region.json') as json_file_region:
-            json_file_region = json.loads(json_file_region.read())
-            for region in json_file_region:
-                if region['region_name']:
-                    print(region['region_name'])
-                    print('')
-        print('Test region collection passed')
-        
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~Testing if time is printed~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 class test_timen(unittest.TestCase):

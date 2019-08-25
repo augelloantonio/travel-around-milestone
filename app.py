@@ -96,7 +96,7 @@ def insert_city():
     region_name = request.form.get('city_region')
     regions.update({"region_name": region_name},
             {'$addToSet': 
-            {'cities_in _region' : request.form.get('city_name')}})
+            {'cities_in_region' : request.form.get('city_name')}})
     
     return redirect(url_for('user_page'))
     
