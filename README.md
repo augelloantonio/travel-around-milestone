@@ -340,6 +340,8 @@ Other info will be added by adding a city that can not be modded as:
 
 If the user goes in a page that doesn't exist it will be redirect to a personal 404 error page that contain a 404 logo designed following Travel Around logo design.
 
+To test the 404 error page go to the following link - https://travelaroundmilestone.herokuapp.com/error
+
 ### Permission Required Page
 
 When the user click on the actions of the home page it will be redirect to a page where it will be acked to register to perform that action and that explain all the advantage to be a registered user of Travel Around.
@@ -365,6 +367,9 @@ The owner can also change the users right, by clicking on the button "change use
 ## Technologies Used
 
 For this project I used:
+
+- [AWS Cloud9](https://aws.amazon.com/it/cloud9/)
+    - Used as Ide to develop the code.
 
 - [HTML5]( https://en.wikipedia.org/wiki/HTML5)
     - The project uses **HTML5** to structure the content in line with modern semantic HTML5.
@@ -443,77 +448,135 @@ The site was developed following the Grid System and the same was tested to ensu
 - Width ≥≤ 768px 
 - width ≤450px (this to prevent card and text to be too big on smaller size screen)
 
+Some TDD (Test Driven Developement) have be done while developing the python code and can be found in my test.py. For this test I used UnitTest, running my test.py file in the console with the command ```python3 test.py``` i get 8 test done and an **OK** status that means that all my code passed.
+
+More testing on my JavaSvript have be done by manually checking if my code was called at the right action, using the ```console.log('funcion called')``` code in the function i wanted to check.
+
+I did several manual testing to the code as well by testing the various feaures of my website like:
+
+- Register
+- Log in
+- Log Out
+- Add a city to one of the list and check if are in the list in the user page
+- Try to search a city
+- Delete a city
+- Delete an account
+- Change user permitt
+
 ### During development
 
-During the developement I had iussue with the Grid System on Firefox and Edge.
+During the developement I had iussue with the Grid System on Firefox and Edge, same fixed adding to the div i needed the following code: 
 
-I could have done it adding a new div with hidden class as for the first board and showing it with the function, but I preferred to do this way to test as well using different JavaScript file sheet.
+```
+.flex {
+  display: flex;
+  flex-wrap: wrap; }
 
-Other small bugs are solved and it is all traceable on my GitHub page, under the "commit" section of my Milestone repository, available at the following  link:
--  ["https://github.com/gello94/second-milestone-antonio/commits/master"](https://github.com/gello94/second-milestone-antonio/commits/master)
+.content {
+  flex: 1 0 auto; }
+  ```
+  
+On Edge at the moment the span it is still not having a light grey background like on the other browsers.
 
-### Testing
-Most of the JavaScript code has been tested with the Debug console with the command console.log() that allowed me to find if the function has been called at the right time and to show if the corresponding value was right.
-A copy of the code with all the testing codes is available in my repository under the folder "testing".
+It seem as there are no other bugs at the moment.
 
-Have a look at the testing html opening the following html file and opening the Debug console of your Browser:
-
-["testing.html"](https://gello94.github.io/second-milestone-antonio/testing/testing.html)
-
-N.B.: I have not updated the images links on the testing.html file because this file is only to demonstrate the testing I used to see if my code was working.
-
-Example of testing I did during the deployment of my JavaScript code:
-I want to check if my function "startGame", called on click to the start button, is calling all the function I want to.
-
-- Open the Debug console of your Browser
-- Click on the Play button
-- You can see thanks to the console.log() command line how the following function are called: startTimer(), showBoardGame(), newBoard(num_cards).
-
-I'm able this way to see as well all the other function that the function I called is calling and the order of the execution.
+To test the if the SEO guidelines are followed I used [Lighthouse](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk) as Google Chrome extension that give me 100% of result.
 
 ### Validation Testings
 
-For HTML validation testing I used ["W3 Validator"](https://validator.w3.org/nu/?doc=https%3A%2F%2Fgello94.github.io%2Fsecond-milestone-antonio%2F) which shows the html documents to be valid.
+For HTML validation testing I used ["W3 Validator"](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftravelaroundmilestone.herokuapp.com%2F) which shows few error in duplicate ID that are made by my function to repeat the carousel images for each city in the list. For the search button it is to save adding more code to definy a second search form in python, the second search button will anyway be displayed only on mobile size and is always going to be unique.
 
-For CSS validation testing I used ["W3 CSS Validator"](http://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fgello94.github.io%2Fsecond-milestone-antonio%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=it) which shows no errors on my main.css style sheet.
+For CSS validation testing I used ["W3 CSS Validator"](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fcloud9%2Fide%2Ff5cc4af3f817467b952808358ab6cfef&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=it) which shows no errors on my main.css style sheet.
 
 For JavaScript validation testing I used ["JSHint"](https://gello94.github.io/second-milestone-antonio/) with whom I checked the presence of unused variable and code errors.
 
 ## Deployment
+The web site has been deployed on Heroku for hosting and on GitHub.
 
+### Heroku
+This page has been deployed to ["Heroku"](https://travelaroundmilestone.herokuapp.com/).
+
+These steps were followed to Deploy the project on Heroku:
+- Database and Tables were created in an Atlas MongoDB account
+- Project workspace was created in AWS Cloud 9. 
+- Framework needed were installed with the command ```$ sudo pip3 install 'framework-name' ```
+- Created an instance of flask ``` app = flask(__name__) ```
+- Host set as follow:
+```
+if __name__ == '__main__':
+    app.run(host=os.environ.get('IP'),
+            port=int(os.environ.get("PORT")),
+            debug=False)
+```
+- Created a new Heroku App - unique name and EU Server
+- In cloud 9 login to Heroku by the code ```$ heroku login --interactive```
+- Provided username and password
+Created a git repository in AWS Cloud9 as follow:
+```>$ git init
+>$ git add 
+>$ git commit -m "Initial Commit"
+```
+- Connected AWS cloud9 to Heroku using the code ```$ heroku git remote -a travelaroundmilestone
+- Created requirements.txt file with the code ```$ sudo pip3 freeze --local > requirements.txt```
+- Created the Procfile with the code ```$ echo web:python app.py>Procfile```
+- Then added and Commited to Git Repository:
+```
+>$ git add . 
+>$ git commit -m "initial commit"
+```
+- Push to Heroku with the code ```$ git push heroku master```
+- Setted in Heroku in the repository settings the 'COnfig Vars' including IP, Port, Mongo_DB and Mongo_URI and Secret Key
+
+
+### GitHub
 This page has been deployed to ["Github Pages"](https://gello94.github.io/second-milestone-antonio/).
 
 GitHub is used to host the code and publish the pages.
 
-A new repository was created in GitHub called: second-milestone-antonio.
+A new repository was created in GitHub called: travelaround-milestone-antonio.
 
 An initial commit has been done.
 
 Time by time the update files were pushed on GitHub and a proper commit has been done:
 
-`$git add`
-
-`$git commit -m " commit"`
-
-`$ git push -u origin master`
+```
+>$git add
+>$git commit -m " commit"`
+>$ git push -u origin master
+```
 
 After a final Git Add and Git commit
 
-`$git add .`
-
-`$git commit -m "final commit"`
+```
+>$git add .
+>$git commit -m "final commit"
+```
 
 The pages were pushed to the GitHub repository
 
-`$ git push -u origin master`
+```
+>$ git push -u origin master
+>$Username
+>$Password
+```
 
-`$Username`
+### Run my project locally
+To run this project you can follow one of the follwing way:
 
-`$Password`
+#### 1. Deployment through Cloud9
+- Create a blank workspace in your Cloud9 dashboard.
+- Get all files from github using 'git clone https://github.com/**mulinkhere**' command in the C9 CLI
+- install Python dependies with following command: 'pip3 install -r requirements.txt'
+- Run app with following command: 'python3 app.py'.
+- Click on preview >> preview running application and get link
+- Open up Link in browser of choice
 
-Under the Settings – GitHub Pages of the new repository, the master branch of the code is published to the url:
-["#HelpYourBrain"](https://gello94.github.io/second-milestone-antonio/)
-
+#### 2. Deployment through Heroku
+- Copy Github repository
+- Make sure Procfile and requirements.txt for dependencies are correct.
+- Create new heroku app and set environment variables (IP, PORT & MONGO_URI)
+- Connect Github repository to Heroku App through 'Deployment Method' in Heroku - App Dashboard
+- Deploy Branch through Manual Deploy' in Heroku App Dashboard
 
 ## Credits
 
@@ -528,14 +591,12 @@ Thanks to the tutor Ali Ashik that has been always available to help me to under
 - The 404 Image is made by me with Adobe Photoshop, all credits reserved.
 
 
-
-
 ## EXTRA
 
-https://docs.python.org/3/library/time.html#time.timezone
+More info were taken from the following documentation files:
 
-https://flask.palletsprojects.com/en/1.1.x/testing/#the-first-test
-
-Commands used:
-Full package installed by the command 
+- [Jinja2 - Templates](https://jinja.palletsprojects.com/en/2.10.x/templates/)
+- [Python - Timezone](https://docs.python.org/3/library/time.html#time.timezone)
+- [Flask - Testing](https://flask.palletsprojects.com/en/1.1.x/testing/#the-first-test)
+-  [Lazy Loader](https://imagekit.io/blog/lazy-loading-images-complete-guide/)
 
