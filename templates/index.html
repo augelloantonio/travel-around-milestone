@@ -49,9 +49,11 @@
     </div>
 
     <div class="discover_all">
-        <a href="{{url_for('cities_for_regions', city_region='Europe')}}" class="waves-effect waves-light btn-large discover_all_btn">
-            <p class="discover_text">Discover All Europe Destinations</p>
-        </a>
+        <div class="btn-large discover_all_btn waves-effect waves-light">
+            <a href="{{url_for('cities_for_regions', city_region='Europe')}}">
+                <p class="discover_text">Discover All Europe Destinations</p>
+            </a>
+        </div>
     </div>
 
     <div>
@@ -87,10 +89,12 @@
         </div>
     </div>
 
-    <div class="discover_all">
-        <a href="{{url_for('cities_for_regions', city_region='North America & Canada')}}" class="waves-effect waves-light btn-large discover_all_btn">
-            <p class="discover">Discover All North America & Canada Destinations</p>
-        </a>
+    <div class="discover_all ">
+        <div class="btn-large discover_all_btn waves-effect waves-light">
+            <a href="{{url_for('cities_for_regions', city_region='North America & Canada')}}">
+                <p class="discover_text">Discover All North America & Canada Destinations</p>
+            </a>
+        </div>
     </div>
 
     <div>
@@ -125,9 +129,11 @@
     </div>
 
     <div class="discover_all">
-        <a href="{{url_for('cities_for_regions', city_region='Asia')}}" class="waves-effect waves-light btn-large discover_all_btn">
-            <p class="discover">Discover All Asia Destinations</p>
-        </a>
+        <div class="btn-large discover_all_btn waves-effect waves-light">
+            <a href="{{url_for('cities_for_regions', city_region='Asia')}}">
+                <p class="discover_text">Discover All Asia Destinations</p>
+            </a>
+        </div>
     </div>
 
     <div>
@@ -162,9 +168,11 @@
     </div>
 
     <div class="discover_all">
-        <a href="{{url_for('cities_for_regions', city_region='Central America & South America')}}" class="waves-effect waves-light btn-large discover_all_btn">
-            <p class="discover">Discover All Central America & South America Destinations</p>
-        </a>
+        <div class="btn-large discover_all_btn waves-effect waves-light">
+            <a href="{{url_for('cities_for_regions', city_region='Central America & South America')}}">
+                <p class="discover_text">Discover All Central America & South America Destinations</p>
+            </a>
+        </div>
     </div>
 
     <div>
@@ -201,36 +209,38 @@
     </div>
 
     <div class="discover_all">
-        <a href="{{url_for('cities_for_regions', city_region='Australia & New Zeland')}}" class="waves-effect waves-light btn-large discover_all_btn">
-            <p class="discover">Discover All Australia & New Zeland Destinations</p>
-        </a>
+        <div class="btn-large discover_all_btn waves-effect waves-light">
+            <a href="{{url_for('cities_for_regions', city_region='Australia & New Zeland')}}">
+                <p class=" discover_text ">Discover All Australia & New Zeland Destinations</p>
+            </a>
+        </div>
     </div>
 
     <div>
         <div>
-            <p id="name_of_region" class="index_header">Africa & The Middle East</p>
+            <p id="name_of_region " class="index_header ">Africa & The Middle East</p>
         </div>
-        <div class="row">
+        <div class="row ">
             {%for city in cities_5%} {%if city.city_region == 'Africa & The Middle East' %}
             <div class="col s6 m4 l3 col_card ">
-                <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
+                <div class="card card_bg lazy " style="background-image: url({{city.city_image}}) ">
                     <a href="{{url_for( 'city_page', city_id=city._id)}} ">
                         <div class="card-image waves-effect waves-block waves-light ">
                             <span class="card-title city_card_title ">{{city.city_name}}</span>
                         </div>
                     </a>
                 </div>
-                <div class="card_action">
-                    <div class="add_row">
-                        <a href="{{url_for('add_to_preferite', city_name=city.city_name, city_id=city._id)}}" class="preferite_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Preferite'"><i class="far fa-heart"></i>
+                <div class="card_action ">
+                    <div class="add_row ">
+                        <a href="{{url_for( 'add_to_preferite', city_name=city.city_name, city_id=city._id)}} " class="preferite_btn tooltipped " data-position="bottom " data-tooltip="Add to 'Preferite' "><i class="far fa-heart "></i>
                                 {{city.city_preferred_by|count}}</a>
                     </div>
-                    <div class="add_row">
-                        <a href="{{url_for('add_to_visit', city_name=city.city_name, city_id=city._id)}}" class="add_to_visit_btn tooltipped" data-position="bottom" data-tooltip="Add to 'To Visit'"><i class="far fa-plus-square"></i>
+                    <div class="add_row ">
+                        <a href="{{url_for( 'add_to_visit', city_name=city.city_name, city_id=city._id)}} " class="add_to_visit_btn tooltipped " data-position="bottom " data-tooltip="Add to 'To Visit' "><i class="far fa-plus-square "></i>
                                 {{city.city_to_visit_by|count}}</a>
                     </div>
-                    <div class="add_row">
-                        <a href="{{url_for('add_to_visited', city_name=city.city_name, city_id=city._id)}}" class="add_visited_btn tooltipped" data-position="bottom" data-tooltip="Add to 'Visited'"><i class="far fa-check-circle"></i>
+                    <div class="add_row ">
+                        <a href="{{url_for( 'add_to_visited', city_name=city.city_name, city_id=city._id)}} " class="add_visited_btn tooltipped " data-position="bottom " data-tooltip="Add to 'Visited' "><i class="far fa-check-circle "></i>
                                 {{city.city_visited_by|count}}</a>
                     </div>
                 </div>
@@ -238,10 +248,12 @@
             {%endif%} {%endfor%}
         </div>
     </div>
-    <div class="discover_all">
-        <a href="{{url_for('cities_for_regions', city_region='Africa & The Middle East')}}" class="waves-effect waves-light btn-large discover_all_btn">
-            <p class="discover">Discover All Africa & Middle East Destinations</p>
-        </a>
+    <div class="discover_all ">
+        <div class="btn-large discover_all_btn waves-effect waves-light">
+            <a href="{{url_for( 'cities_for_regions', city_region='Africa & The Middle East' )}}">
+                <p class="discover_text ">Discover All Africa & Middle East Destinations</p>
+            </a>
+        </div>
     </div>
 </div>
 {% endblock %}

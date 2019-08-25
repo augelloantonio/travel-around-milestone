@@ -64,8 +64,12 @@ body {
 }
 
 .discover_text {
-    line-height: 1rem
+    color: white;
+    line-height: normal;
+    text-size: 0.8rem;
 }
+
+
 
 .add_row {
     position: relative;

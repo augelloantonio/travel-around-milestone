@@ -168,7 +168,6 @@ document.addEventListener("DOMContentLoaded", function() {
           var image = entry.target;
           image.classList.remove("lazy");
           imageObserver.unobserve(image);
-          console.log('lazy works')
         }
       });
     });
