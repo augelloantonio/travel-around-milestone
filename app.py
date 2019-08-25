@@ -223,7 +223,7 @@ def get_user_data():
             'number_city_added': []
         })
         session['logged_in'] = True
-        flash('Welcome aboard ' + username)
+        flash('Welcome aboard ' + username + ", here you can manage your lists")
         return redirect(url_for('user_page'))
     else:
         session['logged_in'] = False
