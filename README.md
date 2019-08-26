@@ -40,8 +40,8 @@ The starting design drafts were done on [Moqups.com](https://moqups.com/).
 
 The wireframe of the startig idea can be found divided for desktop ad mobile devices at the following link:
 
-- Desktop Devices(/wireframes/desktop)
-- Mobile Devices(/wireframes/mobile)
+- Desktop Devices(https://github.com/gello94/travel-around-milestone/tree/master/wireframes/desktop)
+- Mobile Devices(https://github.com/gello94/travel-around-milestone/tree/master/wireframes/mobile)
 
 The final design is bit different from the starting idea, multiple changes were applied to the website following ideas and improvements and the features implemented while developing the Web App.
 
