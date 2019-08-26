@@ -457,7 +457,7 @@ More testing on my JavaSvript was done by manually checking if my code was calle
 
 I did several manual testing to the code as well by testing the various features of my website like:
 
-**1. Register and test all the user functionalities**
+**1. Testing registration and testing all the user functionalities**
 1. Go to the [registration page](http://travelaroundmilestone.herokuapp.com/register)
 2. Add a username - max 12 characters length set as for formatting issues on my accounts page
 3. Add an email
@@ -471,7 +471,7 @@ I did several manual testing to the code as well by testing the various features
 11. Try to Log In from the Log In area by clicking on the login button in the Navigation Bar.
 10. To delete your account you should fill the check form by typing "delete" and clicking on "check", then click the delete button again.
 
-**2. Try to search a city**
+**2. Teasting the search**
 1. Click on the Search Icon in the Navigation Bar
 2. Test that the input field appears aligned to the navigation bar
 3. Check for "toronto"
@@ -488,7 +488,7 @@ Why don't you add it?
 Add a new city now!
 ```
 
-**3. Owner Permit as Delete a city, change user permit, delete a user
+**3. Testing the Owner Permit as Delete a city, change user permit, delete a user**
 1. Login with the following username and password:
 ``` 
 username: admin
@@ -505,6 +505,12 @@ password: admin
 5. To delete an account, you can delete one of the testing account like the user "tester111111", click on the user name in the "discover users" page or from the "admin settings" page.
 6. On the right bottom of the page click on the "delete" button and follow the validation form.
 7. Check in the User List that the user was deleted.
+
+**4. Testing the registration/login form errors and user checks**
+1. Try to Log In with "admin" as username and "password" as password, you will get an error message
+2. Try to Log In with "annabelle" as username and "password" as password, you will get an error message
+3. Try to register with "admin" as username, you will get an error message
+4. Try to register with "admin@admin.com" as email, you will get an error message
 
 ### During development
 
