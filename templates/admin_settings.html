@@ -33,7 +33,9 @@
                     
                     <!-- Change user permitt seen only by the owner-->
                     {% if user_logged.right == 'owner' %}
+                    {% if user.right != 'owner'%}
                         <a href="{{url_for('user_rights', user_id=user._id)}}" class="waves-effect waves-light btn red modal-trigger btn_right">Change</a>
+                    {%endif%}
                     {%endif%}
                     </td>
                     <td>{{user.email}}</td>
