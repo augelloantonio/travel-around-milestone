@@ -562,7 +562,7 @@ To run this project you can follow one of the follwing way:
 
 #### 1. Deployment through Cloud9
 - Create a blank workspace in your Cloud9 dashboard.
-- Get all files from github using 'git clone https://github.com/**mylinkhere**' command in the C9 CLI
+- Get all files from github using 'git clone https://github.com/gello94/travel-around-milestone command in the C9 CLI
 - install Python dependies with following command: 'pip3 install -r requirements.txt'
 - Run app with following command: 'python3 app.py'.
 - Click on preview >> preview running application and get link
