@@ -533,15 +533,12 @@ This page has been deployed to ["Github Pages"](https://gello94.github.io/second
 
 GitHub is used to host the code and publish the pages.
 
-A new repository was created in GitHub called: travelaround-milestone-antonio.
+A new repository was created in GitHub called: travel-around-milestone.
 
-An initial commit has been done.
-
-Time by time the update files were pushed on GitHub and a proper commit has been done:
+The repository has been pushed following these commands
 
 ```
->$git add
->$git commit -m " commit"`
+>$git remote add origin https://github.com/gello94/travel-around-milestone.git
 >$ git push -u origin master
 ```
 
@@ -565,7 +562,7 @@ To run this project you can follow one of the follwing way:
 
 #### 1. Deployment through Cloud9
 - Create a blank workspace in your Cloud9 dashboard.
-- Get all files from github using 'git clone https://github.com/**mulinkhere**' command in the C9 CLI
+- Get all files from github using 'git clone https://github.com/**mylinkhere**' command in the C9 CLI
 - install Python dependies with following command: 'pip3 install -r requirements.txt'
 - Run app with following command: 'python3 app.py'.
 - Click on preview >> preview running application and get link
@@ -591,7 +588,7 @@ Thanks to the tutor Ali Ashik that has been always available to help me to under
 - The 404 Image is made by me with Adobe Photoshop, all credits reserved.
 
 
-## EXTRA
+## Extra Sources
 
 More info were taken from the following documentation files:
 
