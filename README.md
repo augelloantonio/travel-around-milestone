@@ -2,12 +2,12 @@
 
 # [Travel Around](https://travelaroundmilestone.herokuapp.com/)
 
-![Page Logo](https://github.com/gello94/second-milestone-antonio/blob/master/assets/img/pagelogo.jpg)
+![Page Logo](https://github.com/gello94/travel-around-milestone/blob/master/static/img/logo.png)
 
 This Website was developed as Milestone Project for Code Institute's Data Centric Developement.
 
 
-![Moqup](/wireframes/moqup.jpg)
+![Moqup](https://github.com/gello94/travel-around-milestone/blob/master/wireframes/moqup.jpg)
 
 As a travellers myself I know how usefull is to find information and tips from people that have already been in a place without promotional intent or sponsirized locations.
 
@@ -529,7 +529,7 @@ Created a git repository in AWS Cloud9 as follow:
 
 
 ### GitHub
-This page has been deployed to ["Github Pages"](https://gello94.github.io/second-milestone-antonio/).
+This page has been deployed to ["Github Pages"](https://github.com/gello94/travel-around-milestone.git).
 
 GitHub is used to host the code and publish the pages.
 
