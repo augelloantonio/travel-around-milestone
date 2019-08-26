@@ -488,7 +488,7 @@ For HTML validation testing I used ["W3 Validator"](https://validator.w3.org/nu/
 
 For CSS validation testing I used ["W3 CSS Validator"](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fcloud9%2Fide%2Ff5cc4af3f817467b952808358ab6cfef&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=it) which shows no errors on my main.css style sheet.
 
-For JavaScript validation testing I used ["JSHint"](https://gello94.github.io/second-milestone-antonio/) with whom I checked the presence of unused variable and code errors.
+For JavaScript validation testing I used ["JSHint"](https://jshint.com/) with whom I checked the presence of unused variable and code errors.
 
 ## Deployment
 The web site has been deployed on Heroku for hosting and on GitHub.
