@@ -448,7 +448,7 @@ The site was developed following the Grid System and the same was tested to ensu
 - Width ≥≤ 768px 
 - width ≤450px (this to prevent card and text to be too big on smaller size screen)
 
-Some TDD (Test Driven Developement) have be done while developing the python code and can be found in my test.py. For this test I used [UnitTest](https://docs.python.org/3/library/unittest.html), running my test.py file in the console with the command ```python3 test.py``` i get 8 test done and an **OK** status that means that all my code passed.
+Some ***TDD*** (Test Driven Developement) have be done while developing the python code and can be found in my test.py. For this test I used [UnitTest](https://docs.python.org/3/library/unittest.html), running my test.py file in the console with the command ```python3 test.py``` i get 8 test done and an **OK** status that means that all my code passed.
 
 More testing on my JavaSvript have be done by manually checking if my code was called at the right action, using the ```console.log('funcion called')``` code in the function i wanted to check.
 
