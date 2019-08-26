@@ -507,4 +507,18 @@ body {
 .centered {
   text-align: center; }
 
+.modal-content {
+  text-align: center; }
+
+.modal_col {
+  width: 50%;
+  margin: auto; }
+
+.input-field label {
+  top: -20px; }
+
+.confirm_delete_btn {
+  float: right;
+  background: blue; }
+
 /*# sourceMappingURL=main.css.map */

@@ -82,7 +82,7 @@
                 </a>
             </div>
             <div class="edit_btn_row">
-                <a href="{{url_for('remove_to_visit', city_name=city.city_name, city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal">Remove</a>
+                <a href="{{url_for('remove_to_visit', city_name=city.city_name, city_id=city._id)}}" class="waves-effect waves-light btn blue btn_small btn_personal">Remove</a>
             </div>
         </div>
         {%endif%} {%endfor%} {%endfor%}
@@ -108,7 +108,7 @@
                 </a>
             </div>
             <div class="edit_btn_row">
-                <a href="{{url_for('remove_visited', city_name=city.city_name, city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal">Remove</a>
+                <a href="{{url_for('remove_visited', city_name=city.city_name, city_id=city._id)}}" class="waves-effect waves-light btn blue btn_small btn_personal">Remove</a>
             </div>
         </div>
         {%endif%} {%endfor%}{%endfor%}
@@ -134,7 +134,7 @@
                 </a>
             </div>
             <div class="edit_btn_row">
-                <a href="{{url_for('remove_preferite', city_name=city.city_name, city_id=city._id)}}" class="waves-effect waves-light btn btn_small btn_personal"><i class="fas fa-heart-broken"></i></a>
+                <a href="{{url_for('remove_preferite', city_name=city.city_name, city_id=city._id)}}" class="waves-effect waves-light btn blue btn_small btn_personal"><i class="fas fa-heart-broken"></i></a>
             </div>
         </div>
         {%endif%} {%endfor%}{%endfor%}
@@ -160,10 +160,10 @@
         <p>To delete your account please type "delete"</p>
     </div>
     <form id="delete_input">
-        <div class="input-field col s6">
-            <input id="confirm_delete_account" name="confirm_delete_account" data-length="10">
-            <label for="input_text">Type Here "delete"</label>
-            <a id="check_delete_account" name="" class="waves-effect waves-light btn btn_personal" onClick="verification_form();">Check</a>
+        <div class="input-field col s6 modal_col">
+            <input id="confirm_delete_account" name="confirm_delete_account" data-length="6">
+            <label for="input_text" class="label_delete">Type Here "delete"</label>
+            <a id="check_delete_account" name="check_delete_account" class="waves-effect waves-light btn blue btn_personal confirm_delete_btn" onClick="verification_form();">Check</a>
         </div>
     </form>
     <div>
