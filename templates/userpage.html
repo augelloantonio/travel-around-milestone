@@ -35,11 +35,11 @@
         {%for city in cities%} {% if city.city_author == user.username %}
         <div class="col s6 m4 l3 col_card">
             <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <a href="{{url_for('city_page', city_id = city._id)}}">
-                     <span class="card-title city_card_title">{{city.city_name}}</span>
-                     </a>
-                </div>
+                <a href="{{url_for('city_page', city_id = city._id)}}">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <span class="card-title city_card_title">{{city.city_name}}</span>
+                    </div>
+                </a>
             </div>
         </div>
         {%endif%} {%endfor%}
@@ -58,11 +58,11 @@
         {% for city in cities_to_visit %} {%for item in user.city_to_visit %} {%if city.city_name == item %}
         <div class="col s6 m4 l3 col_card">
             <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <a href="{{url_for('city_page', city_id = city._id)}}">
-                    <span class="card-title city_card_title">{{city.city_name}}</span>
-                    </a>
-                </div>
+                <a href="{{url_for('city_page', city_id = city._id)}}">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <span class="card-title city_card_title">{{city.city_name}}</span>
+                    </div>
+                </a>
             </div>
         </div>
         {%endif%} {%endfor%} {%endfor%}
@@ -81,11 +81,11 @@
         {% for city in cities_visited %} {%for item in user.city_visited %} {%if city.city_name == item %}
         <div class="col s6 m4 l3 col_card">
             <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <a href="{{url_for('city_page', city_id = city._id)}}">
-                    <span class="card-title city_card_title">{{city.city_name}}</span>
-                    </a>
-                </div>
+                <a href="{{url_for('city_page', city_id = city._id)}}">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <span class="card-title city_card_title">{{city.city_name}}</span>
+                    </div>
+                </a>
             </div>
         </div>
         {%endif%} {%endfor%} {%endfor%}
@@ -104,11 +104,11 @@
         {% for city in cities_preferite %} {%for item in user.preferite_cities %} {%if city.city_name == item %}
         <div class="col s6 m4 l3 col_card">
             <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <a href="{{url_for('city_page', city_id = city._id)}}">
-                    <span class="card-title city_card_title">{{city.city_name}}</span>
-                    </a>
-                </div>
+                <a href="{{url_for('city_page', city_id = city._id)}}">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <span class="card-title city_card_title">{{city.city_name}}</span>
+                    </div>
+                </a>
             </div>
         </div>
         {%endif%} {%endfor%}{%endfor%}
@@ -116,8 +116,7 @@
 </div>
 
 <!-- Delete User Buttons-->
-{%if user.right != 'owner'%}
-{% if ( (session['logged_in'] == True) and (user_logged.right == 'admin' or user_logged.right == 'owner') ) %}
+{%if user.right != 'owner'%} {% if ( (session['logged_in'] == True) and (user_logged.right == 'admin' or user_logged.right == 'owner') ) %}
 <div class="row">
     <div class="edit_btn_float_right">
         <div class="edit_btn_float_right">
@@ -125,8 +124,7 @@
         </div>
     </div>
 </div>
-{%endif%}
-{%endif%}
+{%endif%} {%endif%}
 
 
 <!-- Modal Delete Account-->
