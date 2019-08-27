@@ -16,6 +16,9 @@
 .select_country {
   padding-bottom: 25px !important; }
 
+.input-field {
+  margin-top: 45px; }
+
 /*..........................................Card Style  */
 .city_card_title {
   background-color: #a9a9a987;
