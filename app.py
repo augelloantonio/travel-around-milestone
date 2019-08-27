@@ -141,9 +141,9 @@ def update_city(city_id):
     return redirect(url_for('index'))
 
 
-# Delete city - to add an if statement before proceed with javascript
-@app.route('/delete_city/<city_name>/<city_id>')
-def delete_city(city_name, city_id):
+# Delete city
+@app.route('/delete_city/<city_name>/<city_id>/<region_name>')
+def delete_city(city_name, city_id, region_name):
     username=session.get('username')
     user_logged = users.find_one({'username' : username})
     cities.remove({'_id': ObjectId(city_id)})
@@ -151,6 +151,10 @@ def delete_city(city_name, city_id):
     users.update({"username": username},
             {'$pull': 
             {'cities_made' : city_name}})
+    the_region = regions.find_one({'region_name': region_name})
+    regions.update({"region_name": region_name},
+            {'$pull': 
+            {'cities_in_region': city_name}})
     return redirect(url_for('user_page'))
 
 
