@@ -35,33 +35,33 @@ function hide_password() {
 
 // Function to add a new line to add and remove a new must see in my database
 function addMustSee() {
-    var addMustSee = '<textarea name="city_must_see" id="city_must_see" class="materialize-textarea new_mustSee" required> </textarea>'
-    $("#add_new_must_see").before(addMustSee)
+    var addMustSee = '<textarea name="city_must_see" id="city_must_see" class="materialize-textarea new_mustSee" required> </textarea>';
+    $("#add_new_must_see").before(addMustSee);
 }
 
 function removeMustSee() {
-    $(".new_mustSee").last().remove()
+    $(".new_mustSee").last().remove();
 }
 
 
 // Function to add a new line to add a new tip in my database
 function addTips() {
     var addTips = '<textarea name="city_tips" id="city_tips" class="materialize-textarea new_tips" required></textarea>'
-    $("#add_new_tips").before(addTips)
+    $("#add_new_tips").before(addTips);
 }
 
 function removeTips() {
-    $(".new_tips").last().remove()
+    $(".new_tips").last().remove();
 }
 
 // Function to add a new line to add a new to avoid tips in my database
 function addToAvoid() {
     var addToAvoid = '<textarea name="city_to_avoid" id="city_to_avoid" class="materialize-textarea new_to_avoid" required></textarea>'
-    $("#add_new_to_avoid").before(addToAvoid)
+    $("#add_new_to_avoid").before(addToAvoid);
 }
 
 function removeToAvoid() {
-    $(".new_to_avoid").last().remove()
+    $(".new_to_avoid").last().remove();
 }
 
 
@@ -77,10 +77,10 @@ function change_contents_made() {
     $("#visited").hide();
     $("#made").show();
     $("#preferite").hide();
-    $("#made_li").addClass("made_selected")
-    $("#visited_li").removeClass("visited_selected")
-    $("#to_visit_li").removeClass("to_visit_selected")
-    $("#preferite_li").removeClass("preferite_selected")
+    $("#made_li").addClass("made_selected");
+    $("#visited_li").removeClass("visited_selected");
+    $("#to_visit_li").removeClass("to_visit_selected");
+    $("#preferite_li").removeClass("preferite_selected");
 
 }
 
@@ -89,10 +89,10 @@ function change_contents_to_visit() {
     $("#visited").hide();
     $("#to_visit").show();
     $("#preferite").hide();
-    $("#made_li").removeClass("made_selected")
-    $("#visited_li").removeClass("visited_selected")
-    $("#to_visit_li").addClass("to_visit_selected")
-    $("#preferite_li").removeClass("preferite_selected")
+    $("#made_li").removeClass("made_selected");
+    $("#visited_li").removeClass("visited_selected");
+    $("#to_visit_li").addClass("to_visit_selected");
+    $("#preferite_li").removeClass("preferite_selected");
 }
 
 function change_contents_visited() {
@@ -100,10 +100,10 @@ function change_contents_visited() {
     $("#to_visit").hide();
     $("#made").hide();
     $("#preferite").hide();
-    $("#made_li").removeClass("made_selected")
-    $("#visited_li").addClass("visited_selected")
-    $("#to_visit_li").removeClass("to_visit_selected")
-    $("#preferite_li").removeClass("preferite_selected")
+    $("#made_li").removeClass("made_selected");
+    $("#visited_li").addClass("visited_selected");
+    $("#to_visit_li").removeClass("to_visit_selected");
+    $("#preferite_li").removeClass("preferite_selected");
 }
 
 function change_contents_preferite() {
@@ -111,16 +111,16 @@ function change_contents_preferite() {
     $("#visited").hide();
     $("#to_visit").hide();
     $("#made").hide();
-    $("#made_li").removeClass("made_selected")
-    $("#visited_li").removeClass("visited_selected")
-    $("#to_visit_li").removeClass("to_visit_selected")
-    $("#preferite_li").addClass("preferite_selected")
+    $("#made_li").removeClass("made_selected");
+    $("#visited_li").removeClass("visited_selected");
+    $("#to_visit_li").removeClass("to_visit_selected");
+    $("#preferite_li").addClass("preferite_selected");
 }
 
 
 // Let carousel self slide
 function autoplay() {
-    setTimeout()
+    setTimeout();
     $('.carousel').carousel('next');
     setTimeout(autoplay, 4500);
 }
@@ -135,11 +135,11 @@ function autoplay() {
 function verification_form() {
     let input_delete = document.getElementById('confirm_delete_account')
     if (input_delete.value == "delete") {
-        $('#delete_input').hide()
-        $('#hidden_delete_btn').show()
+        $('#delete_input').hide();
+        $('#hidden_delete_btn').show();
         setTimeout(function() {
-            $('#delete_input').show()
-            $('#hidden_delete_btn').hide()
+            $('#delete_input').show();
+            $('#hidden_delete_btn').hide();
         }, 3000);
     }
 }
