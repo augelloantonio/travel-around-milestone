@@ -11,11 +11,11 @@
                     {%for city in cities%} {%if city.city_region == city_region%}
                     <div class="col s6 m4 l3 col_card ">
                 <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
+                    <a href="{{url_for( 'city_page', city_id=city._id)}} ">
                             <div class="card-image waves-effect waves-block waves-light ">
-                                <a href="{{url_for( 'city_page', city_id=city._id)}} ">
                                 <span class="card-title city_card_title ">{{city.city_name}}</span>
-                                </a>
                             </div>
+                            </a>
                         </div>
                 <div class="card_action">
                     <div class="add_row">
