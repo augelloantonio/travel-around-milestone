@@ -7,8 +7,6 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
 from time import ctime, strftime
 from werkzeug.security import generate_password_hash, check_password_hash
-from bson import json_util
-from bson.json_util import dumps
 
 
 #~~~~~~~~~~~~~~~~~~Inizialize Flask and connect to MongoDB~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -16,6 +14,7 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'travel_around'
 app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
 
+# Set a key - this key is only demonstrative on my Deployed and active project is not the actual key
 app.secret_key = os.getenv('SECRET', 'randomstring123')
 
 mongo = PyMongo(app)
@@ -58,7 +57,7 @@ def add_city():
     user_logged = users.find_one({'username' : username})
     
     if not session.get('logged_in'): 
-        return redirect(url_for('login_page'))
+        return redirect(url_for('permitt_required'))
     else:
         return render_template('addcity.html', country=json_file_country, regions=regions.find(),
         city=cities.find(), user=users.find(), count_cities = cities.count(),
@@ -97,7 +96,7 @@ def insert_city():
     regions.update({"region_name": region_name},
             {'$addToSet': 
             {'cities_in_region' : request.form.get('city_name')}})
-    
+    flash('New city added.')
     return redirect(url_for('user_page'))
     
 
@@ -112,7 +111,7 @@ def edit_city(city_id):
     user_logged = users.find_one({'username' : username})
     
     if not session.get('logged_in'): 
-        return redirect(url_for('login_page'))
+        return redirect(url_for('permitt_required'))
     else:
         return render_template('editcity.html', city=the_city,
             country=all_cities, regions=regions.find(), user=users, user_logged=user_logged)
@@ -143,7 +142,7 @@ def update_city(city_id):
 
 # Delete city
 @app.route('/delete_city/<city_name>/<city_id>')
-def delete_city(city_name, city_id, region_name):
+def delete_city(city_name, city_id):
     username=session.get('username')
     user_logged = users.find_one({'username' : username})
     cities.remove({'_id': ObjectId(city_id)})
@@ -151,6 +150,7 @@ def delete_city(city_name, city_id, region_name):
     users.update({"username": username},
             {'$pull': 
             {'cities_made' : city_name}})
+    flash('City deleted successful.')
     return redirect(url_for('user_page'))
 
 
@@ -222,7 +222,7 @@ def get_user_data():
             'right': right,
         })
         session['logged_in'] = True
-        flash('Welcome aboard ' + username + ", here you can manage your lists")
+        flash('Welcome aboard ' + username + ", here you can manage your lists.")
         return redirect(url_for('user_page'))
     else:
         session['logged_in'] = False
@@ -257,19 +257,25 @@ def login():
 def logout():
     session.clear()
     session['logged_in'] = False
+    flash('Log Out Successful.')
     return redirect(url_for('index'))
     
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Delete User ~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 @app.route('/delete_user/<user_id>')
 def delete_user(user_id):
-    session['logged_in'] == False
     username=session.get('username')
     user_logged = users.find_one({'username' : username})
     users.remove({'_id': ObjectId(user_id)})
-    if user_logged['right'] == 'admin':
+    if (user_logged['right'] == 'owner') or (user_logged['right'] == 'admin'):
+        session['logged_in'] == True
+        flash('Profile deleted successful.')
         return redirect(url_for('index'))
     else:
-        return redirect(url_for('logout'))
+        session.clear()
+        session['logged_in'] = False
+        flash('Profile deleted successful.')
+        return redirect(url_for('index'))
+    
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~Personal pages~~~~~~~~~~~~~~~~~~~~~~#
 # User Personal Page
@@ -278,7 +284,7 @@ def user_page():
     username=session.get('username')
     user_logged = users.find_one({'username' : username})
     if not session.get('logged_in'): 
-        return redirect(url_for('login_page'))
+        return redirect(url_for('permitt_required'))
     else:
         return render_template('user.html', user=users.find(),
         cities = cities.find().sort('added_time', pymongo.DESCENDING), tot_cities=cities.count(),
@@ -294,7 +300,7 @@ def userpublicpage(user_id):
     username=session.get('username')
     user_logged = users.find_one({'username' : username})
     if not session.get('logged_in'): 
-        return redirect(url_for('login_page'))
+        return redirect(url_for('permitt_required'))
     else:
         return render_template("userpage.html", username = users.find_one({"_id": ObjectId(user_id)}),
                           cities = cities.find(), user = the_user, user_logged=user_logged,
@@ -309,7 +315,7 @@ def admin_settings():
     username=session.get('username')
     user_logged = users.find_one({'username' : username})
     if not session.get('logged_in'): 
-        return redirect(url_for('login_page'))
+        return redirect(url_for('permitt_required'))
     else:
         return render_template('admin_settings.html', users = users.find(), user_logged=user_logged)
 
@@ -320,7 +326,7 @@ def user_rights(user_id):
     user_logged = users.find_one({'username' : username})
     the_user = users.find_one({'_id': ObjectId(user_id)})
     if not session.get('logged_in'): 
-        return redirect(url_for('login_page'))
+        return redirect(url_for('permitt_required'))
     elif user_logged['right'] != 'owner':
         return redirect(url_for('user_page'))
     else:

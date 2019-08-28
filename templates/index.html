@@ -1,5 +1,16 @@
 {% extends 'base.html' %} {% block content %}
 
+<!-- Alert Messagge-->
+{% with messages = get_flashed_messages() %} {% if messages %}
+<div class="container">
+    <div class="alert_messagge">
+        {% for message in messages %}
+        <p class="alert_messagge_header">{{ message }}</p>
+        {% endfor %}
+    </div>
+</div>
+{% endif %} {% endwith %}
+
 <!-- Carousel -->
 <div class="carousel_section">
     <p class="index_header">Where are you going next?</p>
