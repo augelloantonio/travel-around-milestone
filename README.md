@@ -363,7 +363,8 @@ The owner can also change the users right, by clicking on the button "change use
 - Add new sections to city page like "Suggested Food";
 - Add filtered search for country and description;
 - Add a privacy policy page declarations according to GDPR (General Data Protection Regulation) for the launch;
-- Add a button in edit city to delete elements already contained in the database. 
+- Add a button in edit city to delete elements already contained in the database;
+- Add a better and filtered search tab.
 
 
 ## Technologies Used
@@ -453,7 +454,7 @@ The site was developed following the Grid System and the same was tested to ensu
 #### Test Driven Development
 Some ***TDD*** (Test Driven Development) was done while developing the python code and can be found in my test.py. For this test I used [UnitTest](https://docs.python.org/3/library/unittest.html), running my test.py file in the console with the command ```python3 test.py``` i get 8 test done and an **OK** status that means that all my code passed.
 
-More testing on my JavaSvript was done by manually checking if my code was called at the right action, using the ```console.log('function called')``` code in the function i wanted to check or by using the DOM.
+More testing on my JavaScript was done by manually checking if my code was called at the right action, using the ```console.log('function called')``` code in the function i wanted to check or by using the DOM.
 
 I did several manual testing to the code as well by testing the various features of my website like:
 
@@ -512,7 +513,7 @@ password: admin
 3. Try to register with "admin" as username, you will get an error message
 4. Try to register with "admin@admin.com" as email, you will get an error message
 
-### During development
+### During development & Bugs
 
 During the development I had issue with the Grid System on Firefox and Edge, same fixed adding to the div I needed the following code: 
 
@@ -527,9 +528,14 @@ During the development I had issue with the Grid System on Firefox and Edge, sam
   
 On Edge at the moment the span it is still not having a light grey background like on the other browsers.
 
+The Index page it seems slow at the starting, so I added a loading gif to let know te user that the page is charging.
+The cause of this issue is an eavy calling to the database, I am calling by the code the database so many times and it is a known bug from me.
+I searched and tried  few solutions for that, no one of them seems working, I tried to use the [Model One-to-Many Relationships](https://docs.mongodb.com/manual/tutorial/model-embedded-one-to-many-relationships-between-documents/), the [Aggregation](https://docs.mongodb.com/manual/reference/command/aggregate/index.html) Method and [MongoDB Relationships](https://www.tutorialspoint.com/mongodb/mongodb_relationships.htm), but all of them without success. The scope of the milestone is anyway reached and I will for sure find a fix for this problem in the future, I would like to concentrate more on the progress of CodeInstitute Course at the moment.
+
 It seems as there are no other bugs at the moment.
 
 To test if the SEO guidelines are followed I used [Lighthouse](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk) as Google Chrome extension that gives me 100% of the result.
+
 
 ### Validation Testings
 
