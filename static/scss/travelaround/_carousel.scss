@@ -16,25 +16,35 @@
     background-position: center;
 }
 
+
 @media (max-width: 1200px) {
     .img_carousel,
-    .carousel_container {
-        height: 200px;
+    .carousel_container,
+    .carousel,
+    .carousel-slider,
+    .carousel-item {
+        height: 200px!important;
     }
 }
 
 @media (max-width: 768px) {
     .img_carousel,
-    .carousel_container {
-        height: 150px;
+    .carousel_container,
+    .carousel,
+    .carousel-slider,
+    .carousel-item {
+        height: 150px!important;
     }
 }
 
 
 @media (max-width: 450px) {
     .img_carousel,
-    .carousel_container {
-        height: 100px;
+    .carousel_container,
+    .carousel,
+    .carousel-slider,
+    .carousel-item {
+        height: 100px!important;
     }
 }
 

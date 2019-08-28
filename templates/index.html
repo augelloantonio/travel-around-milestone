@@ -26,12 +26,15 @@
 
 <!-- Content -->
 <div class="row ">
+
+<!-- Europe Section -->
     <div>
         <p class="index_header">Europe</p>
     </div>
     <div>
         <div class="row ">
-            {% for city in cities%} {%if city.city_region == 'Europe'%}
+            <!-- Set [0:14] to show only the last 8 elements -->
+            {% for city in cities [0:14]%} {%if city.city_region == 'Europe'%}
             <div class="col xs 12 s6 m4 l3 col_card">
                 <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
                     <a href="{{url_for( 'city_page', city_id=city._id)}} ">
@@ -67,12 +70,14 @@
         </a>
     </div>
 
+<!-- North America & Canada -->
     <div>
         <div>
             <p class="index_header">North America & Canada</p>
         </div>
         <div class="row ">
-            {% for city in cities_1 %} {%if city.city_region == 'North America & Canada'%}
+            <!-- Set [0:14] to show only the last 8 elements -->
+            {% for city in cities_1[0:14] %} {%if city.city_region == 'North America & Canada'%}
             <div class="col s6 m4 l3 col_card">
                 <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
                     <a href="{{url_for( 'city_page', city_id=city._id)}} ">
@@ -108,10 +113,12 @@
         </a>
     </div>
 
+<!-- Asia Section-->
     <div>
         <p class="index_header">Asia</p>
         <div class="row ">
-            {%for city in cities_2%} {%if city.city_region == 'Asia'%}
+            <!-- Set [0:14] to show only the last 8 elements -->
+            {%for city in cities_2%}[0:14] {%if city.city_region == 'Asia'%}
             <div class="col s6 m4 l3 col_card">
                 <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
                     <a href="{{url_for( 'city_page', city_id=city._id)}} ">
@@ -147,10 +154,12 @@
         </a>
     </div>
 
+<!-- Central America & South America Section-->
     <div>
         <p class="index_header">Central America & South America</p>
         <div class="row ">
-            {%for city in cities_3%} {%if city.city_region == 'Central America & South America'%}
+            <!-- Set [0:14] to show only the last 8 elements -->
+            {%for city in cities_3[0:14]%} {%if city.city_region == 'Central America & South America'%}
             <div class="col s6 m4 l3 col_card">
                 <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
                     <a href="{{url_for( 'city_page', city_id=city._id)}} ">
@@ -186,12 +195,14 @@
         </a>
     </div>
 
+<!-- Australia & New Zeland Section-->
     <div>
         <div>
             <p class="index_header">Australia & New Zeland</p>
         </div>
         <div class="row ">
-            {%for city in cities_4%} {%if city.city_region == 'Australia & New Zeland'%}
+            <!-- Set [0:14] to show only the last 8 elements -->
+            {%for city in cities_4[0:14]%} {%if city.city_region == 'Australia & New Zeland'%}
             <div class="col s6 m4 l3 col_card">
                 <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
                     <a href="{{url_for( 'city_page', city_id=city._id)}} ">
@@ -227,12 +238,14 @@
         </a>
     </div>
 
+<!-- Africa & The Middle East Section-->
     <div>
         <div>
             <p id="name_of_region" class="index_header ">Africa & The Middle East</p>
         </div>
         <div class="row ">
-            {%for city in cities_5%} {%if city.city_region == 'Africa & The Middle East' %}
+            <!-- Set [0:14] to show only the last 8 elements -->
+            {%for city in cities_5[0:14]%} {%if city.city_region == 'Africa & The Middle East' %}
             <div class="col s6 m4 l3 col_card ">
                 <div class="card card_bg lazy " style="background-image: url({{city.city_image}}) ">
                     <a href="{{url_for( 'city_page', city_id=city._id)}} ">
@@ -266,15 +279,5 @@
             </div>
         </a>
     </div>
-
-
-
-    <!--Testing cities in region-->
-    
-    {%for region in regions_in_regions%}
-{{regions_in_regions}}
- 
- {%endfor%}
-
 </div>
 {% endblock %}

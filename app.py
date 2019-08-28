@@ -34,16 +34,15 @@ def index():
 
 
 # Set limit 16 to prevent showing more than 8 elements for region
-    return render_template("index.html", cities=cities.find().sort('added_time', pymongo.DESCENDING).limit(16),
-                            cities_carousel= cities.find().sort('city_name').limit(6),
-                            city=cities.find().sort('added_time', pymongo.DESCENDING).limit(16), 
-                            cities_1= cities.find().sort('added_time', pymongo.DESCENDING).limit(16), 
-                            cities_2=cities.find().sort('added_time', pymongo.DESCENDING).limit(16),
-                            cities_3=cities.find().sort('added_time', pymongo.DESCENDING).limit(16), 
-                            cities_4=cities.find().sort('added_time', pymongo.DESCENDING).limit(16),
-                            cities_5=cities.find().sort('added_time', pymongo.DESCENDING).limit(16), 
-                            regions = regions.find(),
-                            user_logged=user_logged)
+    return render_template("index.html", cities=cities.find().sort('added_time', pymongo.DESCENDING),
+                            cities_carousel= cities.find().sort('city_name').limit(12),
+                            city=cities.find().sort('added_time', pymongo.DESCENDING), 
+                            cities_1= cities.find().sort('added_time', pymongo.DESCENDING), 
+                            cities_2=cities.find().sort('added_time', pymongo.DESCENDING),
+                            cities_3=cities.find().sort('added_time', pymongo.DESCENDING), 
+                            cities_4=cities.find().sort('added_time', pymongo.DESCENDING),
+                            cities_5=cities.find().sort('added_time', pymongo.DESCENDING), 
+                            regions = regions.find(), user_logged=user_logged)
 
 #~~~~~~~~~ CRUD - Create a new city, Read New city, Update existing city, Delete existing City ~~~~~~~~#
 # Create city WebPage
