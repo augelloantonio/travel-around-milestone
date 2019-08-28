@@ -33,10 +33,10 @@ def index():
     cities_preferred_count = cities.find({'cities_preferred_by': 1}).count()
 
 
-# Set limit 16 to prevent showing more than 8 elements for region
-    return render_template("index.html", cities=cities.find().sort('added_time', pymongo.DESCENDING),
+# Set limit 14 to prevent showing more than 8 elements for region
+    return render_template("index.html", cities=cities.find()[0:14].sort('added_time', pymongo.DESCENDING),
                             cities_carousel= cities.find().sort('city_name').limit(12),
-                            city=cities.find().sort('added_time', pymongo.DESCENDING), 
+                            city=cities.find()[0:14].sort('added_time', pymongo.DESCENDING), 
                             cities_1= cities.find().sort('added_time', pymongo.DESCENDING), 
                             cities_2=cities.find().sort('added_time', pymongo.DESCENDING),
                             cities_3=cities.find().sort('added_time', pymongo.DESCENDING), 
