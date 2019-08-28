@@ -118,7 +118,7 @@
         <p class="index_header">Asia</p>
         <div class="row ">
             <!-- Set [0:14] to show only the last 8 elements -->
-            {%for city in cities_2%}[0:14] {%if city.city_region == 'Asia'%}
+            {%for city in cities_2[0:14]%} {%if city.city_region == 'Asia'%}
             <div class="col s6 m4 l3 col_card">
                 <div class="card card_bg lazy" style="background-image: url({{city.city_image}})">
                     <a href="{{url_for( 'city_page', city_id=city._id)}} ">
